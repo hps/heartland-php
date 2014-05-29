@@ -8,7 +8,7 @@
     ],
     "homepage": "https://developer.heartlandpaymentsystems.com/SecureSubmit",
     "license": "MIT",
-    "authors": "Heartland Payment Systems",
+    "authors": ["Heartland Payment Systems"],
     "require": {
         "php": ">=5.2"
     },
