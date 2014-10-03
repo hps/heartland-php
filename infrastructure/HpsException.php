@@ -8,7 +8,7 @@ class HpsException extends Exception{
     public function __construct($message, $code=null, $innerException = null){
         $this->code = $code;
         $this->innerException = $innerException;
-        parent::__construct($message, 0, $innerException);
+        parent::__construct($message, 0);
     }
 
     public function code(){
