@@ -1,5 +1,5 @@
 {
-    "name": "heartland-payment-systems/securesubmit",
+    "name": "securesubmit/heartland-php",
     "description": "PHP SDK for processing payments via Portico Gateway",
     "keywords": [
         "securesubmit",
@@ -17,6 +17,8 @@
         "php": ">=5.2"
     },
     "autoload":{
-        "classmap": ["entities","infrastructure","services"]
+      "files": [
+            "vendor/securesubmit/heartland-php/Hps.php"
+        ]
     }
 }
