@@ -18,7 +18,7 @@
     },
     "autoload":{
       "files": [
-            "vendor/securesubmit/heartland-php/Hps.php"
+            "Hps.php"
         ]
     }
 }
