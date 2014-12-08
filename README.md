@@ -5,7 +5,7 @@ This PHP SDK makes it easy to process payments against the Heartland Payment Sys
 ## Installation
 
 Add this SDK to your PHP project and require it once.
-	require_once 'hpsChargeService.php';
+	require_once 'Hps.php';
 
 ## Usage
 
