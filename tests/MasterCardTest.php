@@ -566,7 +566,7 @@ class MasterCardTests extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidServicesConfig());
+        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
         $response = $chargeSvc->verify(TestCreditCard::validMasterCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("85", $response->responseCode);
     }
@@ -579,7 +579,7 @@ class MasterCardTests extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidServicesConfig());
+        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
         $response = $chargeSvc->authorize(50, "usd", TestCreditCard::validMasterCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("00", $response->responseCode);
     }
@@ -592,7 +592,7 @@ class MasterCardTests extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidServicesConfig());
+        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
         $response = $chargeSvc->authorize(50, "usd", TestCreditCard::validMasterCreditCard(), TestCardHolder::ValidCardHolder(), true);
         $this->assertEquals("0", $response->tokenData->responseCode);
         $this->assertEquals("00", $response->responseCode);
@@ -606,7 +606,7 @@ class MasterCardTests extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->CertServicesConfig());
+        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
         $chargeResponse = $chargeSvc->charge(25.00, "usd", TestCreditCard::validMasterCreditCard(), TestCardHolder::certCardHolderShortZipNoStreet());
         $refundResponse = $chargeSvc->refundTransaction(25.00, "usd", $chargeResponse->transactionId);
         $this->assertEquals($refundResponse->responseCode, "0");
@@ -621,7 +621,7 @@ class MasterCardTests extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         // Authorize the card.
-        $chargeSvc = new HpsCreditService($testConfig->ValidServicesConfig());
+        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
         $authResponse = $chargeSvc->authorize(50, "usd", TestCreditCard::validMasterCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("0", $authResponse->responseCode);
 
