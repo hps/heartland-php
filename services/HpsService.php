@@ -6,7 +6,7 @@ class HpsService {
     protected $_currency = null;
     protected $_filterBy = null;
 
-    public function __construct(HpsConfiguration $config=null){
+    public function __construct(HpsServicesConfig $config=null){
         if($config != null){
             $this->config = $config;
         }

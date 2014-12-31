@@ -42,6 +42,7 @@ require_once(dirname(__FILE__).DS.'entities/Check/HpsCheckResponseDetails.php');
 
 
 // Services
+require_once(dirname(__FILE__).DS.'services/HpsServicesConfig.php');
 require_once(dirname(__FILE__).DS.'services/HpsTokenService.php');
 require_once(dirname(__FILE__).DS.'services/HpsService.php');
 require_once(dirname(__FILE__).DS.'services/HpsCreditService.php');
