@@ -1,5 +1,23 @@
 <?php
 
+namespace Heartland\Services;
+
+use DateTime;
+use DOMDocument;
+use Heartland\Entities\HpsCreditCard;
+use Heartland\Infrastructure\Validation;
+use Heartland\Infrastructure\HpsExceptionMapper;
+use Heartland\Infrastructure\HpsSdkCodes;
+use Heartland\Entities\HpsCardHolder;
+use Heartland\Entities\HpsReportTransactionDetails;
+use Heartland\Entities\HpsReportTransactionSummary;
+use Heartland\Entities\HpsCharge;
+use Heartland\Entities\HpsAccountVerify;
+use Heartland\Entities\HpsAuthorization;
+use Heartland\Entities\HpsRefund;
+use Heartland\Entities\HpsReversal;
+use Heartland\Entities\HpsVoid;
+
 class HpsCreditService extends HpsService{
 
     public function authorize($amount, $currency, $cardOrToken, $cardHolder=null, $requestMultiUseToken=false, $details=null, $txnDescriptor=null){

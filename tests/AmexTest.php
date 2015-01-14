@@ -1,5 +1,8 @@
 <?php
 
+use Heartland\Infrastructure\CardException;
+use Heartland\Services\HpsCreditService;
+
 require_once("setup.php"); 
 
 class AmexTest extends PHPUnit_Framework_TestCase

@@ -1,5 +1,8 @@
 <?php
 
+use Heartland\Services\HpsCheckService;
+use Heartland\Infrastructure\HpsCheckException;
+
 require_once("setup.php");
 
 class CheckTests extends PHPUnit_Framework_TestCase{

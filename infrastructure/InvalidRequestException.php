@@ -1,4 +1,7 @@
 <?php
+
+namespace Heartland\Infrastructure;
+
 class InvalidRequestException extends HpsException{
     public $param = null;
 

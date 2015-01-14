@@ -1,5 +1,7 @@
 <?php
 
+namespace Heartland\Services;
+
 class HpsServicesConfig {
     public $credentialToken = null,
            $securityApiKey  = null,

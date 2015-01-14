@@ -1,5 +1,7 @@
 <?php
 
+namespace Heartland\Entities;
+
 class HpsTransaction {
     public  $transactionHeader  = null,
             $transactionId      = null,

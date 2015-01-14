@@ -1,6 +1,9 @@
 <?php
 require_once(dirname(__FILE__).'/../setup.php');
 
+use Heartland\Services\HpsBatchService;
+use Heartland\Services\HpsCreditService;
+
 class CreditCertificationTests extends PHPUnit_Framework_TestCase
 {
     /**

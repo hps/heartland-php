@@ -1,5 +1,7 @@
 <?php
 
+namespace Heartland\Infrastructure;
+
 class HpsCheckException extends HpsException{
     public $transactionId = null;
     public $details = null;

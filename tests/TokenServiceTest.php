@@ -1,5 +1,11 @@
 <?php
 
+use Heartland\Services\HpsCreditService;
+use Heartland\Services\HpsTokenService;
+use Heartland\Services\HpsChargeService;
+use Heartland\Entities\HpsTokenData;
+use Heartland\Infrastructure\HpsException;
+
 require_once("setup.php");
 
 class TokenServiceTests extends PHPUnit_Framework_TestCase{

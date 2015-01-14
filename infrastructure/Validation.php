@@ -1,5 +1,10 @@
 <?php
 
+namespace Heartland\Infrastructure;
+
+use Heartland\Infrastructure\HpsSdkCodes;
+use Heartland\Infrastructure\HpsExceptionMapper;
+
 class Validation {
     static private $_defaultAllowedCurrencies = array('usd');
 

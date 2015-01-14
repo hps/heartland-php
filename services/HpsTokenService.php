@@ -1,4 +1,10 @@
 <?php
+
+namespace Heartland\Services;
+
+use Heartland\Entities\HpsCreditCard;
+use Heartland\Infrastructure\HpsException;
+
 // This should only be used for testing tokens.
 
 class HpsTokenService {

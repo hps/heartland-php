@@ -1,5 +1,11 @@
 <?php
 
+namespace Heartland\Services;
+
+use DOMDocument;
+use Heartland\Infrastructure\HpsExceptionMapper;
+use Heartland\Entities\HpsBatch;
+
 class HpsBatchService extends HpsService{
     public function closeBatch(){
         $xml = new DOMDocument();

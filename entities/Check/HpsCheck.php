@@ -1,4 +1,7 @@
 <?php
+
+namespace Heartland\Entities\Check;
+
  class HpsCheck {
      public $routingNumber  = null;
      public $accountNumber  = null;

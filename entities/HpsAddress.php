@@ -1,5 +1,7 @@
 <?php
 
+namespace Heartland\Entities;
+
 class HpsAddress {
     public  $address    = null,
             $city       = null,

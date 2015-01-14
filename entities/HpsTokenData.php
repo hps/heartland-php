@@ -1,5 +1,7 @@
 <?php
 
+namespace Heartland\Entities;
+
 class HpsTokenData {
     public  $tokenValue         = null,
             $responseCode       = null,

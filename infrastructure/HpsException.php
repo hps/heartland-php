@@ -1,4 +1,9 @@
 <?php
+
+namespace Heartland\Infrastructure;
+
+use Exception;
+
 class HpsException extends Exception{
     public  $code           = null,
             $innerException = null,
