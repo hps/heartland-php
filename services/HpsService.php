@@ -1,5 +1,11 @@
 <?php
 
+namespace Heartland\Services;
+
+use DOMDocument;
+use Heartland\Infrastructure\HpsExceptionMapper;
+use Heartland\Infrastructure\HpsSdkCodes;
+
 class HpsService {
     public $config = null;
     protected $_amount = null;

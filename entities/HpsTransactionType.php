@@ -1,5 +1,7 @@
 <?php
 
+namespace Heartland\Entities;
+
 class HpsTransactionType {
     static public $AUTHORIZE = 0;
     static public $CAPTURE = 1;

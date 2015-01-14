@@ -1,5 +1,8 @@
 ﻿<?php
 
+use Heartland\Entities\HpsCardHolder;
+use Heartland\Entities\HpsAddress;
+
 class TestCardHolder
 {
 

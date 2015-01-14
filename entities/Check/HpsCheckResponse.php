@@ -1,6 +1,8 @@
 <?php
 
-class HpsCheckResponse extends HpsTransaction{
+namespace Heartland\Entities\Check;
+
+class HpsCheckResponse extends \Heartland\Entities\HpsTransaction{
     public  $authorizationCode  = null,
             $customerId         = null,
             $details            = null;

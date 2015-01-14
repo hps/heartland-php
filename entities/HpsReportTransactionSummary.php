@@ -1,5 +1,9 @@
 <?php
 
+namespace Heartland\Entities;
+
+use Heartland\Infrastructure\HpsExceptionMapper;
+
 class HpsReportTransactionSummary extends HpsTransaction{
     public  $amount                 = null,
             $originalTransactionId  = null,

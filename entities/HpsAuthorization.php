@@ -1,5 +1,6 @@
 <?php
 
+namespace Heartland\Entities;
 
 class HpsAuthorization extends HpsTransaction {
     public  $avsResultCode      = null,

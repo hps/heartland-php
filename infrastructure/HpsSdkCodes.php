@@ -1,4 +1,7 @@
 <?php
+
+namespace Heartland\Infrastructure;
+
 class HpsSdkCodes {
     public static   $invalidTransactionId               = "0",
                     $invalidGatewayUrl                  = "1",

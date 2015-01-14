@@ -1,5 +1,7 @@
 <?php
 
+namespace Heartland\Infrastructure;
+
 class HpsExceptionMapper{
 
     private static function _getExceptions(){
@@ -46,7 +48,7 @@ class HpsExceptionMapper{
 
     public static function map_sdk_exception($error_code, $inner_exception = null){
         $mapping = self::exception_for_category_and_code('sdk', $error_code);
-        $sdk_codes = get_class_vars('HpsSdkCodes');
+        $sdk_codes = get_class_vars('\Heartland\Infrastructure\HpsSdkCodes');
         foreach($sdk_codes as $code_name=>$code_value){
             if($code_value == $error_code){
                 $sdk_code_name = $code_name;

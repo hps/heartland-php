@@ -1,5 +1,7 @@
 <?php
 
+namespace Heartland\Infrastructure;
+
 class CardException extends HpsException{
     public  $TransactionId = null;
     public  $ResultText = null;

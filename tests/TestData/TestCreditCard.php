@@ -1,5 +1,7 @@
 <?php
 
+use Heartland\Entities\HpsCreditCard;
+
 class TestCreditCard
 {
     static public function validVisaCreditCard(){

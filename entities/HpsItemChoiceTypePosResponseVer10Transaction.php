@@ -1,5 +1,7 @@
 <?php
 
+namespace Heartland\Entities;
+
 class HpsItemChoiceTypePosResponseVer10Transaction{
     static public $AddAttachment = "AddAttachment";
     static public $Authenticate = "Authenticate";

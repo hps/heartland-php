@@ -1,5 +1,7 @@
 <?php
 
+namespace Heartland\Entities;
+
 class HpsReversal extends HpsTransaction{
     public  $avsResultCode  = null,
             $avsResultText  = null,

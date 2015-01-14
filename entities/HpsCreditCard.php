@@ -1,5 +1,6 @@
 <?php
 
+namespace Heartland\Entities;
 
 class HpsCreditCard {
     public  $number     = null,

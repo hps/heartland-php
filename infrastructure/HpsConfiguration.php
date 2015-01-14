@@ -1,5 +1,7 @@
 <?php
 
+namespace Heartland\Infrastructure;
+
 class HpsConfiguration {
     public  $secretApiKey       = null,
             $licenseId          = null,

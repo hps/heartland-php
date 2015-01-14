@@ -1,5 +1,9 @@
 <?php
 
+use Heartland\Infrastructure\CardException;
+use Heartland\Infrastructure\InvalidRequestException;
+use Heartland\Services\HpsCreditService;
+
 require_once("setup.php");
 
 class GeneralTests extends PHPUnit_Framework_TestCase

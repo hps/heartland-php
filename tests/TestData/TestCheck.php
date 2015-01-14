@@ -1,5 +1,9 @@
 <?php
 
+use Heartland\Entities\HpsAddress;
+use Heartland\Entities\Check\HpsCheckHolder;
+use Heartland\Entities\Check\HpsCheck;
+
 class TestCheck {
     static public function approve(){
         $check = new HpsCheck();

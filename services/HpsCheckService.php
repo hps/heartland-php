@@ -1,5 +1,14 @@
 <?php
 
+namespace Heartland\Services;
+
+use DOMDocument;
+use Heartland\Entities\Check\HpsCheck;
+use Heartland\Infrastructure\Validation;
+use Heartland\Infrastructure\HpsException;
+use Heartland\Entities\Check\HpsCheckResponse;
+use Heartland\Infrastructure\HpsCheckException;
+
 class HpsCheckService extends HpsService {
 
     /**

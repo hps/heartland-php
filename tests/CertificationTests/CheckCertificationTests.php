@@ -2,6 +2,8 @@
 
 require_once(dirname(__FILE__).'/../setup.php');
 
+use Heartland\Services\HpsCheckService;
+
 class CheckCertificationTests extends PHPUnit_Framework_TestCase{
 
     public function testACHDebitConsumer1(){

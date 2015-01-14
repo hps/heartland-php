@@ -1,6 +1,8 @@
 <?php
 
-class HpsCheckHolder extends HpsConsumer {
+namespace Heartland\Entities\Check;
+
+class HpsCheckHolder extends \Heartland\Entities\HpsConsumer {
     public  $checkName      = null,
             $dlState        = null,
             $dlNumber       = null,

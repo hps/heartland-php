@@ -1,5 +1,8 @@
 <?php
 
+use Heartland\Infrastructure\CardException;
+use Heartland\Services\HpsCreditService;
+
 require_once("setup.php");
 
 class MasterCardTests extends PHPUnit_Framework_TestCase

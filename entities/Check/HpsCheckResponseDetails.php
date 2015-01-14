@@ -1,5 +1,7 @@
 <?php
 
+namespace Heartland\Entities\Check;
+
 class HpsCheckResponseDetails {
     public $messageType = null;
     public $code = null;

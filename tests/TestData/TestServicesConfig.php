@@ -1,5 +1,7 @@
 <?php
 
+use Heartland\Services\HpsServicesConfig;
+
 class TestServicesConfig
 {
     private $uatServiceUri = "https://posgateway.cert.secureexchange.net/Hps.Exchange.PosGateway/PosGatewayService.asmx?wsdl";
