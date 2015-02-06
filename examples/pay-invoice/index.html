@@ -1,0 +1,187 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="SecureSubmit PHP end-to-end payment example using tokenization.">
+    <meta name="author" content="Mark Hagan">
+    <title>Simple Payment Form Demo</title>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="assets/secure.submit-1.0.2.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+<h1>PHP SecureSubmit Example</h1>
+<form class="payment_form form-horizontal" id="payment_form" action="charge.php">
+<h2>Billing Information</h2>
+<div class="form-group">
+	<label for="FirstName" class="col-sm-2 control-label">First Name</label>
+	<div class="col-sm-10">
+		<input type="text" name="FirstName" />
+	</div>
+</div>
+<div class="form-group">
+	<label for="LastName" class="col-sm-2 control-label">Last Name</label>
+	<div class="col-sm-10">
+		<input type="text" name="LastName" />
+	</div>
+</div>
+<div class="form-group">
+	<label for="PhoneNumber" class="col-sm-2 control-label">Phone Number</label>
+	<div class="col-sm-10">
+		<input type="text" name="PhoneNumber" />
+	</div>
+</div>
+<div class="form-group">
+	<label for="Email" class="col-sm-2 control-label">Email</label>
+	<div class="col-sm-10">
+		<input type="text" name="Email" />
+	</div>
+</div>
+<div class="form-group">
+	<label for="Address" class="col-sm-2 control-label">Address</label>
+	<div class="col-sm-10">
+		<input type="text" name="Address" />
+	</div>
+</div>
+<div class="form-group">
+	<label for="City" class="col-sm-2 control-label">City</label>
+	<div class="col-sm-10">
+		<input type="text" name="City" />
+	</div>
+</div>
+<div class="form-group">
+	<label for="State" class="col-sm-2 control-label">State</label>
+	<div class="col-sm-10">
+		<select Name="State">
+			<option value="AL">Alabama</option>
+			<option value="AK">Alaska</option>
+			<option value="AZ">Arizona</option>
+			<option value="AR">Arkansas</option>
+			<option value="CA">California</option>
+			<option value="CO">Colorado</option>
+			<option value="CT">Connecticut</option>
+			<option value="DE">Delaware</option>
+			<option value="DC">District Of Columbia</option>
+			<option value="FL">Florida</option>
+			<option value="GA">Georgia</option>
+			<option value="HI">Hawaii</option>
+			<option value="ID">Idaho</option>
+			<option value="IL">Illinois</option>
+			<option value="IN">Indiana</option>
+			<option value="IA">Iowa</option>
+			<option value="KS">Kansas</option>
+			<option value="KY">Kentucky</option>
+			<option value="LA">Louisiana</option>
+			<option value="ME">Maine</option>
+			<option value="MD">Maryland</option>
+			<option value="MA">Massachusetts</option>
+			<option value="MI">Michigan</option>
+			<option value="MN">Minnesota</option>
+			<option value="MS">Mississippi</option>
+			<option value="MO">Missouri</option>
+			<option value="MT">Montana</option>
+			<option value="NE">Nebraska</option>
+			<option value="NV">Nevada</option>
+			<option value="NH">New Hampshire</option>
+			<option value="NJ">New Jersey</option>
+			<option value="NM">New Mexico</option>
+			<option value="NY">New York</option>
+			<option value="NC">North Carolina</option>
+			<option value="ND">North Dakota</option>
+			<option value="OH">Ohio</option>
+			<option value="OK">Oklahoma</option>
+			<option value="OR">Oregon</option>
+			<option value="PA">Pennsylvania</option>
+			<option value="RI">Rhode Island</option>
+			<option value="SC">South Carolina</option>
+			<option value="SD">South Dakota</option>
+			<option value="TN">Tennessee</option>
+			<option value="TX">Texas</option>
+			<option value="UT">Utah</option>
+			<option value="VT">Vermont</option>
+			<option value="VA">Virginia</option>
+			<option value="WA">Washington</option>
+			<option value="WV">West Virginia</option>
+			<option value="WI">Wisconsin</option>
+			<option value="WY">Wyoming</option>
+		</select>
+	</div>
+</div>
+<div class="form-group">
+	<label for="Zip" class="col-sm-2 control-label">Zip</label>
+	<div class="col-sm-10">
+		<input type="text" name="Zip" />
+	</div>
+</div>
+
+<h2>Payment Information</h2>
+<div class="form-group">
+        <label for="payment_amount" class="col-sm-2 control-label">Payment Amount</label>
+        <div class="col-sm-10">
+                <input type="text" name="payment_amount" id="payment_amount" />
+        </div>
+</div>
+<div class="form-group">
+        <label for="invoice_number" class="col-sm-2 control-label">Invoice Number</label>
+        <div class="col-sm-10">
+                <input type="text" name="invoice_number" id="invoice_number" />
+        </div>
+</div>
+
+<h2>Card Information</h2>
+<div class="form-group">
+	<label for="card_number" class="col-sm-2 control-label">Card Number</label>
+	<div class="col-sm-10">
+		<input type="text" id="card_number" />
+	</div>
+</div>
+<div class="form-group">
+	<label for="card_cvc" class="col-sm-2 control-label">CVC</label>
+	<div class="col-sm-10">
+		<input type="text" id="card_cvc" />
+	</div>
+</div>
+<div class="form-group">
+	<label for="exp_month" class="col-sm-2 control-label">Expiration Date</label>
+	<div class="col-sm-10">
+		<select id="exp_month">
+			<option>01</option>
+            		<option>02</option>
+            		<option>03</option>
+            		<option>04</option>
+            		<option>05</option>
+            		<option>06</option>
+            		<option>07</option>
+            		<option>08</option>
+            		<option>09</option>
+            		<option>10</option>
+            		<option>11</option>
+            		<option>12</option>
+		</select>
+		/
+		<select id="exp_year"></select>
+	</div>
+</div>
+
+<br />
+<input type="submit" value="Submit Payment" id="PaymentButton" /><br>
+</form>
+</div>
+	<script>
+        jQuery("#payment_form").SecureSubmit({
+            public_key: "pkapi_cert_P6dRqs1LzfWJ6HgGVZ",
+            error: function (response) {
+				alert(response.message);
+            }
+        });	
+	</script>
+<script type="text/javascript">
+	var myselect=document.getElementById("exp_year"), year = new Date().getFullYear();
+	var gen = function(max){do{myselect.add(new Option(year++),null);}while(max-->0);}(10);
+</script>
+</body>
+</html>
