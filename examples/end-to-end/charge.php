@@ -74,7 +74,7 @@
     // i'm running windows, so i had to update this:
     //ini_set("SMTP", "my-mail-server");
 
-    SendEmail($_GET['EMAIL'], 'donotreply@e-hps.com', 'Successful Charge!', $body, true);
+    SendEmail($_GET['Email'], 'donotreply@e-hps.com', 'Successful Charge!', $body, true);
 
 
 ?>
