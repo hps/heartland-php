@@ -14,23 +14,23 @@ class HpsTransaction {
     static public function fromDict($rsp,$txnType){
         // Hydrate the header
         $transactionHeader = new HpsTransactionHeader();
-        $transactionHeader->gatewayResponseCode = $rsp->Header->GatewayRspCode;
-        $transactionHeader->gatewayResponseMessage = $rsp->Header->GatewayRspMsg;
-        $transactionHeader->responseDt = $rsp->Header->RspDT;
-        $transactionHeader->clientTxnId = (isset($rsp->Header->ClientTxnId) ? $rsp->Header->ClientTxnId : null);
+        $transactionHeader->gatewayResponseCode = (string)$rsp->Header->GatewayRspCode;
+        $transactionHeader->gatewayResponseMessage = (string)$rsp->Header->GatewayRspMsg;
+        $transactionHeader->responseDt = (string)$rsp->Header->RspDT;
+        $transactionHeader->clientTxnId = (isset($rsp->Header->ClientTxnId) ? (string)$rsp->Header->ClientTxnId : null);
 
         $transaction = new HpsTransaction($transactionHeader,$txnType);
-        $transaction->transactionId = $rsp->Header->GatewayTxnId;
+        $transaction->transactionId = (string)$rsp->Header->GatewayTxnId;
         if(isset($rsp->Header->ClientTxnIdSpecified) && $rsp->Header->ClientTxnIdSpecified == true){
-            $transaction->clientTransactionId = $transactionHeader->clientTxnId;
+            $transaction->clientTransactionId = (string)$transactionHeader->clientTxnId;
         }
 
         // Hydrate the body
         $item = $rsp->Transaction->$txnType;
         if($item != null){
-            $transaction->responseCode = (isset($item->RspCode) ? $item->RspCode : null);
-            $transaction->responseText = (isset($item->RspText) ? $item->RspText : null);
-            $transaction->referenceNumber = (isset($item->RefNbr) ? $item->RefNbr : null);
+            $transaction->responseCode = (isset($item->RspCode) ? (string)$item->RspCode : null);
+            $transaction->responseText = (isset($item->RspText) ? (string)$item->RspText : null);
+            $transaction->referenceNumber = (isset($item->RefNbr) ? (string)$item->RefNbr : null);
         }
 
         return $transaction;
