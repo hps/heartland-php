@@ -42,7 +42,7 @@ class CheckTests extends PHPUnit_Framework_TestCase{
     }
 
     public function testSaleAndVoidWithClientTxnId(){
-        $clientTransactionId = 10244201;
+        $clientTransactionId = 10244202;
         $response = $this->checkService->sale('SALE',TestCheck::approve(), 5.00,$clientTransactionId);
         $this->assertNotNull($response,'Response is null');
         $this->assertEquals('0',$response->responseCode);

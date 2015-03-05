@@ -18,7 +18,7 @@ class TokenServiceTests extends PHPUnit_Framework_TestCase{
         $tokenResponse = $this->tokenService->getToken($card);
         if(isset($tokenResponse->token_value)){
             $token = new HpsTokenData();
-            $token->tokenValue = $tokenResponse->token_value;
+            $token->tokenValue = (string)$tokenResponse->token_value;
             return $token;
         }else{
             return $tokenResponse;
@@ -33,7 +33,7 @@ class TokenServiceTests extends PHPUnit_Framework_TestCase{
      */
     public function ShouldReturnValidToken(){
         $token = $this->_getToken(TestCreditCard::ValidVisaCreditCard());
-        $this->assertNotEmpty($token->tokenValue);
+        $this->assertTrue(!empty($token->tokenValue));
         $this->assertStringStartsWith('supt',$token->tokenValue);
     }
 
@@ -52,7 +52,7 @@ class TokenServiceTests extends PHPUnit_Framework_TestCase{
      */
     public function ShouldThrow_BadPublic(){
         $token = $this->_getToken(TestCreditCard::ValidVisaCreditCard(),'STILL_BAD_KEY');
-        $this->assertEmpty($token);
+        $this->assertTrue(empty($token));
     }
 
     /**
