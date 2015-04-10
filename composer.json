@@ -1,10 +1,13 @@
 {
-    "name": "securesubmit/heartland-php",
+    "name": "hps/heartland-php",
     "description": "PHP SDK for processing payments via Portico Gateway",
     "keywords": [
         "securesubmit",
         "payment processing",
-        "api"
+        "api",
+        "heartland",
+        "heartland payment systems",
+        "hps"
     ],
     "homepage": "https://developer.heartlandpaymentsystems.com/SecureSubmit",
     "license": "MIT",
