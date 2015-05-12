@@ -34,14 +34,14 @@
 
     require_once "sdk/Hps.php";
 
-    $config = new HpsConfiguration();
+    $config = new HpsServicesConfig();
     $config->secretApiKey = 'skapi_cert_MYl2AQAowiQAbLp5JesGKh7QFkcizOP2jcX9BrEMqQ';
 
     // the following variables will be provided to you during certificaiton.
     $config->versionNumber = '0000';
     $config->developerId = '000000';
 
-    $chargeService = new HpsChargeService($config);
+    $chargeService = new HpsCreditService($config);
 
     $suToken = new HpsTokenData();
     $suToken->tokenValue = $_GET['securesubmit_token'];
@@ -61,7 +61,7 @@
     // i'm running windows, so i had to update this:
     //ini_set("SMTP", "my-mail-server");
 
-//    SendEmail($_GET['EMAIL'], 'donotreply@e-hps.com', 'Successful Charge!', $body, true);
+//    SendEmail($_GET['Email'], 'donotreply@e-hps.com', 'Successful Charge!', $body, true);
 
 ?>
 
