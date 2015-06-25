@@ -2,7 +2,8 @@
 
 class TestCreditCard
 {
-    static public function validVisaCreditCard(){
+    public static function validVisaCreditCard()
+    {
         $validVisaCreditCard = new HpsCreditCard();
         $validVisaCreditCard->cvv = "123";
         $validVisaCreditCard->expMonth = "12";
@@ -11,7 +12,8 @@ class TestCreditCard
         return $validVisaCreditCard;
     }
 
-    static public function validMasterCreditCard(){
+    public static function validMastercardCreditCard()
+    {
         $creditCard = new HpsCreditCard();
         $creditCard->cvv = "123";
         $creditCard->expMonth = "12";
@@ -20,7 +22,8 @@ class TestCreditCard
         return $creditCard;
     }
 
-    static public function validDiscoverCreditCard(){
+    public static function validDiscoverCreditCard()
+    {
         $creditCard = new HpsCreditCard();
         $creditCard->cvv = "123";
         $creditCard->expMonth = "12";
@@ -29,16 +32,18 @@ class TestCreditCard
         return $creditCard;
     }
 
-    static public function validAmexCreditCard(){
+    public static function validAmexCreditCard()
+    {
         $creditCard = new HpsCreditCard();
-        $creditCard->cvv = "123";
+        $creditCard->cvv = "1234";
         $creditCard->expMonth = "12";
         $creditCard->expYear = "2016";
         $creditCard->number = "372700699251018";
         return $creditCard;
     }
 
-    static public function validJBCCreditCard(){
+    public static function validJCBCreditCard()
+    {
         $creditCard = new HpsCreditCard();
         $creditCard->cvv = "123";
         $creditCard->expMonth = "12";
@@ -47,12 +52,33 @@ class TestCreditCard
         return $creditCard;
     }
 
-    static public function invalidCreditCard(){
+    public static function invalidCreditCard()
+    {
         $creditCard = new HpsCreditCard();
         $creditCard->cvv = "123";
         $creditCard->expMonth = "12";
         $creditCard->expYear = "2016";
         $creditCard->number = "12345";
         return $creditCard;
+    }
+
+    public static function validCreditCardWithBlankExpMonth()
+    {
+        $validVisaCreditCard = new HpsCreditCard();
+        $validVisaCreditCard->cvv = "123";
+        $validVisaCreditCard->expMonth = "";
+        $validVisaCreditCard->expYear = "2016";
+        $validVisaCreditCard->number = "4012002000060016";
+        return $validVisaCreditCard;
+    }
+
+    public static function validGsbCardEcommerce()
+    {
+        $card = new HpsCreditCard();
+        $card->number = '6277220572999800';
+        $card->expMonth = "12";
+        $card->expYear = "2049";
+
+        return $card;
     }
 }

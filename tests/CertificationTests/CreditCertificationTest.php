@@ -1,54 +1,46 @@
 <?php
-require_once(dirname(__FILE__).'/../setup.php');
 
-class CreditCertificationTests extends PHPUnit_Framework_TestCase
+class CreditCertificationTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @test
     */
-    public function Cert_ShouldRun_Ok()
+    public function testCertShouldRunOk()
     {
-        $this->Batch_ShouldClose_Ok();
-        $this->Visa_ShouldCharge_Ok();
-        $this->MasterCard_ShouldCharge_Ok();
-        $this->Discover_ShouldCharge_Ok();
-        $this->Amex_ShouldCharge_Ok();
-        $this->Jcb_ShouldCharge_Ok();
-        $this->Visa_ShouldVerify_Ok();
-        $this->MasterCard_ShouldVerify_Ok();
-        $this->Discover_ShouldVerify_Ok();
-        $this->Amex_Avs_ShouldBe_Ok();
-        $this->Mastercard_Return_ShouldBe_Ok();
-        $this->Visa_ShouldReverse_Ok();
-        $this->Batch_ShouldClose_Ok();
+        $this->testBatchShouldCloseOk();
+        $this->testVisaShouldChargeOk();
+        $this->testMasterCardShouldChargeOk();
+        $this->testDiscoverShouldChargeOk();
+        $this->testAmexShouldChargeOk();
+        $this->testJcbShouldChargeOk();
+        $this->testVisaShouldVerifyOk();
+        $this->testMasterCardShouldVerifyOk();
+        $this->testDiscoverShouldVerifyOk();
+        $this->testAmexAvsShouldBeOk();
+        $this->testMastercardReturnShouldBeOk();
+        $this->testVisaShouldReverseOk();
+        $this->testBatchShouldCloseOk();
     }
 
     /**
      * @test
-    /// <summary>Batch close cert test.</summary>
-    */
-    public function Batch_ShouldClose_Ok()
+     * /// <summary>Batch close cert test.</summary>
+     */
+    public function testBatchShouldCloseOk()
     {
-        $testConfig = new TestServicesConfig();
-
-        try
-        {
+        try {
             /*
-            $batchSvc = new HpsBatchService($testConfig->ValidMultiUseConfig());
+            $batchSvc = new HpsBatchService(TestServicesConfig::validMultiUseConfig());
             $response = batchSvc.CloseBatch();
              */
-            $batchSvc = new HpsBatchService($testConfig->ValidMultiUseConfig());
+            $batchSvc = new HpsBatchService(TestServicesConfig::validMultiUseConfig());
             $response = $batchSvc->closeBatch();
 
-            if ($response == null)
-            {
+            if ($response == null) {
                 $this->fail("Response is null.");
             }
-        }
-        catch (HpsException $e)
-        {
-            if ($e->Code() != 5)
-            {
+        } catch (HpsException $e) {
+            if ($e->code != HpsExceptionCodes::NO_OPEN_BATCH) {
                 $this->fail("Something failed other than 'no open batch'.");
             }
         }
@@ -56,16 +48,13 @@ class CreditCertificationTests extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-    /// <summary>VISA charge cert test.</summary>
+     * /// <summary>VISA charge cert test.</summary>
     */
-    public function Visa_ShouldCharge_Ok()
+    public function testVisaShouldChargeOk()
     {
-        $testConfig = new TestServicesConfig();
-
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $response = $chargeSvc->charge(17.01, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::certCardHolderShortZip());
-        if ($response == null)
-        {
+        if ($response == null) {
             $this->fail("Response is null.");
         }
 
@@ -74,16 +63,13 @@ class CreditCertificationTests extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-    /// <summary>MasterCard charge cert test.</summary>
+     * /// <summary>MasterCard charge cert test.</summary>
     */
-    public function MasterCard_ShouldCharge_Ok()
+    public function testMasterCardShouldChargeOk()
     {
-        $testConfig = new TestServicesConfig();
-
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $response = $chargeSvc->charge(17.02, "usd", TestCreditCard::validMasterCreditCard(), TestCardHolder::certCardHolderShortZipNoStreet());
-        if ($response == null)
-        {
+        if ($response == null) {
             $this->fail("Response is null.");
         }
 
@@ -92,16 +78,13 @@ class CreditCertificationTests extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-    /// <summary>Discover charge cert test.</summary>
+     * /// <summary>Discover charge cert test.</summary>
     */
-    public function Discover_ShouldCharge_Ok()
+    public function testDiscoverShouldChargeOk()
     {
-        $testConfig = new TestServicesConfig();
-
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $response = $chargeSvc->charge(17.03, "usd", TestCreditCard::validDiscoverCreditCard(), TestCardHolder::certCardHolderLongZipNoStreet());
-        if ($response == null)
-        {
+        if ($response == null) {
             $this->fail("Response is null.");
         }
 
@@ -110,16 +93,13 @@ class CreditCertificationTests extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-    /// <summary>Amex charge cert test.</summary>
+     * /// <summary>Amex charge cert test.</summary>
     */
-    public function Amex_ShouldCharge_Ok()
+    public function testAmexShouldChargeOk()
     {
-        $testConfig = new TestServicesConfig();
-
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $response = $chargeSvc->charge(17.04, "usd", TestCreditCard::validAmexCreditCard(), TestCardHolder::certCardHolderShortZip());
-        if ($response == null)
-        {
+        if ($response == null) {
             $this->fail("Response is null.");
         }
 
@@ -128,16 +108,13 @@ class CreditCertificationTests extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-    /// <summary>JCB charge cert test.</summary>
+     * /// <summary>JCB charge cert test.</summary>
     */
-    public function Jcb_ShouldCharge_Ok()
+    public function testJcbShouldChargeOk()
     {
-        $testConfig = new TestServicesConfig();
-
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $response = $chargeSvc->charge(17.05, "usd", TestCreditCard::validJBCCreditCard(), TestCardHolder::certCardHolderLongZip());
-        if ($response == null)
-        {
+        if ($response == null) {
             $this->fail("Response is null.");
         }
 
@@ -146,16 +123,13 @@ class CreditCertificationTests extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-    /// <summary>VISA verify cert test.</summary>
+     * /// <summary>VISA verify cert test.</summary>
     */
-    public function Visa_ShouldVerify_Ok()
+    public function testVisaShouldVerifyOk()
     {
-        $testConfig = new TestServicesConfig();
-
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $response = $chargeSvc->verify(TestCreditCard::validVisaCreditCard());
-        if ($response == null)
-        {
+        if ($response == null) {
             $this->fail("Response is null.");
         }
 
@@ -164,16 +138,13 @@ class CreditCertificationTests extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-    /// <summary>MasterCard verify cert test.</summary>
+     * /// <summary>MasterCard verify cert test.</summary>
     */
-    public function MasterCard_ShouldVerify_Ok()
+    public function testMasterCardShouldVerifyOk()
     {
-        $testConfig = new TestServicesConfig();
-
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $response = $chargeSvc->verify(TestCreditCard::validMasterCreditCard());
-        if ($response == null)
-        {
+        if ($response == null) {
             $this->fail("Response is null.");
         }
 
@@ -182,16 +153,13 @@ class CreditCertificationTests extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-    /// <summary>Discover verify cert test.</summary>
+     * /// <summary>Discover verify cert test.</summary>
     */
-    public function Discover_ShouldVerify_Ok()
+    public function testDiscoverShouldVerifyOk()
     {
-        $testConfig = new TestServicesConfig();
-
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $response = $chargeSvc->verify(TestCreditCard::validDiscoverCreditCard());
-        if ($response == null)
-        {
+        if ($response == null) {
             $this->fail("Response is null.");
         }
 
@@ -200,16 +168,13 @@ class CreditCertificationTests extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-    /// <summary>Amex AVS cert test.</summary>
+     * /// <summary>Amex AVS cert test.</summary>
     */
-    public function Amex_Avs_ShouldBe_Ok()
+    public function testAmexAvsShouldBeOk()
     {
-        $testConfig = new TestServicesConfig();
-
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $response = $chargeSvc->verify(TestCreditCard::validAmexCreditCard(), TestCardHolder::certCardHolderShortZipNoStreet());
-        if ($response == null)
-        {
+        if ($response == null) {
             $this->fail("Response is null.");
         }
 
@@ -218,16 +183,13 @@ class CreditCertificationTests extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-    /// <summary>Mastercard return test.</summary>
+     * /// <summary>Mastercard return test.</summary>
     */
-    public function Mastercard_Return_ShouldBe_Ok()
+    public function testMastercardReturnShouldBeOk()
     {
-        $testConfig = new TestServicesConfig();
-
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $response = $chargeSvc->refund(15.15, "usd", TestCreditCard::validMasterCreditCard(), TestCardHolder::certCardHolderShortZip());
-        if ($response == null)
-        {
+        if ($response == null) {
             $this->fail("Response is null.");
         }
 
@@ -236,16 +198,13 @@ class CreditCertificationTests extends PHPUnit_Framework_TestCase
 
     /**
      * @test
-    /// <summary>VISA verify cert test.</summary>
+     * /// <summary>VISA verify cert test.</summary>
     */
-    public function Visa_ShouldReverse_Ok()
+    public function testVisaShouldReverseOk()
     {
-        $testConfig = new TestServicesConfig();
-
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $response = $chargeSvc->reverse(TestCreditCard::validVisaCreditCard(), 17.01, "usd");
-        if ($response == null)
-        {
+        if ($response == null) {
             $this->fail("Response is null.");
         }
 
@@ -255,53 +214,43 @@ class CreditCertificationTests extends PHPUnit_Framework_TestCase
     // Authorize Tests
     /**
      * @test
-    /// Visa authorize and Capture should return response code '00'.
+     * /// Visa authorize and Capture should return response code '00'.
      */
-    public function Visa_AuthorizeAndCapture_ShouldReturnOk()
+    public function testVisaAuthorizeAndCaptureShouldReturnOk()
     {
-        $chargeService = new HpsCreditService(TestServicesConfig::ValidMultiUseConfig());
+        $chargeService = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $auth = $chargeService->authorize(17.06, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("00", $auth->responseCode);
 
-        $capture = $chargeService->capture($auth->transactionId,17.06);
-        $this->assertEquals("0",$capture->responseCode);
-
-        $getCapture = $chargeService->get($capture->transactionId);
-        $this->assertEquals("0",$getCapture->responseCode);
+        $capture = $chargeService->capture($auth->transactionId, 17.06);
+        $this->assertEquals("0", $capture->responseCode);
     }
 
     /**
      * @test
-    /// MasterCard authorize and capture should return response code '00'.
+     * /// MasterCard authorize and capture should return response code '00'.
      */
-    public function MasterCard_AuthorizeAndCapture_ShouldReturnOk()
+    public function testMasterCardAuthorizeAndCaptureShouldReturnOk()
     {
-        $chargeService = new HpsCreditService(TestServicesConfig::ValidMultiUseConfig());
+        $chargeService = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $auth = $chargeService->authorize(17.07, "usd", TestCreditCard::validMasterCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("00", $auth->responseCode);
 
-        $capture = $chargeService->capture($auth->transactionId,17.07);
-        $this->assertEquals("0",$capture->responseCode);
-
-        $getCapture = $chargeService->get($capture->transactionId);
-        $this->assertEquals("0",$getCapture->responseCode);
+        $capture = $chargeService->capture($auth->transactionId, 17.07);
+        $this->assertEquals("0", $capture->responseCode);
     }
 
     /**
      * @test
-    /// Discover authorize and capture should return response code '00'.
+     * /// Discover authorize and capture should return response code '00'.
      */
-    public function Discover_AuthorizeAndCapture_ShouldReturnOk()
+    public function testDiscoverAuthorizeAndCaptureShouldReturnOk()
     {
-        $chargeService = new HpsCreditService(TestServicesConfig::ValidMultiUseConfig());
+        $chargeService = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $auth = $chargeService->authorize(17.08, "usd", TestCreditCard::validDiscoverCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("00", $auth->responseCode);
 
-        $capture = $chargeService->capture($auth->transactionId,17.08);
-        $this->assertEquals("0",$capture->responseCode);
-
-        $getCapture = $chargeService->get($capture->transactionId);
-        $this->assertEquals("0",$getCapture->responseCode);
+        $capture = $chargeService->capture($auth->transactionId, 17.08);
+        $this->assertEquals("0", $capture->responseCode);
     }
-
 }

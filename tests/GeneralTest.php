@@ -1,85 +1,61 @@
 <?php
 
-require_once("setup.php");
-
 class GeneralTests extends PHPUnit_Framework_TestCase
 {
     /**
-     * @test
-    /// The less than zero amount test method.
-    */
-    public function Charge_WhenAmountIsLessThanZero_ShouldThrowArgumentOutOfRange()
+     * The less than zero amount test method.
+     *
+     * @expectedException        HpsInvalidRequestException
+     * @expectedExceptionCode    HpsExceptionCodes::INVALID_AMOUNT
+     * @expectedExceptionMessage Must be greater than or equal to 0.
+     */
+    public function testChargeWhenAmountIsLessThanZeroShouldThrowArgumentOutOfRange()
     {
         $ChargeAmount = -5;
         $chargeSvc = new HpsCreditService();
 
-        try
-        {
-            $chargeSvc->Charge($ChargeAmount, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder());
-        }
-        catch (InvalidRequestException $e)
-        {
-            $this->assertEquals('invalid_amount', $e->code());
-            $this->assertContains('Must be greater than or equal 0.', $e->getMessage());
-            return;
-        }
-
-        $this->fail("No exception was thrown.");
+        $chargeSvc->Charge($ChargeAmount, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::validCardHolder());
     }
 
     /**
-     * @test
-    /// The empty currency test method.
-    */
-    public function Charge_WhenCurrencyIsEmpty_ShouldThrowArgumentNull()
+     * The empty currency test method.
+     *
+     * @expectedException        HpsInvalidRequestException
+     * @expectedExceptionCode    HpsExceptionCodes::MISSING_CURRENCY
+     * @expectedExceptionMessage Currency cannot be none
+     */
+    public function testChargeWhenCurrencyIsEmptyShouldThrowArgumentNull()
     {
         $ChargeAmount = 50;
         $Currency = "";
         $chargeSvc = new HpsCreditService();
 
-        try
-        {
-            $chargeSvc->Charge($ChargeAmount, $Currency, TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder());
-        }
-        catch (InvalidRequestException $e)
-        {
-            $this->assertEquals('missing_currency', $e->code());
-            $this->assertContains("Argument can't be null.", $e->getMessage());
-            return;
-        }
-
-        $this->fail("No exception was thrown.");
+        $chargeSvc->Charge($ChargeAmount, $Currency, TestCreditCard::validVisaCreditCard(), TestCardHolder::validCardHolder());
     }
 
     /**
-     * @test
-    /// The invalid currency test method.
-    */
-    public function Charge_WhenCurrencyIsNotUsd_ShouldThrowArgumentException()
+     * The invalid currency test method.
+     *
+     * @expectedException        HpsInvalidRequestException
+     * @expectedExceptionCode    HpsExceptionCodes::INVALID_CURRENCY
+     * @expectedExceptionMessage 'eur' is not a supported currency
+     */
+    public function testChargeWhenCurrencyIsNotUsdShouldThrowArgumentException()
     {
         $ChargeAmount = 50;
         $Currency = "eur";
         $chargeSvc = new HpsCreditService();
 
-        try
-        {
-            $chargeSvc->Charge($ChargeAmount, $Currency, TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder());
-        }
-        catch (InvalidRequestException $e)
-        {
-            $this->assertEquals('invalid_currency', $e->code());
-            $this->assertContains("The only supported currency is \"usd\"", $e->getMessage());
-            return;
-        }
-
-        $this->fail("No exception was thrown.");
+        $chargeSvc->Charge($ChargeAmount, $Currency, TestCreditCard::validVisaCreditCard(), TestCardHolder::validCardHolder());
     }
 
     /**
-     * @test
-    /// The invalid HPS config test method.
-    */
-    public function Charge_WhenHpsConfigIsInvalid_ShouldThrowAuthenticationException()
+     * The invalid HPS config test method.
+     *
+     * @expectedException        HpsAuthenticationException
+     * @expectedExceptionMessage Authentication Error. Please double check your service configuration
+     */
+    public function testChargeWhenHpsConfigIsInvalidShouldThrowAuthenticationException()
     {
         $testConfig = new TestServicesConfig();
 
@@ -87,24 +63,17 @@ class GeneralTests extends PHPUnit_Framework_TestCase
         $Currency = "usd";
         $chargeSvc = new HpsCreditService($testConfig->BadLicenseId());
 
-        try
-        {
-            $chargeSvc->Charge($ChargeAmount, $Currency, TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder());
-        }
-        catch (AuthenticationException $e)
-        {
-            $this->assertEquals("Authentication error. Please double check your service configuration.",$e->getMessage());
-            return;
-        }
-
-        $this->fail("No exception was thrown.");
+        $chargeSvc->Charge($ChargeAmount, $Currency, TestCreditCard::validVisaCreditCard(), TestCardHolder::validCardHolder());
     }
 
     /**
-     * @test
-    /// The invalid HPS licenseId test method.
-    */
-    public function Charge_WhenHpsLicenseIdIsInvalid_ShouldThrowHpsException()
+     * The invalid HPS licenseId test method.
+     *
+     * @expectedException        HpsAuthenticationException
+     * @expectedExceptionMessage Authentication Error. Please double check your
+     * service configuration
+     */
+    public function testChargeWhenHpsLicenseIdIsInvalidShouldThrowHpsException()
     {
         $testConfig = new TestServicesConfig();
 
@@ -112,24 +81,17 @@ class GeneralTests extends PHPUnit_Framework_TestCase
         $Currency = "usd";
         $chargeSvc = new HpsCreditService($testConfig->BadLicenseId());
 
-        try
-        {
-            $chargeSvc->Charge($ChargeAmount, $Currency, TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder());
-        }
-        catch (AuthenticationException $e)
-        {
-            $this->assertEquals("Authentication error. Please double check your service configuration.",$e->getMessage());
-            return;
-        }
-
-        $this->fail("No exception was thrown.");
+        $chargeSvc->Charge($ChargeAmount, $Currency, TestCreditCard::validVisaCreditCard(), TestCardHolder::validCardHolder());
     }
 
     /**
-     * @test
-    /// The invalid HPS config test method.
-    */
-    public function Charge_WhenCardNumberIsInvalid_ShouldThrowHpsException()
+     * The invalid HPS config test method.
+     *
+     * @expectedException        HpsGatewayException
+     * @expectedExceptionCode    HpsExceptionCodes::INVALID_NUMBER
+     * @expectedExceptionMessage The card number is not valid
+     */
+    public function testChargeWhenCardNumberIsInvalidShouldThrowHpsException()
     {
         $testConfig = new TestServicesConfig();
 
@@ -137,25 +99,13 @@ class GeneralTests extends PHPUnit_Framework_TestCase
         $Currency = "usd";
         $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
 
-        try
-        {
-            $chargeSvc->Charge($ChargeAmount, $Currency, TestCreditCard::invalidCreditCard(), TestCardHolder::ValidCardHolder());
-        }
-        catch (CardException $e)
-        {
-            $this->assertEquals("14", $e->Code());
-            $this->assertEquals("The card number is not a valid credit card number.",$e->getMessage());
-            return;
-        }
-
-        $this->fail("No exception was thrown.");
+        $chargeSvc->Charge($ChargeAmount, $Currency, TestCreditCard::invalidCreditCard(), TestCardHolder::validCardHolder());
     }
 
     /**
-     * @test
-    /// The list transactions test method.
-    */
-    public function List_WhenConfigValid_ShouldListTransactions()
+     * The list transactions test method.
+     */
+    public function testListWhenConfigValidShouldListTransactions()
     {
         date_default_timezone_set("UTC");
         $testConfig = new TestServicesConfig();
@@ -164,18 +114,24 @@ class GeneralTests extends PHPUnit_Framework_TestCase
 
         $dateFormat = 'Y-m-d\TH:i:s.00\Z';
         $dateMinus10 = new DateTime();
-        $dateMinus10->sub(new DateInterval('P10D'));
+        $dateMinus10->sub(new DateInterval('P1D'));
         $current = new DateTime();
 
         $items = $chargeSvc->listTransactions($dateMinus10->format($dateFormat), $current->format($dateFormat));
         $this->assertNotNull($items);
+        $this->assertGreaterThan(1, count($items));
+
+        $charge0 = $items[0]->transactionId;
+        $charge1 = $items[1]->transactionId;
+        $this->assertNotNull($charge0);
+        $this->assertNotNull($charge1);
+        $this->assertNotEquals($charge0, $charge1);
     }
 
     /**
-     * @test
-    /// The list charges test method.
-    */
-    public function List_WhenConfigValid_ShouldListCharges()
+     * The list charges test method.
+     */
+    public function testListWhenConfigValidShouldListChargesWithString()
     {
         $testConfig = new TestServicesConfig();
 
@@ -183,19 +139,52 @@ class GeneralTests extends PHPUnit_Framework_TestCase
 
         $dateFormat = 'Y-m-d\TH:i:s.00\Z';
         $dateMinus10 = new DateTime();
-        $dateMinus10->sub(new DateInterval('P10D'));
+        $dateMinus10->sub(new DateInterval('P1D'));
         $dateMinus10Utc = gmdate($dateFormat, $dateMinus10->Format('U'));
         $nowUtc = gmdate($dateFormat);
 
         $items = $chargeSvc->ListTransactions($dateMinus10Utc, $nowUtc, "CreditSale"); // HpsTransactionType::Capture
         $this->assertNotNull($items);
+        $this->assertGreaterThan(1, count($items));
+
+        $charge0 = $items[0]->transactionId;
+        $charge1 = $items[1]->transactionId;
+        $this->assertNotNull($charge0);
+        $this->assertNotNull($charge1);
+        $this->assertNotEquals($charge0, $charge1);
     }
 
     /**
-     * @test
-    /// The get first charge test method.
-    */
-    public function GetFirst_WhenConfigValid_ShouldGetTheFirstCharge()
+     * The list charges test method.
+     */
+    public function testtestListWhenConfigValidShouldListChargesWithInteger()
+    {
+        $testConfig = new TestServicesConfig();
+
+        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+
+        $dateFormat = 'Y-m-d\TH:i:s.00\Z';
+        $dateMinus10 = new DateTime();
+        $dateMinus10->sub(new DateInterval('P1D'));
+        $dateMinus10Utc = gmdate($dateFormat, $dateMinus10->Format('U'));
+        $nowUtc = gmdate($dateFormat);
+
+        $items = $chargeSvc->listTransactions($dateMinus10Utc, $nowUtc, HpsTransactionType::CAPTURE); // HpsTransactionType::CAPTURE
+        $this->assertNotNull($items);
+        $this->assertGreaterThan(1, count($items));
+
+        $charge0 = $items[0]->transactionId;
+        $charge1 = $items[1]->transactionId;
+        $this->assertNotNull($charge0);
+        $this->assertNotNull($charge1);
+        $this->assertNotEquals($charge0, $charge1);
+    }
+
+    /**
+ * @group test
+     * The get first charge test method.
+     */
+    public function testGetFirstWhenConfigValidShouldGetTheFirstCharge()
     {
         date_default_timezone_set("UTC");
         $testConfig = new TestServicesConfig();
@@ -209,12 +198,22 @@ class GeneralTests extends PHPUnit_Framework_TestCase
         $nowUtc = gmdate($dateFormat);
 
         $items = $chargeSvc->ListTransactions($dateMinus10Utc, $nowUtc, "CreditSale");  // HpsTransactionType::Capture
-        if (count($items)> 0)
-        {
-            //$charge = $chargeSvc->Get($items[0]->TransactionId);
-            //$charge = $items['Details'][0]->GatewayTxnId;
-            $charge = $items->transactionId;
-            $this->assertNotNull($charge);
-        }
+        $this->assertTrue(0 != count($items));
+
+        $charge0 = $items[0]->transactionId;
+        $charge1 = $items[1]->transactionId;
+        $this->assertNotNull($charge0);
+        $this->assertNotNull($charge1);
+        $this->assertNotEquals($charge0, $charge1);
+    }
+
+    public function testGatewayResponseAccessible()
+    {
+        $chargeSvc = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
+        echo $response = $chargeSvc->charge(10, 'usd', TestCreditCard::validVisaCreditCard(), TestCardHolder::validCardHolder());
+
+        $this->assertEquals('00', $response->responseCode);
+        $this->assertNotNull($response->gatewayResponse()->code);
+        $this->assertNotNull($response->gatewayResponse()->message);
     }
 }

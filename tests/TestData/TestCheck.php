@@ -1,13 +1,15 @@
 <?php
 
-class TestCheck {
-    static public function approve(){
+class TestCheck
+{
+    public static function approve()
+    {
         $check = new HpsCheck();
         $check->accountNumber = '24413815';
         $check->routingNumber = '490000018';
-        $check->checkType = 'PERSONAL';
-        $check->secCode = 'PPD';
-        $check->accountType = 'CHECKING';
+        $check->checkType = HpsCheckType::PERSONAL;
+        $check->secCode = HpsSECCode::PPD;
+        $check->accountType = HpsAccountType::CHECKING;
 
         $check->checkHolder = new HpsCheckHolder();
         $check->checkHolder->address = new HpsAddress();
@@ -24,13 +26,14 @@ class TestCheck {
         return $check;
     }
 
-    static public function invalidCheckHolder(){
+    public static function invalidCheckHolder()
+    {
         $check = new HpsCheck();
         $check->accountNumber = '24413815';
         $check->routingNumber = '490000018';
-        $check->checkType = 'PERSONAL';
-        $check->secCode = 'PPD';
-        $check->accountType = 'CHECKING';
+        $check->checkType = HpsCheckType::PERSONAL;
+        $check->secCode = HpsSECCode::PPD;
+        $check->accountType = HpsAccountType::CHECKING;
 
         $check->checkHolder = new HpsCheckHolder();
         $check->checkHolder->address = new HpsAddress();
@@ -47,13 +50,14 @@ class TestCheck {
         return $check;
     }
 
-    static public function decline(){
+    public static function decline()
+    {
         $check = new HpsCheck();
         $check->accountNumber = '24413815';
         $check->routingNumber = '490000034';
-        $check->checkType = 'PERSONAL';
-        $check->secCode = 'PPD';
-        $check->accountType = 'CHECKING';
+        $check->checkType = HpsCheckType::PERSONAL;
+        $check->secCode = HpsSECCode::PPD;
+        $check->accountType = HpsAccountType::CHECKING;
 
         $check->checkHolder = new HpsCheckHolder();
         $check->checkHolder->address = new HpsAddress();
@@ -70,13 +74,14 @@ class TestCheck {
         return $check;
     }
 
-    static public function certification(){
+    public static function certification()
+    {
         $check = new HpsCheck();
         $check->accountNumber = '24413815';
         $check->routingNumber = '490000018';
-        $check->checkType = 'PERSONAL';
-        $check->secCode = 'PPD';
-        $check->accountType = 'CHECKING';
+        $check->checkType = HpsCheckType::PERSONAL;
+        $check->secCode = HpsSECCode::PPD;
+        $check->accountType = HpsAccountType::CHECKING;
 
         $check->checkHolder = new HpsCheckHolder();
         $check->checkHolder->address = new HpsAddress();
@@ -92,4 +97,4 @@ class TestCheck {
 
         return $check;
     }
-} 
+}

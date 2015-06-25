@@ -1,67 +1,71 @@
 <?php
-    function SendEmail($to, $from, $subject, $body, $isHtml) {
-        $message = '<html><body>';
-        $message .= $body;
-        $message .= '</body></html>';
-        
-        $headers = "From: $from\r\n";
-        $headers .= "Reply-To: $from\r\n";
-        
-        if ($isHtml) {
-            $headers .= "MIME-Version: 1.0\r\n";
-            $headers .= "Content-type: text/html; charset=ISO-8859-1\r\n";
-        }
 
-        mail($to, $subject, $message, $headers); 
+function sendEmail($to, $from, $subject, $body, $isHtml)
+{
+    $message = '<html><body>';
+    $message .= $body;
+    $message .= '</body></html>';
+    
+    $headers = "From: $from\r\n";
+    $headers .= "Reply-To: $from\r\n";
+    
+    if ($isHtml) {
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-type: text/html; charset=ISO-8859-1\r\n";
     }
 
-    function chargeToken($chargeService,$suToken){
-        try {
-            $response = $chargeService->charge(
-                28.97,
-                'usd',
-                $suToken,
-                null);
-        }
-        catch (CardException $e) {
-            return 'Failure: ' . $e->getMessage();
-        }
-        catch (Exception $e) {
-            return 'Failure: ' . $e->getMessage();
-        }
-        return $response;
+    mail($to, $subject, $message, $headers);
+}
+
+function chargeToken($creditService, $suToken)
+{
+    try {
+        $response = $creditService->charge(
+            28.97,
+            'usd',
+            $suToken,
+            null
+        );
+    } catch (CardException $e) {
+        return 'Failure: ' . $e->getMessage();
+    } catch (Exception $e) {
+        return 'Failure: ' . $e->getMessage();
     }
+    return $response;
+}
 
-    require_once "sdk/Hps.php";
+require_once "../../../Hps.php";
 
-    $config = new HpsServicesConfig();
-    $config->secretApiKey = 'skapi_cert_MYl2AQAowiQAbLp5JesGKh7QFkcizOP2jcX9BrEMqQ';
+$config = new HpsConfiguration();
+$config->secretApiKey = 'skapi_cert_MYl2AQAowiQAbLp5JesGKh7QFkcizOP2jcX9BrEMqQ';
 
-    // the following variables will be provided to you during certificaiton.
-    $config->versionNumber = '0000';
-    $config->developerId = '000000';
+// the following variables will be provided to you during certificaiton.
+$config->versionNumber = '0000';
+$config->developerId = '000000';
 
-    $chargeService = new HpsCreditService($config);
+$creditService = new HpsChargeService($config);
 
-    $suToken = new HpsTokenData();
-    $suToken->tokenValue = $_GET['securesubmit_token'];
+$suToken = new HpsTokenData();
+$suToken->tokenValue = $_GET['securesubmit_token'];
 
-    $response = chargeToken($chargeService, $suToken);
+$response = chargeToken($creditService, $suToken);
 
-    if (is_string($response)){
-        echo $response;
-        exit;
-    }
+if (is_string($response)) {
+    echo $response;
+    exit;
+}
+
 /*
-    $body = '<h1>Success!</h1>';
-    $body .= '<p>Thank you, '.$_GET['FirstName'].', for your order of $15.15.</p>';
+$body = '<h1>Success!</h1>';
+$body .= '<p>Thank you, '.$_GET['FirstName'].', for your order of $15.15.</p>';
 */
-    //echo "Transaction Id: " . $response->transactionId;
 
-    // i'm running windows, so i had to update this:
-    //ini_set("SMTP", "my-mail-server");
+// echo "Transaction Id: " . $response->transactionId;
 
-//    SendEmail($_GET['Email'], 'donotreply@e-hps.com', 'Successful Charge!', $body, true);
+// i'm running windows, so i had to update this:
+// ini_set("SMTP", "my-mail-server");
+
+// sendEmail($_GET['EMAIL'], 'donotreply@e-hps.com', 'Successful Charge!', $body, true);
 
 ?>
 

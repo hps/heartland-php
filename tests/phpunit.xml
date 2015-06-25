@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true" bootstrap="./setup.php">
+    <php>
+        <ini name="zend.enable_gc" value="0" />
+        <ini name="memory_limit" value="-1" />
+        <!-- error_reporting(E_ALL); -->
+        <ini name="error_reporting" value="32767" />
+    </php>
+
+    <testsuites>
+        <testsuite name="fluent">
+            <directory>./Fluent/</directory>
+        </testsuite>
+        <testsuite name="gateway-check">
+            <directory>./Gateway/Check/</directory>
+        </testsuite>
+        <testsuite name="gateway-credit">
+            <directory>./Gateway/Credit/</directory>
+        </testsuite>
+        <testsuite name="gateway-debit">
+            <directory>./Gateway/Debit/</directory>
+        </testsuite>
+        <testsuite name="gateway-giftcard">
+            <directory>./Gateway/GiftCard/</directory>
+        </testsuite>
+        <testsuite name="gateway-token">
+            <directory>./Gateway/Token/</directory>
+        </testsuite>
+        <testsuite  name="gateway-payplan">
+            <directory>./Gateway/PayPlan/</directory>
+        </testsuite>
+        <testsuite name="general">
+            <file>./GeneralTest.php</file>
+        </testsuite>
+        <testsuite name="certification">
+            <directory>./CertificationTests/</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>../src/</directory>
+            <exclude>
+                <directory>./</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>
