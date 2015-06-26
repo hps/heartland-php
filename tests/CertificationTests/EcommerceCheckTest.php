@@ -1,6 +1,6 @@
 <?php
 
-class ECommerceCheckTests extends PHPUnit_Framework_TestCase
+class ECommerceCheckTest extends PHPUnit_Framework_TestCase
 {
     /** @var HpsBatchService|null */
     private $batchService          = null;

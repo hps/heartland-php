@@ -62,31 +62,38 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
         return $this->doRequest('DELETE', 'paymentMethods/'.$id, $data);
     }
 
-
     private function addCreditCard(HpsPayPlanPaymentMethod $paymentMethod)
     {
         $data = $paymentMethod->getEditableFieldsWithValues();
         $data['customerKey'] = $paymentMethod->customerKey;
         $data['accountNumber'] = $paymentMethod->accountNumber;
-        return $this->doRequest('POST', 'paymentMethodsCreditCard', $data);
+        $result = $this->doRequest('POST', 'paymentMethodsCreditCard', $data);
+        return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
 
     private function editCreditCard(HpsPayPlanPaymentMethod $paymentMethod)
     {
         $data = $paymentMethod->getEditableFieldsWithValues();
-        return $this->doRequest('PUT', 'paymentMethodsCreditCard/'.$paymentMethod->paymentMethodKey, $data);
+        $result = $this->doRequest('PUT', 'paymentMethodsCreditCard/'.$paymentMethod->paymentMethodKey, $data);
+        return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
 
     private function addACH(HpsPayPlanPaymentMethod $paymentMethod)
     {
         $data = $paymentMethod->getEditableFieldsWithValues();
         $data['customerKey'] = $paymentMethod->customerKey;
-        return $this->doRequest('POST', 'paymentMethodsACH', $data);
+        $data['accountNumber'] = $paymentMethod->accountNumber;
+        $data['accountType'] = $paymentMethod->accountType;
+        $data['achType'] = $paymentMethod->achType;
+        $data['routingNumber'] = $paymentMethod->routingNumber;
+        $result = $this->doRequest('POST', 'paymentMethodsACH', $data);
+        return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
 
     private function editACH(HpsPayPlanPaymentMethod $paymentMethod)
     {
         $data = $paymentMethod->getEditableFieldsWithValues();
-        return $this->doRequest('PUT', 'paymentMethodsACH/'.$paymentMethod->paymentMethodKey, $data);
+        $result = $this->doRequest('PUT', 'paymentMethodsACH/'.$paymentMethod->paymentMethodKey, $data);
+        return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
 }

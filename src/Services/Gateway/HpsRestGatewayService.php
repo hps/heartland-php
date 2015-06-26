@@ -2,7 +2,7 @@
 
 class HpsRestGatewayService extends HpsGatewayServiceAbstract
 {
-    const CERT_URL = 'https://cert.api2.heartlandportico.com/payplan.v2';
+    const CERT_URL = 'https://cert.api2.heartlandportico.com/Portico.PayPlan.v2';
     const PROD_URL = 'https://api2.heartlandportico.com/payplan.v2';
     const UAT_URL  = 'https://api-uat.heartlandportico.com/payplan.v2';
     protected $limit = null;
@@ -64,11 +64,13 @@ class HpsRestGatewayService extends HpsGatewayServiceAbstract
             $header[] = 'HPS-Identity: '.implode(',', $identity);
         }
         $keyType = HpsServicesConfig::KEY_TYPE_SECRET;
+        // print "\n" . $encodedData;
         return $this->submitRequest($url, $header, $encodedData, $verb, $keyType);
     }
 
     protected function processResponse($curlResponse, $curlInfo, $curlError)
     {
+        // print "\n" . $curlResponse;
         $response = json_decode($curlResponse);
 
         switch ($curlInfo['http_code']) {

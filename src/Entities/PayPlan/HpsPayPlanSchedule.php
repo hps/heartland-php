@@ -83,6 +83,11 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
     /** @var string|null */
     public $scheduleStarted           = null;
 
+    public function __construct() {
+        $this->emailReceipt = 'Never';
+        $this->emailAdvanceNotice = 'No';
+    }
+
     public static function getEditableFields()
     {
         return array(

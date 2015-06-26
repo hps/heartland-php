@@ -1,6 +1,6 @@
 <?php
 
-class EcommerceTests extends PHPUnit_Framework_TestCase
+class EcommerceTest extends PHPUnit_Framework_TestCase
 {
     const BATCH_NOT_OPEN = 'Transaction was rejected because it requires a batch to be open.';
 

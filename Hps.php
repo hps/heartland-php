@@ -104,6 +104,7 @@ if (!defined('HPS_SDK_LOADED')) {
     require_once 'Entities/PayPlan/HpsPayPlanCustomer.php';
     require_once 'Entities/PayPlan/HpsPayPlanPaymentMethod.php';
     require_once 'Entities/PayPlan/HpsPayPlanSchedule.php';
+    require_once 'Entities/PayPlan/HpsPayPlanAmount.php';
 
 
     // Services
@@ -115,6 +116,7 @@ if (!defined('HPS_SDK_LOADED')) {
     require_once 'Services/Gateway/HpsCreditService.php';
     require_once 'Services/Gateway/HpsDebitService.php';
     require_once 'Services/Gateway/HpsGiftCardService.php';
+    require_once 'Services/Gateway/HpsPayPlanService.php';
     require_once 'Services/Gateway/HpsTokenService.php';
     require_once 'Services/Gateway/PayPlan/HpsPayPlanCustomerService.php';
     require_once 'Services/Gateway/PayPlan/HpsPayPlanPaymentMethodService.php';
@@ -130,11 +132,13 @@ if (!defined('HPS_SDK_LOADED')) {
     require_once 'Services/Fluent/Gateway/Credit/HpsCreditServiceOfflineChargeBuilder.php';
     require_once 'Services/Fluent/Gateway/Credit/HpsCreditServicePrepaidAddValueBuilder.php';
     require_once 'Services/Fluent/Gateway/Credit/HpsCreditServicePrepaidBalanceInquiryBuilder.php';
+    require_once 'Services/Fluent/Gateway/Credit/HpsCreditServiceRecurringBuilder.php';
     require_once 'Services/Fluent/Gateway/Credit/HpsCreditServiceRefundBuilder.php';
     require_once 'Services/Fluent/Gateway/Credit/HpsCreditServiceReverseBuilder.php';
     require_once 'Services/Fluent/Gateway/Credit/HpsCreditServiceVerifyBuilder.php';
     require_once 'Services/Fluent/Gateway/Credit/HpsCreditServiceVoidBuilder.php';
     require_once 'Services/Fluent/Gateway/Check/HpsCheckServiceOverrideBuilder.php';
+    require_once 'Services/Fluent/Gateway/Check/HpsCheckServiceRecurringBuilder.php';
     require_once 'Services/Fluent/Gateway/Check/HpsCheckServiceReturnBuilder.php';
     require_once 'Services/Fluent/Gateway/Check/HpsCheckServiceSaleBuilder.php';
     require_once 'Services/Fluent/Gateway/Check/HpsCheckServiceVoidBuilder.php';

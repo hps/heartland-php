@@ -89,6 +89,12 @@ class HpsFluentCreditService extends HpsSoapGatewayService
             ->withCurrency('usd');
     }
 
+    public function recurring($amount = null)
+    {
+        $builder = new HpsCreditServiceRecurringBuilder($this);
+        return $builder->withAmount($amount);
+    }
+
     public function refund($amount = null)
     {
         $builder = new HpsCreditServiceRefundBuilder($this);

@@ -21,8 +21,7 @@ class HpsFluentCheckService extends HpsSoapGatewayService
     public function recurring($amount = null)
     {
         $builder = new HpsCheckServiceRecurringBuilder($this);
-        return $builder
-            ->withAmount($amount);
+        return $builder->withAmount($amount);
     }
 
     public function returnCheck()
