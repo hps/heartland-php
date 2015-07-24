@@ -9,7 +9,7 @@ class GatewayPayPlanScheduleTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $config = new HpsServicesConfig();
-        $config->secretApiKey = 'skapi_uat_MY5OAAAUrmIFvLDRpO_ufLlFQkgg0Rms2G8WoI1THQ';
+        $config->secretApiKey = 'skapi_cert_MTyMAQBiHVEAewvIzXVFcmUd2UcyBge_eCpaASUp0A';
         $this->service = new HpsPayPlanScheduleService($config);
 
         $paymentMethodService = new HpsPayPlanPaymentMethodService($config);

@@ -66,7 +66,11 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
     {
         $data = $paymentMethod->getEditableFieldsWithValues();
         $data['customerKey'] = $paymentMethod->customerKey;
-        $data['accountNumber'] = $paymentMethod->accountNumber;
+        if (isset($paymentMethod->accountNumber)) {
+            $data['accountNumber'] = $paymentMethod->accountNumber;
+        } else if (isset($paymentMethod->paymentToken)) {
+            $data['paymentToken'] = $paymentMethod->paymentToken;
+        }
         $result = $this->doRequest('POST', 'paymentMethodsCreditCard', $data);
         return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }

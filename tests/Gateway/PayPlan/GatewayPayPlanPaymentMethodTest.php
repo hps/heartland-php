@@ -9,7 +9,7 @@ class GatewayPayPlanPaymentMethodTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $config = new HpsServicesConfig();
-        $config->secretApiKey = 'skapi_uat_MY5OAAAUrmIFvLDRpO_ufLlFQkgg0Rms2G8WoI1THQ';
+        $config->secretApiKey = 'skapi_cert_MTyMAQBiHVEAewvIzXVFcmUd2UcyBge_eCpaASUp0A';
         $this->service = new HpsPayPlanPaymentMethodService($config);
 
         $customerService = new HpsPayPlanCustomerService($config);
@@ -23,6 +23,33 @@ class GatewayPayPlanPaymentMethodTest extends PHPUnit_Framework_TestCase
         $newPaymentMethod->nameOnAccount  = 'Bill Johnson';
         $newPaymentMethod->accountNumber  = 4111111111111111;
         $newPaymentMethod->expirationDate = '0120';
+        $newPaymentMethod->country        = 'USA';
+
+        $result = $this->service->add($newPaymentMethod);
+
+        $this->assertNotNull($result);
+        $this->assertNotNull($result->paymentMethodKey);
+    }
+
+    public function testAddFromSingleUseToken()
+    {
+        $tokenService = new HpsTokenService('pkapi_cert_jKc1FtuyAydZhZfbB3');
+
+        $card = new HpsCreditCard();
+        $card->number = '4111111111111111';
+        $card->expMonth = '12';
+        $card->expYear = '2020';
+        $card->cvv = '123';
+
+        $response = $tokenService->getToken($card);
+        if (isset($response->error)) {
+            $this->fail($response->error->message);
+        }
+
+        $newPaymentMethod = new HpsPayPlanPaymentMethod();
+        $newPaymentMethod->customerKey    = $this->customer->customerKey;
+        $newPaymentMethod->nameOnAccount  = 'Bill Johnson';
+        $newPaymentMethod->paymentToken   = $response->token_value;
         $newPaymentMethod->country        = 'USA';
 
         $result = $this->service->add($newPaymentMethod);

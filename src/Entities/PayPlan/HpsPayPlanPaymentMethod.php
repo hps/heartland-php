@@ -104,6 +104,12 @@ class HpsPayPlanPaymentMethod extends HpsPayPlanResourceAbstract
     /** @var string|null */
     public $hasActiveSchedules        = null;
 
+    /** @var string|null */
+    public $accountNumber             = null;
+
+    /** @var string|null */
+    public $paymentToken              = null;
+
     public static function getEditableFields($type = null)
     {
         $fields = array(

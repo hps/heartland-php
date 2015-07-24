@@ -8,7 +8,7 @@ class GatewayPayPlanCreditRecurringTest extends PHPUnit_Framework_TestCase
     protected function setup()
     {
         $config = new HpsServicesConfig();
-        $config->secretApiKey = 'skapi_uat_MY5OAAAUrmIFvLDRpO_ufLlFQkgg0Rms2G8WoI1THQ';
+        $config->secretApiKey = 'skapi_cert_MTyMAQBiHVEAewvIzXVFcmUd2UcyBge_eCpaASUp0A';
         $config->developerId = '002914';
         $config->versionNumber = '1510';
         $scheduleService = new HpsPayPlanScheduleService($config);
