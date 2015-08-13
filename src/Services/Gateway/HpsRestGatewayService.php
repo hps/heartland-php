@@ -2,8 +2,8 @@
 
 class HpsRestGatewayService extends HpsGatewayServiceAbstract
 {
-    const CERT_URL = 'https://cert.api2.heartlandportico.com/Portico.PayPlan.v2';
-    const PROD_URL = 'https://api2.heartlandportico.com/payplan.v2';
+    const CERT_URL = 'https://posgateway.cert.secureexchange.net/Portico.PayPlan.v2';
+    const PROD_URL = 'https://api.heartlandportico.com/payplan.v2';
     const UAT_URL  = 'https://api-uat.heartlandportico.com/payplan.v2';
     protected $limit = null;
     protected $offset = null;
