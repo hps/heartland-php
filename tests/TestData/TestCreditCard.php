@@ -62,6 +62,16 @@ class TestCreditCard
         return $creditCard;
     }
 
+    public static function validCreditCardWithLeadingZeroCVV()
+    {
+        $validVisaCreditCard = new HpsCreditCard();
+        $validVisaCreditCard->cvv = "023";
+        $validVisaCreditCard->expMonth = "12";
+        $validVisaCreditCard->expYear = "2016";
+        $validVisaCreditCard->number = "4012002000060016";
+        return $validVisaCreditCard;
+    }
+
     public static function validCreditCardWithBlankExpMonth()
     {
         $validVisaCreditCard = new HpsCreditCard();

@@ -12,6 +12,16 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($response->responseCode, "00");
     }
 
+    /**
+     * @test
+     * /// The VISA is ok test method.
+     */
+    public function testVisaWhenCvvIsOkShouldReturnValidResult()
+    {
+        $response = $this->chargeValidVisaWithLeadingZeroCVV(50);
+        $this->assertEquals($response->responseCode, "00");
+    }
+
     #region AVS Tests
 
     /**
@@ -854,6 +864,19 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
 
         $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
         $response = $chargeSvc->charge($amt, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), $multiUseRequest, $details, $txnDescriptors);
+        if ($response == null) {
+            $this->fail("Response is null.");
+        }
+
+        return $response;
+    }
+
+    private function chargeValidVisaWithLeadingZeroCVV($amt, $multiUseRequest = false, $details = null, $txnDescriptors = null)
+    {
+        $testConfig = new TestServicesConfig();
+
+        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $response = $chargeSvc->charge($amt, "usd", TestCreditCard::validCreditCardWithLeadingZeroCVV(), TestCardHolder::ValidCardHolder(), $multiUseRequest, $details, $txnDescriptors);
         if ($response == null) {
             $this->fail("Response is null.");
         }
