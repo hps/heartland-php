@@ -6,8 +6,6 @@ class TestGiftCard
     {
         $card = new HpsGiftCard();
         $card->number = "5022440000000000098";
-        $card->expMonth = '12';
-        $card->expYear = '39';
 
         return $card;
     }
@@ -16,8 +14,6 @@ class TestGiftCard
     {
         $card = new HpsGiftCard();
         $card->number = "5022440000000000007";
-        $card->expMonth = '12';
-        $card->expYear = '39';
 
         return $card;
     }
@@ -26,8 +22,6 @@ class TestGiftCard
     {
         $card = new HpsGiftCard();
         $card->number = "123";
-        $card->expMonth = '12';
-        $card->expYear = '39';
 
         return $card;
     }

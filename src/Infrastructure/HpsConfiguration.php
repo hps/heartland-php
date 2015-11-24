@@ -14,5 +14,5 @@ class HpsConfiguration
     public $useProxy          = null;
     public $proxyOptions      = null;
     public $avsResponseErrors = null;
-    public $serviceUri        = "https://posgateway.cert.secureexchange.net/Hps.Exchange.PosGateway/PosGatewayService.asmx";
+    public $serviceUri        = "https://cert.api2.heartlandportico.com/Hps.Exchange.PosGateway/PosGatewayService.asmx";
 }

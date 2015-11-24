@@ -3,8 +3,6 @@
 class HpsGiftCard
 {
     public $number         = null;
-    public $expMonth       = null;
-    public $expYear        = null;
     public $trackData      = null;
     public $alias          = null;
     public $tokenValue     = null;

@@ -2,7 +2,7 @@
 
 class TestServicesConfig
 {
-    private $uatServiceUri = "https://posgateway.cert.secureexchange.net/Hps.Exchange.PosGateway/PosGatewayService.asmx?wsdl";
+    private $uatServiceUri = "https://cert.api2.heartlandportico.com/Hps.Exchange.PosGateway/PosGatewayService.asmx?wsdl";
  
     // <summary>A valid HPS services config.</summary>
     public static function validMultiUseConfig()
@@ -73,7 +73,7 @@ class TestServicesConfig
         $config->username = "777700004597";
         $config->developerId = "123456";
         $config->versionNumber = "1234";
-        $config->soapServiceUri = "https://posgateway.cert.secureexchange.net/Hps.Exchange.PosGateway/PosGatewayService.asmx";
+        $config->soapServiceUri = "https://cert.api2.heartlandportico.com/Hps.Exchange.PosGateway/PosGatewayService.asmx";
 
         return $config;
     }
