@@ -110,7 +110,7 @@ Other times, you'll want to create a credit card object:
 
 $card = new HpsCreditCard();
 $card->number = "4111111111111111";
-$card->expYear = 2015;
+$card->expYear = 2025;
 $card->expMonth = 12;
 $card->cvv = 123;
 ```

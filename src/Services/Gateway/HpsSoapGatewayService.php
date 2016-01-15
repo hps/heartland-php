@@ -328,7 +328,7 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract
             } else if (strpos($this->_config->secretApiKey, '_uat_') !== false) {
                 return "https://posgateway.uat.secureexchange.net/Hps.Exchange.PosGateway/PosGatewayService.asmx";
             } else {
-                return "https://posgateway.secureexchange.net/Hps.Exchange.PosGateway/PosGatewayService.asmx";
+                return "https://api2.heartlandportico.com/Hps.Exchange.PosGateway/PosGatewayService.asmx";
             }
         } else {
             return $this->_config->soapServiceUri;

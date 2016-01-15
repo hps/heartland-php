@@ -7,7 +7,7 @@ class TestCreditCard
         $validVisaCreditCard = new HpsCreditCard();
         $validVisaCreditCard->cvv = "123";
         $validVisaCreditCard->expMonth = "12";
-        $validVisaCreditCard->expYear = "2016";
+        $validVisaCreditCard->expYear = "2025";
         $validVisaCreditCard->number = "4012002000060016";
         return $validVisaCreditCard;
     }
@@ -17,7 +17,7 @@ class TestCreditCard
         $creditCard = new HpsCreditCard();
         $creditCard->cvv = "123";
         $creditCard->expMonth = "12";
-        $creditCard->expYear = "2016";
+        $creditCard->expYear = "2025";
         $creditCard->number = "5473500000000014";
         return $creditCard;
     }
@@ -27,7 +27,7 @@ class TestCreditCard
         $creditCard = new HpsCreditCard();
         $creditCard->cvv = "123";
         $creditCard->expMonth = "12";
-        $creditCard->expYear = "2016";
+        $creditCard->expYear = "2025";
         $creditCard->number = "6011000990156527";
         return $creditCard;
     }
@@ -37,7 +37,7 @@ class TestCreditCard
         $creditCard = new HpsCreditCard();
         $creditCard->cvv = "1234";
         $creditCard->expMonth = "12";
-        $creditCard->expYear = "2016";
+        $creditCard->expYear = "2025";
         $creditCard->number = "372700699251018";
         return $creditCard;
     }
@@ -47,7 +47,7 @@ class TestCreditCard
         $creditCard = new HpsCreditCard();
         $creditCard->cvv = "123";
         $creditCard->expMonth = "12";
-        $creditCard->expYear = "2016";
+        $creditCard->expYear = "2025";
         $creditCard->number = "3566007770007321";
         return $creditCard;
     }
@@ -57,7 +57,7 @@ class TestCreditCard
         $creditCard = new HpsCreditCard();
         $creditCard->cvv = "123";
         $creditCard->expMonth = "12";
-        $creditCard->expYear = "2016";
+        $creditCard->expYear = "2025";
         $creditCard->number = "12345";
         return $creditCard;
     }
@@ -67,7 +67,7 @@ class TestCreditCard
         $validVisaCreditCard = new HpsCreditCard();
         $validVisaCreditCard->cvv = "123";
         $validVisaCreditCard->expMonth = "";
-        $validVisaCreditCard->expYear = "2016";
+        $validVisaCreditCard->expYear = "2025";
         $validVisaCreditCard->number = "4012002000060016";
         return $validVisaCreditCard;
     }

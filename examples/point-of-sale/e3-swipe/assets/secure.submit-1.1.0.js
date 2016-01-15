@@ -10,7 +10,7 @@ var hps = (function ($) {
 
         Urls: {
             CERT: "https://cert.api2.heartlandportico.com/Hps.Exchange.PosGateway.Hpf.v1/api/token",
-            PROD: "https://api.heartlandportico.com/SecureSubmit.v1/api/token"
+            PROD: "https://api2.heartlandportico.com/SecureSubmit.v1/api/token"
         },
 
         tokenize: function (options) {
