@@ -11,7 +11,6 @@
  * @method HpsCreditServiceReverseBuilder withToken(HpsTokenData $token)
  * @method HpsCreditServiceReverseBuilder withTransactionId(string $transactionId)
  * @method HpsCreditServiceReverseBuilder withDetails(HpsTransactionDetails $details)
- * @method HpsCreditServiceReverseBuilder withAllowDuplicates(bool $allowDuplicates)
  */
 class HpsCreditServiceReverseBuilder extends HpsBuilderAbstract
 {
@@ -35,9 +34,6 @@ class HpsCreditServiceReverseBuilder extends HpsBuilderAbstract
 
     /** @var HpsTransactionDetails|null */
     protected $details         = null;
-
-    /** @var bool */
-    protected $allowDuplicates = false;
 
     /**
      * Instatiates a new HpsCreditServiceReverseBuilder
@@ -65,13 +61,12 @@ class HpsCreditServiceReverseBuilder extends HpsBuilderAbstract
         $hpsCreditReversal = $xml->createElement('hps:CreditReversal');
         $hpsBlock1 = $xml->createElement('hps:Block1');
 
-        $hpsBlock1->appendChild($xml->createElement('hps:AllowDup', ($this->allowDuplicates ? 'Y' : 'N')));
         $hpsBlock1->appendChild($xml->createElement('hps:Amt', $this->amount));
 
         if ($this->authAmount != null) {
             $hpsBlock1->appendChild($xml->createElement('hps:AuthAmt', $this->authAmount));
         }
-        
+
         if ($this->card != null) {
             $cardData = $xml->createElement('hps:CardData');
             $cardData->appendChild($this->service->_hydrateManualEntry(

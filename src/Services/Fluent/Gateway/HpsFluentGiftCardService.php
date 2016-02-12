@@ -87,7 +87,8 @@ class HpsFluentGiftCardService extends HpsSoapGatewayService
         HpsIssuerResponseValidation::checkResponse(
             $response->Header->GatewayTxnId,
             $response->Transaction->$txnType->RspCode,
-            $response->Transaction->$txnType->RspText
+            $response->Transaction->$txnType->RspText,
+            'gift'
         );
 
         $rvalue = '';

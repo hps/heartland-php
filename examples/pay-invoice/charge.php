@@ -5,10 +5,10 @@ function sendEmail($to, $from, $subject, $body, $isHtml)
     $message = '<html><body>';
     $message .= $body;
     $message .= '</body></html>';
-    
+
     $headers = "From: $from\r\n";
     $headers .= "Reply-To: $from\r\n";
-    
+
     if ($isHtml) {
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=ISO-8859-1\r\n";
@@ -38,14 +38,14 @@ function chargeToken($creditService, $suToken, $validCardHolder, $additionalData
 
 require_once "../../Hps.php";
 
-$config = new HpsConfiguration();
+$config = new HpsServicesConfig();
 $config->secretApiKey = 'skapi_cert_MYl2AQAowiQAbLp5JesGKh7QFkcizOP2jcX9BrEMqQ';
 
 // the following variables will be provided to you during certificaiton.
 $config->versionNumber = '0000';
 $config->developerId = '000000';
 
-$creditService = new HpsChargeService($config);
+$creditService = new HpsCreditService($config);
 
 $address = new HpsAddress();
 $address->address = $_GET["Address"];

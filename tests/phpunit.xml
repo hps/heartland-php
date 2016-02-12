@@ -8,32 +8,40 @@
     </php>
 
     <testsuites>
+        <testsuite name="unit">
+            <directory>./unit/</directory>
+        </testsuite>
+        <testsuite name="integration">
+            <directory>./integration/</directory>
+        </testsuite>
         <testsuite name="fluent">
-            <directory>./Fluent/</directory>
+            <directory>./integration/Fluent/</directory>
+        </testsuite>
+        <testsuite name="gateway-alt-paypal">
         </testsuite>
         <testsuite name="gateway-check">
-            <directory>./Gateway/Check/</directory>
+            <directory>./integration/Gateway/Check/</directory>
         </testsuite>
         <testsuite name="gateway-credit">
-            <directory>./Gateway/Credit/</directory>
+            <directory>./integration/Gateway/Credit/</directory>
         </testsuite>
         <testsuite name="gateway-debit">
-            <directory>./Gateway/Debit/</directory>
+            <directory>./integration/Gateway/Debit/</directory>
         </testsuite>
         <testsuite name="gateway-giftcard">
-            <directory>./Gateway/GiftCard/</directory>
+            <directory>./integration/Gateway/GiftCard/</directory>
         </testsuite>
         <testsuite name="gateway-token">
-            <directory>./Gateway/Token/</directory>
+            <directory>./integration/Gateway/Token/</directory>
         </testsuite>
         <testsuite  name="gateway-payplan">
-            <directory>./Gateway/PayPlan/</directory>
+            <directory>./integration/Gateway/PayPlan/</directory>
         </testsuite>
         <testsuite name="general">
-            <file>./GeneralTest.php</file>
+            <file>./integration/GeneralTest.php</file>
         </testsuite>
         <testsuite name="certification">
-            <directory>./CertificationTests/</directory>
+            <directory>./integration/CertificationTests/</directory>
         </testsuite>
     </testsuites>
 

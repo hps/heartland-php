@@ -40,6 +40,23 @@ class HpsIssuerResponseValidation
         '91' => HpsExceptionCodes::ISSUER_TIMEOUT,
         'EB' => HpsExceptionCodes::INCORRECT_CVC,
         'N7' => HpsExceptionCodes::INCORRECT_CVC,
+        'FR' => HpsExceptionCodes::POSSIBLE_FRAUD_DETECTED,
+    );
+
+    public static $_issuerCodeToGiftExceptionCode = array(
+        '1'  => HpsExceptionCodes::UNKNOWN_GIFT_ERROR,
+        '2'  => HpsExceptionCodes::UNKNOWN_GIFT_ERROR,
+        '11' => HpsExceptionCodes::UNKNOWN_GIFT_ERROR,
+        '3'  => HpsExceptionCodes::INVALID_CARD_DATA,
+        '8'  => HpsExceptionCodes::INVALID_CARD_DATA,
+        '4'  => HpsExceptionCodes::EXPIRED_CARD,
+        '5'  => HpsExceptionCodes::CARD_DECLINED,
+        '12' => HpsExceptionCodes::CARD_DECLINED,
+        '6'  => HpsExceptionCodes::PROCESSING_ERROR,
+        '7'  => HpsExceptionCodes::PROCESSING_ERROR,
+        '10' => HpsExceptionCodes::PROCESSING_ERROR,
+        '9'  => HpsExceptionCodes::INVALID_AMOUNT,
+        '13' => HpsExceptionCodes::PARTIAL_APPROVAL,
     );
 
     public static $_creditExceptionCodeToMessage = array(
@@ -54,29 +71,50 @@ class HpsIssuerResponseValidation
         HpsExceptionCodes::INCORRECT_CVC        => "The card's security code is incorrect.",
         HpsExceptionCodes::ISSUER_TIMEOUT       => "The card issuer timed-out.",
         HpsExceptionCodes::UNKNOWN_CREDIT_ERROR => "An unknown issuer error has occurred.",
-        HpsExceptionCodes::INCORRECT_NUMBER     => "The card number is incorrect."
+        HpsExceptionCodes::INCORRECT_NUMBER     => "The card number is incorrect.",
+        HpsExceptionCodes::POSSIBLE_FRAUD_DETECTED => "Possible fraud detected",
+        HpsExceptionCodes::UNKNOWN_GIFT_ERROR   => "An unknown gift error has occurred.",
+        HpsExceptionCodes::PARTIAL_APPROVAL     => "The amount was partially approved.",
+        HpsExceptionCodes::INVALID_CARD_DATA    => "The card data is invalid.",
     );
 
-    public static function checkResponse($transactionId, $responseCode, $responseText)
+    public static function checkResponse($transactionId, $responseCode, $responseText, $type = 'credit')
     {
-        $e = HpsIssuerResponseValidation::getException($transactionId, $responseCode, $responseText);
+        $e = HpsIssuerResponseValidation::getException(
+            (string)$transactionId,
+            (string)$responseCode,
+            (string)$responseText,
+            $type
+        );
 
         if ($e != null) {
             throw $e;
         }
     }
 
-    public static function getException($transactionId, $responseCode, $responseText)
+    public static function getException($transactionId, $responseCode, $responseText, $type)
     {
-        $acceptedCodes = array('85', '00', '0', '10');
-        $responseCode = (string)$responseCode;
+        $acceptedCodes = array('00', '0');
+        $map = array();
+
+        switch ($type) {
+        case 'credit':
+            $acceptedCodes = array_merge($acceptedCodes, array('85', '10'));
+            $map = self::$_issuerCodeToCreditExceptionCode;
+            break;
+        case 'gift':
+            $acceptedCodes = array_merge($acceptedCodes, array('13'));
+            $map = self::$_issuerCodeToGiftExceptionCode;
+            break;
+        }
+
         if (in_array($responseCode, $acceptedCodes)) {
             return null;
         }
 
         $code = null;
-        if (array_key_exists($responseCode, self::$_issuerCodeToCreditExceptionCode)) {
-            $code = self::$_issuerCodeToCreditExceptionCode[$responseCode];
+        if (array_key_exists($responseCode, $map)) {
+            $code = $map[$responseCode];
         }
 
         if ($code == null) {

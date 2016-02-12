@@ -31,6 +31,9 @@ if (!defined('HPS_SDK_LOADED')) {
     require_once 'Infrastructure/HpsCreditExceptionDetails.php';
     require_once 'Infrastructure/HpsGatewayException.php';
     require_once 'Infrastructure/HpsGatewayExceptionDetails.php';
+    require_once 'Infrastructure/HpsProcessorError.php';
+    require_once 'Infrastructure/HpsProcessorException.php';
+    require_once 'Infrastructure/HpsProcessorExceptionDetails.php';
     require_once 'Infrastructure/Enums/HpsAccountType.php';
     require_once 'Infrastructure/Enums/HpsCheckType.php';
     require_once 'Infrastructure/Enums/HpsDataEntryMode.php';
@@ -53,6 +56,7 @@ if (!defined('HPS_SDK_LOADED')) {
     require_once 'Infrastructure/Validation/HpsGatewayResponseValidation.php';
     require_once 'Infrastructure/Validation/HpsInputValidation.php';
     require_once 'Infrastructure/Validation/HpsIssuerResponseValidation.php';
+    require_once 'Infrastructure/Validation/HpsProcessorResponseValidation.php';
 
     // Entities
     require_once 'Entities/HpsAddress.php';
@@ -64,6 +68,7 @@ if (!defined('HPS_SDK_LOADED')) {
     require_once 'Entities/HpsTransaction.php';
     require_once 'Entities/HpsTransactionDetails.php';
     require_once 'Entities/HpsTransactionHeader.php';
+    require_once 'Entities/HpsTransactionStatus.php';
     require_once 'Entities/Batch/HpsBatch.php';
     require_once 'Entities/Check/HpsCheck.php';
     require_once 'Entities/Check/HpsCheckHolder.php';
@@ -105,6 +110,18 @@ if (!defined('HPS_SDK_LOADED')) {
     require_once 'Entities/PayPlan/HpsPayPlanPaymentMethod.php';
     require_once 'Entities/PayPlan/HpsPayPlanSchedule.php';
     require_once 'Entities/PayPlan/HpsPayPlanAmount.php';
+    require_once 'Entities/AltPayment/HpsAltPaymentResponse.php';
+    require_once 'Entities/AltPayment/HpsAltPaymentCreateSession.php';
+    require_once 'Entities/AltPayment/HpsAltPaymentSessionInfo.php';
+    require_once 'Entities/AltPayment/HpsAltPaymentSale.php';
+    require_once 'Entities/AltPayment/HpsAltPaymentAuth.php';
+    require_once 'Entities/AltPayment/HpsAltPaymentReturn.php';
+    require_once 'Entities/AltPayment/HpsAltPaymentVoid.php';
+    require_once 'Entities/AltPayment/HpsAltPaymentCapture.php';
+    require_once 'Entities/AltPayment/HpsBuyerData.php';
+    require_once 'Entities/AltPayment/HpsLineItem.php';
+    require_once 'Entities/AltPayment/HpsPaymentData.php';
+    require_once 'Entities/AltPayment/HpsShippingInfo.php';
 
 
     // Services
@@ -118,6 +135,8 @@ if (!defined('HPS_SDK_LOADED')) {
     require_once 'Services/Gateway/HpsGiftCardService.php';
     require_once 'Services/Gateway/HpsPayPlanService.php';
     require_once 'Services/Gateway/HpsTokenService.php';
+    require_once 'Services/Gateway/AltPayment/HpsAltPaymentService.php';
+    require_once 'Services/Gateway/AltPayment/HpsPayPalService.php';
     require_once 'Services/Gateway/PayPlan/HpsPayPlanCustomerService.php';
     require_once 'Services/Gateway/PayPlan/HpsPayPlanPaymentMethodService.php';
     require_once 'Services/Gateway/PayPlan/HpsPayPlanScheduleService.php';

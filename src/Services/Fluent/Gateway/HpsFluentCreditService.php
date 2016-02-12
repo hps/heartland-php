@@ -36,7 +36,7 @@ class HpsFluentCreditService extends HpsSoapGatewayService
             ->withCurrency('usd');
     }
 
-    public function cpcEdit($transactionId)
+    public function cpcEdit($transactionId = null)
     {
         $builder = new HpsCreditServiceCpcEditBuilder($this);
         return $builder

@@ -11,7 +11,7 @@ abstract class HpsExceptionCodes
     const MISSING_CURRENCY   = 3;
     const INVALID_CURRENCY   = 4;
     const INVALID_DATE       = 5;
-    const MISSING_CHECK_NAME = 27;
+    const MISSING_CHECK_NAME = 28;
 
     // gateway codes
     const UNKNOWN_GATEWAY_ERROR          = 6;
@@ -37,4 +37,9 @@ abstract class HpsExceptionCodes
     const PROCESSING_ERROR              = 24;
     const ISSUER_TIMEOUT_REVERSAL_ERROR = 25;
     const UNKNOWN_CREDIT_ERROR          = 26;
+    const POSSIBLE_FRAUD_DETECTED       = 27;
+
+    // gift codes
+    const UNKNOWN_GIFT_ERROR = 29;
+    const PARTIAL_APPROVAL   = 30;
 }

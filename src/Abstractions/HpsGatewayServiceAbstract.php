@@ -39,7 +39,7 @@ abstract class HpsGatewayServiceAbstract
             );
         }
 
-        if (!$this->_config->validateApiKey($keyType)) {
+        if (!$this->_config->validateApiKey($keyType) && ($this->_config->username == null && $this->_config->password == null)) {
             $type = $this->_config->getKeyType($keyType);
             $message = "The HPS SDK requires a valid {$keyType} API key to be used";
             if ($type == $keyType) {

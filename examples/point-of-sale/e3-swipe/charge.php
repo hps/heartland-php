@@ -5,10 +5,10 @@ function sendEmail($to, $from, $subject, $body, $isHtml)
     $message = '<html><body>';
     $message .= $body;
     $message .= '</body></html>';
-    
+
     $headers = "From: $from\r\n";
     $headers .= "Reply-To: $from\r\n";
-    
+
     if ($isHtml) {
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=ISO-8859-1\r\n";
@@ -36,14 +36,14 @@ function chargeToken($creditService, $suToken)
 
 require_once "../../../Hps.php";
 
-$config = new HpsConfiguration();
+$config = new HpsServiceConfig();
 $config->secretApiKey = 'skapi_cert_MYl2AQAowiQAbLp5JesGKh7QFkcizOP2jcX9BrEMqQ';
 
 // the following variables will be provided to you during certificaiton.
 $config->versionNumber = '0000';
 $config->developerId = '000000';
 
-$creditService = new HpsChargeService($config);
+$creditService = new HpsCreditService($config);
 
 $suToken = new HpsTokenData();
 $suToken->tokenValue = $_GET['securesubmit_token'];
@@ -88,7 +88,7 @@ $body .= '<p>Thank you, '.$_GET['FirstName'].', for your order of $15.15.</p>';
 	<div class="container">
 		<br />
 		<div class="panel panel-default">
-			<div class="panel-body">				
+			<div class="panel-body">
 				<h1><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Thank you for your order.</h1>
 				<h3>Order Id: <?php echo $response->transactionId ?></h3>
 				<p>
@@ -96,7 +96,7 @@ $body .= '<p>Thank you, '.$_GET['FirstName'].', for your order of $15.15.</p>';
 				</p>
 			</div>
 		</div>
-		
+
 		<h1>What just happened?</h1>
 		<ul class="list-group">
 			<li class="list-group-item"><h3><span class="glyphicon glyphicon-credit-card"></span>&nbsp;The encrypted card data was collected from the reader.</h3></li>
