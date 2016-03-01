@@ -9,7 +9,7 @@ abstract class HpsGatewayServiceAbstract
     protected $_currency = null;
     protected $_filterBy = null;
 
-    public function __construct(HpsServicesConfig $config = null)
+    public function __construct(HpsConfigInterface $config = null)
     {
         if ($config != null) {
             $this->_config = $config;
@@ -26,8 +26,6 @@ abstract class HpsGatewayServiceAbstract
         $this->_config = $value;
     }
 
-    abstract protected function processResponse($curlResponse, $curlInfo, $curlError);
-
     protected function submitRequest($url, $headers, $data = null, $httpVerb = 'POST', $keyType = HpsServicesConfig::KEY_TYPE_SECRET, $options = null)
     {
         if ($this->_isConfigInvalid()) {
@@ -39,7 +37,7 @@ abstract class HpsGatewayServiceAbstract
             );
         }
 
-        if (!$this->_config->validateApiKey($keyType) && ($this->_config->username == null && $this->_config->password == null)) {
+        if (!$this->_config->validate($keyType) && ($this->_config->username == null && $this->_config->password == null)) {
             $type = $this->_config->getKeyType($keyType);
             $message = "The HPS SDK requires a valid {$keyType} API key to be used";
             if ($type == $keyType) {
@@ -56,8 +54,8 @@ abstract class HpsGatewayServiceAbstract
         try {
             $request = curl_init();
             curl_setopt($request, CURLOPT_URL, $url);
-            curl_setopt($request, CURLOPT_CONNECTTIMEOUT, 60);
-            curl_setopt($request, CURLOPT_TIMEOUT, 60);
+            curl_setopt($request, CURLOPT_CONNECTTIMEOUT, 100);
+            curl_setopt($request, CURLOPT_TIMEOUT, 100);
             curl_setopt($request, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($request, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($request, CURLOPT_SSL_VERIFYHOST, false);

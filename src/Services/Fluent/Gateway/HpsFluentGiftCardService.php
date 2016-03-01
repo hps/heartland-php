@@ -81,7 +81,7 @@ class HpsFluentGiftCardService extends HpsSoapGatewayService
 
     public function _submitTransaction($transaction, $txnType, $clientTxnId = null)
     {
-        $response = $this->doTransaction($transaction, $clientTxnId);
+        $response = $this->doRequest($transaction, $clientTxnId);
 
         HpsGatewayResponseValidation::checkResponse($response, $txnType);
         HpsIssuerResponseValidation::checkResponse(

@@ -71,7 +71,11 @@ class HpsCreditService extends HpsSoapGatewayService
         }
 
         $hpsTransaction->appendChild($hpsCreditAddToBatch);
-        $response = $this->doTransaction($hpsTransaction);
+        $options = array();
+        if ($clientTransactionId != null) {
+            $options['clientTransactionId'] = $clientTransactionId;
+        }
+        $response = $this->doRequest($hpsTransaction, $options);
         $this->_processChargeGatewayResponse($response, 'CreditAddToBatch');
 
         return $this->get($transactionId);
@@ -422,8 +426,13 @@ class HpsCreditService extends HpsSoapGatewayService
 
     private function _submitTransaction($transaction, $txnType, $clientTxnId = null, $cardData = null)
     {
+        $options = array();
+        if ($clientTxnId != null) {
+            $options['clientTransactionId'] = $clientTxnId;
+        }
+
         try {
-            $response = $this->doTransaction($transaction, $clientTxnId);
+            $response = $this->doRequest($transaction, $options);
         } catch (HpsException $e) {
             if ($e->innerException != null && $e->innerException->getMessage() == 'gateway_time-out') {
                 if (in_array($txnType, array('CreditSale', 'CreditAuth'))) {

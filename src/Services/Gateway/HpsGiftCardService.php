@@ -222,7 +222,11 @@ class HpsGiftCardService extends HpsSoapGatewayService
 
     private function _submitTransaction($transaction, $txnType, $clientTxnId = null)
     {
-        $response = $this->doTransaction($transaction, $clientTxnId);
+        $options = array();
+        if ($clientTxnId != null) {
+            $options['clientTransactionId'] = $clientTxnId;
+        }
+        $response = $this->doRequest($transaction, $options);
 
         HpsGatewayResponseValidation::checkResponse($response, $txnType);
         HpsIssuerResponseValidation::checkResponse(

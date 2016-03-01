@@ -20,7 +20,7 @@ abstract class HpsPayPlanResourceAbstract implements HpsPayPlanResourceInterface
     {
         $array = array_intersect_key(
             get_object_vars($this),
-            array_flip(call_user_func_array($class.'::getEditableFields', $params))
+            array_flip(call_user_func($class.'::getEditableFields', $params))
         );
         return array_filter($array, array($this, 'isNotNull'));
     }

@@ -4,14 +4,21 @@ class HpsPayPlanCustomerService extends HpsRestGatewayService
 {
     public function add(HpsPayPlanCustomer $customer)
     {
-        $result = $this->doRequest('POST', 'customers', $customer->getEditableFieldsWithValues());
+        $data = $customer->getEditableFieldsWithValues();
+        $result = $this->doRequest($data, array(
+            'verb'     => 'POST',
+            'endpoint' => 'customers',
+        ));
         return $this->hydrateObject($result, 'HpsPayPlanCustomer');
     }
 
     public function edit(HpsPayPlanCustomer $customer)
     {
         $data = $customer->getEditableFieldsWithValues();
-        $result = $this->doRequest('PUT', 'customers/'.$customer->customerKey, $data);
+        $result = $this->doRequest($data, array(
+            'verb'     => 'PUT',
+            'endpoint' => 'customers/'.$customer->customerKey,
+        ));
         return $this->hydrateObject($result, 'HpsPayPlanCustomer');
     }
 
@@ -21,7 +28,10 @@ class HpsPayPlanCustomerService extends HpsRestGatewayService
         // in a JSON document
         $data = $searchFields === array() ? (object)array() : $searchFields;
         $results = $this
-            ->doRequest('POST', 'searchCustomers', $data);
+            ->doRequest($data, array(
+                'verb'     => 'POST',
+                'endpoint' => 'searchCustomers',
+            ));
 
         return $this->hydrateSearchResults($results, 'HpsPayPlanCustomer');
     }
@@ -34,7 +44,10 @@ class HpsPayPlanCustomerService extends HpsRestGatewayService
         } else {
             $id = $customer;
         }
-        $result = $this->doRequest('GET', 'customers/'.$id);
+        $result = $this->doRequest(null, array(
+            'verb'     => 'GET',
+            'endpoint' => 'customers/'.$id,
+        ));
         return $this->hydrateObject($result, 'HpsPayPlanCustomer');
     }
 
@@ -50,6 +63,9 @@ class HpsPayPlanCustomerService extends HpsRestGatewayService
         $data = array(
             'forceDelete' => $forceDelete,
         );
-        return $this->doRequest('DELETE', 'customers/'.$id, $data);
+        return $this->doRequest($data, array(
+            'verb'     => 'DELETE',
+            'endpoint' => 'customers/'.$id,
+        ));
     }
 }

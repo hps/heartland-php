@@ -24,8 +24,17 @@ class HpsBuyerData
     public $firstName    = null;
 
     /** @var string|null */
+    public $middleName   = null;
+
+    /** @var string|null */
     public $lastName     = null;
 
     /** @var string|null */
     public $credit       = null;
+
+    /** @var HpsAddress|null */
+    public $address      = null;
+
+    /** @var string|null */
+    public $phoneNumber  = null;
 }

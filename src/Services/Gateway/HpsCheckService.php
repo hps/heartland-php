@@ -85,7 +85,7 @@ class HpsCheckService extends HpsSoapGatewayService
         $hpsTransaction = $xml->createElement('hps:Transaction');
         $hpsCheckSale = $xml->createElement('hps:CheckSale');
         $hpsBlock1 = $xml->createElement('hps:Block1');
-        
+
         $hpsBlock1->appendChild($xml->createElement('hps:Amt', sprintf("%0.2f", round($amount, 3))));
         $hpsBlock1->appendChild($this->_hydrateCheckData($check, $xml));
         $hpsBlock1->appendChild($xml->createElement('hps:CheckAction', $action));
@@ -106,7 +106,11 @@ class HpsCheckService extends HpsSoapGatewayService
 
     private function _submitTransaction($transaction, $txnType, $clientTransactionId = null)
     {
-        $rsp = $this->doTransaction($transaction, $clientTransactionId);
+        $options = array();
+        if ($clientTransactionId !== null) {
+            $options['clientTransactionId'] = $clientTransactionId;
+        }
+        $rsp = $this->doRequest($transaction, $options);
         HpsGatewayResponseValidation::checkResponse($rsp, $txnType);
         $response = HpsCheckResponse::fromDict($rsp, $txnType);
 

@@ -59,7 +59,7 @@ class HpsReportTransactionSummary extends HpsTransaction
                 }
                 if ($issuerResponseCode != "00") {
                     $message = (string)$charge->IssuerRspText;
-                    $exceptions->cardException = HpsIssuerResponseValidation::getException((string)$charge->GatewayTxnId, $issuerResponseCode, $message);
+                    $exceptions->cardException = HpsIssuerResponseValidation::getException((string)$charge->GatewayTxnId, $issuerResponseCode, $message, 'credit');
                 }
                 $summary->exceptions = $exceptions;
             }

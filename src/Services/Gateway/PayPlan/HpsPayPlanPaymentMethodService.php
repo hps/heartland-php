@@ -30,7 +30,10 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
         // in a JSON document
         $data = $searchFields === array() ? (object)array() : $searchFields;
         $results = $this
-            ->doRequest('POST', 'searchPaymentMethods', $data);
+            ->doRequest($data, array(
+                'verb'     => 'POST',
+                'endpoint' => 'searchPaymentMethods',
+            ));
 
         return $this->hydrateSearchResults($results, 'HpsPayPlanPaymentMethod');
     }
@@ -43,7 +46,10 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
         } else {
             $id = $paymentMethod;
         }
-        $result = $this->doRequest('GET', 'paymentMethods/'.$id);
+        $result = $this->doRequest(null, array(
+            'verb'     => 'GET',
+            'endpoint' => 'paymentMethods/'.$id
+        ));
         return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
 
@@ -59,7 +65,10 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
         $data = array(
             'forceDelete' => $forceDelete,
         );
-        return $this->doRequest('DELETE', 'paymentMethods/'.$id, $data);
+        return $this->doRequest($data, array(
+            'verb'     => 'DELETE',
+            'endpoint' => 'paymentMethods/'.$id,
+        ));
     }
 
     private function addCreditCard(HpsPayPlanPaymentMethod $paymentMethod)
@@ -71,14 +80,20 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
         } else if (isset($paymentMethod->paymentToken)) {
             $data['paymentToken'] = $paymentMethod->paymentToken;
         }
-        $result = $this->doRequest('POST', 'paymentMethodsCreditCard', $data);
+        $result = $this->doRequest($data, array(
+            'verb'     => 'POST',
+            'endpoint' => 'paymentMethodsCreditCard',
+        ));
         return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
 
     private function editCreditCard(HpsPayPlanPaymentMethod $paymentMethod)
     {
         $data = $paymentMethod->getEditableFieldsWithValues();
-        $result = $this->doRequest('PUT', 'paymentMethodsCreditCard/'.$paymentMethod->paymentMethodKey, $data);
+        $result = $this->doRequest($data, array(
+            'verb'     => 'PUT',
+            'endpoint' => 'paymentMethodsCreditCard/'.$paymentMethod->paymentMethodKey,
+        ));
         return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
 
@@ -90,14 +105,20 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
         $data['accountType'] = $paymentMethod->accountType;
         $data['achType'] = $paymentMethod->achType;
         $data['routingNumber'] = $paymentMethod->routingNumber;
-        $result = $this->doRequest('POST', 'paymentMethodsACH', $data);
+        $result = $this->doRequest($data, array(
+            'verb'     => 'POST',
+            'endpoint' => 'paymentMethodsACH',
+        ));
         return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
 
     private function editACH(HpsPayPlanPaymentMethod $paymentMethod)
     {
         $data = $paymentMethod->getEditableFieldsWithValues();
-        $result = $this->doRequest('PUT', 'paymentMethodsACH/'.$paymentMethod->paymentMethodKey, $data);
+        $result = $this->doRequest($data, array(
+            'verb'     => 'PUT',
+            'endpoint' => 'paymentMethodsACH/'.$paymentMethod->paymentMethodKey,
+        ));
         return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
 }

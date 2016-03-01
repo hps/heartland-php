@@ -44,7 +44,7 @@ class HpsReportTransactionDetails extends HpsAuthorization
         }
 
         if (isset($reportResponse->Data->AdditionalTxnFields)) {
-            $additionalTxnFields = $reportResponse->Data->additionalTxnFields;
+            $additionalTxnFields = $reportResponse->Data->AdditionalTxnFields;
             $details->memo = (isset($additionalTxnFields->Description) ? (string)$additionalTxnFields->Description : null);
             $details->invoiceNumber = (isset($additionalTxnFields->InvoiceNbr) ? (string)$additionalTxnFields->InvoiceNbr : null);
             $details->customerId = (isset($additionalTxnFields->CustomerId) ? (string)$additionalTxnFields->CustomerId : null);

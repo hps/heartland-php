@@ -311,7 +311,7 @@ class HpsAltPaymentService extends HpsSoapGatewayService
     private function _submitTransaction($transaction, $txnType, $clientTxnId = null, $cardData = null)
     {
         try {
-            $response = $this->doTransaction($transaction, $clientTxnId);
+            $response = $this->doRequest($transaction, $clientTxnId);
         } catch (HpsException $e) {
             if ($e->innerException != null && $e->innerException->getMessage() == 'gateway_time-out') {
                 // if (in_array($txnType, array('CreditSale', 'CreditAuth'))) {

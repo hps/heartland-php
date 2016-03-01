@@ -88,9 +88,9 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
         $this->emailAdvanceNotice = 'No';
     }
 
-    public static function getEditableFields()
+    public static function getEditableFields( HpsPayPlanSchedule $schedule = null  )
     {
-        return array(
+        $editableFields = array(
             'scheduleName',
             'scheduleStatus',
             'deviceId',
@@ -104,14 +104,18 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
             'emailReceipt',
             'emailAdvanceNotice',
             'processingDateInfo',
-            // Only editable when scheduleStarted = false
-            'scheduleIdentifier',
-            'startDate',
-            'frequency',
-            'duration',
-            // Only editable when scheduleStarted = true
-            'nextProcessingDate',
         );
+        if ($schedule->scheduleStarted === 'true'){
+            $editableFields[] = 'nextProcessingDate';
+        }
+        // Only editable when scheduleStarted = false
+        else{
+            $editableFields[] = 'scheduleIdentifier';
+            $editableFields[] = 'startDate';
+            $editableFields[] = 'frequency';
+            $editableFields[] = 'duration';
+        }
+        return  $editableFields;
     }
 
     public static function getSearchableFields()
@@ -176,8 +180,10 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
     }
 
     // Needs to be implemented to get name of child class
-    public function getEditableFieldsWithValues($class = '', $params = array())
-    {
-        return parent::getEditableFieldsWithValues(get_class(), $params);
+    public function getEditableFieldsWithValues($params = null,$class = 'HpsPayPlanSchedule'){
+        if ($params===null){
+            $params=$this;
+        }
+        return parent::getEditableFieldsWithValues($class, $params);
     }
 }

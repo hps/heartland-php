@@ -1,8 +1,8 @@
 <?php
 
-class HpsSoapGatewayService extends HpsGatewayServiceAbstract
+class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGatewayServiceInterface
 {
-    public function doTransaction($transaction, $clientTransactionId = null)
+    public function doRequest($transaction, $options = array())
     {
         $xml = new DOMDocument('1.0', 'utf-8');
         $soapEnvelope = $xml->createElement('soapenv:Envelope');
@@ -29,8 +29,8 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract
             $hpsHeader->appendChild($xml->createElement('hps:VersionNbr', $this->_config->versionNumber));
             $hpsHeader->appendChild($xml->createElement('hps:SiteTrace', $this->_config->siteTrace));
         }
-        if ($clientTransactionId != null) {
-            $hpsHeader->appendChild($xml->createElement('hps:ClientTxnId', $clientTransactionId));
+        if (isset($options['clientTransactionId'])) {
+            $hpsHeader->appendChild($xml->createElement('hps:ClientTxnId', $options['clientTransactionId']));
         }
 
         $hpsVersion->appendChild($hpsHeader);

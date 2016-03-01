@@ -22,8 +22,10 @@ class HpsRestGatewayService extends HpsGatewayServiceAbstract
         return $this;
     }
 
-    protected function doRequest($verb, $endpoint, $data = null)
+    protected function doRequest($data = null, $options = array())
     {
+        $endpoint = isset($options['endpoint']) ? $options['endpoint'] : '';
+        $verb = isset($options['verb']) ? $options['verb'] : 'GET';
         $url = $this->_gatewayUrlForKey() . '/' . $endpoint;
 
         if (isset($this->limit) && isset($this->offset)) {

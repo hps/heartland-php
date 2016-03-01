@@ -63,7 +63,7 @@ class HpsCreditServiceCaptureBuilder extends HpsBuilderAbstract
         }
 
         $hpsTransaction->appendChild($hpsCreditAddToBatch);
-        $response = $this->doTransaction($hpsTransaction);
+        $response = $this->doRequest($hpsTransaction);
         $this->_processChargeGatewayResponse($response, 'CreditAddToBatch');
 
         return $this->service

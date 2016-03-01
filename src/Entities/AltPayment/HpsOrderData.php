@@ -20,20 +20,19 @@
  * @license  https://github.com/hps/heartland-php/blob/master/LICENSE.txt Custom
  * @link     https://github.com/hps/heartland-php
  */
-class HpsPaymentData
+class HpsOrderData
 {
-    /** @var double|null */
-    public $subtotal       = null;
-
-    /** @var double|null */
-    public $shippingAmount = null;
-
-    /** @var double|null */
-    public $taxAmount      = null;
-
-    /** @var string|null */
-    public $paymentType    = null;
-
-    /** @var string|null */
-    public $invoiceNumber  = null;
+    public $transactionStatus = null;
+    public $currencyCode = null;
+    public $orderId = null;
+    public $orderNumber = null;
+    public $transactionMode = 'S';
+    public $ipAddress = null;
+    public $browserHeader = null;
+    public $userAgent = null;
+    public $originUrl = null;
+    public $termUrl = null;
+    public $checkoutType = null;
+    public $pairingToken = null;
+    public $pairingVerifier = null;
 }

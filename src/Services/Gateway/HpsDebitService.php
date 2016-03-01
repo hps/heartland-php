@@ -20,7 +20,7 @@ class HpsDebitService extends HpsSoapGatewayService
      * @param HpsCardHolder         $cardHolder          Card holder information.
      * @param HpsTransactionDetails $details             Group containing additional transaction fields to be included in detail reporting.
      * @param string                $clientTransactionId Optional client transaction ID.
-     * 
+     *
      * @return HpsDebitAddValue The AddValue (Authorization) response.
      */
     public function addValue($amount, $currency, $trackData, $pinBlock, HpsEncryptionData $encryptionData = null, $allowDuplicates = false, HpsCardHolder $cardHolder = null, HpsTransactionDetails $details = null, $clientTransactionId = null)
@@ -68,7 +68,7 @@ class HpsDebitService extends HpsSoapGatewayService
      * @param HpsEncryptionData     $encryptionData      E3 encryption data group.
      * @param HpsTransactionDetails $details             Group containing additional transaction fields to be included in detail reporting.
      * @param string                $clientTransactionId Optional client transaction ID.
-     * 
+     *
      * @return HpsDebit The Return (Authorization) results.
      */
     public function returnDebit($transactionId, $amount, $trackData, $pinBlock, $allowDuplicates = false, HpsCardHolder $cardHolder = null, HpsEncryptionData $encryptionData = null, HpsTransactionDetails $details = null, $clientTransactionId = null)
@@ -111,7 +111,7 @@ class HpsDebitService extends HpsSoapGatewayService
      * @param HpsEncryptionData     $encryptionData      E3 encryption data group.
      * @param HpsTransactionDetails $details             Group containing additional transaction fields to be included in detail reporting.
      * @param string                $clientTransactionId Optional client transaction ID.
-     * 
+     *
      * @return HpsDebit The reversal result.
      */
     public function reverse($transactionId, $amount, $trackData, $authorizedAmount = null, HpsEncryptionData $encryptionData = null, HpsTransactionDetails $details = null, $clientTransactionId = null)
@@ -165,7 +165,7 @@ class HpsDebitService extends HpsSoapGatewayService
      * @param HpsCardHolder         $cardHolder          Card holder information.
      * @param HpsTransactionDetails $details             Group containing additional transaction fields to be included in detail reporting.
      * @param string                $clientTransactionId Optional client transaction ID.
-     * 
+     *
      * @return HpsDebit The Debit Charge result.
      */
     public function charge($amount, $currency, $trackData, $pinBlock, HpsEncryptionData $encryptionData = null, $allowDuplicates = false, $cashBackAmount = null, $allowPartialAuth = false, HpsCardHolder $cardHolder = null, HpsTransactionDetails $details = null, $clientTransactionId = null)
@@ -265,8 +265,13 @@ class HpsDebitService extends HpsSoapGatewayService
 
     private function _submitTransaction($transaction, $txnType, $clientTxnId = null, $cardData = null)
     {
+        $options = array();
+        if ($clientTxnId !== null) {
+            $options['clientTransactionId'] = $clientTxnId;
+        }
+
         try {
-            $response = $this->doTransaction($transaction, $clientTxnId);
+            $response = $this->doRequest($transaction, $options);
         } catch (HpsException $e) {
             if ($e->innerException != null && $e->innerException->getMessage() == 'gateway_time-out') {
                 if ($txnType == 'DebitSale') {
