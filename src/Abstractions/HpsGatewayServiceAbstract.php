@@ -82,16 +82,16 @@ abstract class HpsGatewayServiceAbstract
             $logger->log('Curl info', $curlInfo);
             $logger->log('Curl error', $curlError);
 
-            if ($curlError == 28) {
+            if ($curlError == 28) { //CURLE_OPERATION_TIMEOUTED
                 throw new HpsException("gateway_time-out");
             }
 
-            if ($curlError == 35) {
+            if ($curlError == 35) { //CURLE_SSL_CONNECT_ERROR
                 $err_msg = 'TLS 1.2 handshake failed.';
                 if ( extension_loaded('openssl') && OPENSSL_VERSION_NUMBER <  self::MIN_OPENSSL_VER ) { // then you don't have openSSL 1.0.1c or greater
                     $err_msg .= 'You do not have the minimum version of OpenSSL 1.0.1c which is required for curl to use TLS 1.2 handshake.';
                 }
-                throw new HpsGatewayException($err_msg);
+                throw new HpsGatewayException($curlError,$err_msg);
             }
             return $this->processResponse($curlResponse, $curlInfo, $curlError);
         } catch (Exception $e) {
