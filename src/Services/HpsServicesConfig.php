@@ -23,7 +23,7 @@ class HpsServicesConfig implements HpsConfigInterface
         return $this->soapServiceUri;
     }
 
-    public function setServiceUri(string $value)
+    public function setServiceUri($value)
     {
         $this->soapServiceUri = $value;
     }

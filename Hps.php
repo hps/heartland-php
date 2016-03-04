@@ -22,6 +22,7 @@ if (!defined('HPS_SDK_LOADED')) {
     require_once 'Abstractions/HpsGatewayServiceInterface.php';
     require_once 'Abstractions/HpsPayPlanResourceInterface.php';
     require_once 'Abstractions/HpsPayPlanResourceAbstract.php';
+    require_once 'Abstractions/HpsLoggerInterface.php';
 
     // Infrastructure
     require_once 'Infrastructure/HpsConfiguration.php';
@@ -37,6 +38,8 @@ if (!defined('HPS_SDK_LOADED')) {
     require_once 'Infrastructure/HpsProcessorError.php';
     require_once 'Infrastructure/HpsProcessorException.php';
     require_once 'Infrastructure/HpsProcessorExceptionDetails.php';
+    require_once 'Infrastructure/HpsEmptyLogger.php';
+    require_once 'Infrastructure/HpsLogger.php';
     require_once 'Infrastructure/Enums/HpsAccountType.php';
     require_once 'Infrastructure/Enums/HpsCheckType.php';
     require_once 'Infrastructure/Enums/HpsDataEntryMode.php';

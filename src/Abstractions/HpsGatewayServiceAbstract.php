@@ -8,6 +8,7 @@ abstract class HpsGatewayServiceAbstract
     protected $_amount   = null;
     protected $_currency = null;
     protected $_filterBy = null;
+    const MIN_OPENSSL_VER = 268439615; //OPENSSL_VERSION_NUMBER openSSL 1.0.1c
 
     public function __construct(HpsConfigInterface $config = null)
     {
@@ -51,6 +52,8 @@ abstract class HpsGatewayServiceAbstract
             );
         }
 
+        $logger = HpsLogger::getInstance();
+
         try {
             $request = curl_init();
             curl_setopt($request, CURLOPT_URL, $url);
@@ -60,6 +63,7 @@ abstract class HpsGatewayServiceAbstract
             curl_setopt($request, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($request, CURLOPT_SSL_VERIFYHOST, false);
             if ($data != null) {
+                $logger->log('Request data', $data);
                 curl_setopt($request, CURLOPT_CUSTOMREQUEST, $httpVerb);
                 curl_setopt($request, CURLOPT_POSTFIELDS, $data);
             }
@@ -74,10 +78,21 @@ abstract class HpsGatewayServiceAbstract
             $curlInfo = curl_getinfo($request);
             $curlError = curl_errno($request);
 
+            $logger->log('Response data', $curlResponse);
+            $logger->log('Curl info', $curlInfo);
+            $logger->log('Curl error', $curlError);
+
             if ($curlError == 28) {
                 throw new HpsException("gateway_time-out");
             }
 
+            if ($curlError == 35) {
+                $err_msg = 'TLS 1.2 handshake failed.';
+                if ( extension_loaded('openssl') && OPENSSL_VERSION_NUMBER <  self::MIN_OPENSSL_VER ) { // then you don't have openSSL 1.0.1c or greater
+                    $err_msg .= 'You do not have the minimum version of OpenSSL 1.0.1c which is required for curl to use TLS 1.2 handshake.';
+                }
+                throw new HpsGatewayException($err_msg);
+            }
             return $this->processResponse($curlResponse, $curlInfo, $curlError);
         } catch (Exception $e) {
             throw new HpsGatewayException(

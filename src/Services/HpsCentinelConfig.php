@@ -15,7 +15,7 @@ class HpsCentinelConfig implements HpsConfigInterface
         return $this->serviceUri;
     }
 
-    public function setServiceUri(string $value)
+    public function setServiceUri($value)
     {
         $this->serviceUri = $value;
     }
