@@ -23,6 +23,8 @@ abstract class HpsExceptionCodes
     const GATEWAY_TIMEOUT                = 12;
     const UNEXPECTED_GATEWAY_RESPONSE    = 13;
     const GATEWAY_TIMEOUT_REVERSAL_ERROR = 14;
+    const GATEWAY_ERROR                  = 31;
+    const UNEXPECTED_GATEWAY_ERROR       = 32;
 
     // credit issuer codes
     const INCORRECT_NUMBER              = 15;
