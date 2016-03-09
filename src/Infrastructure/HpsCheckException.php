@@ -11,6 +11,6 @@ class HpsCheckException extends HpsException
         $this->transactionId = $transactionId;
         $this->details = $details;
         $this->code = $code;
-        $this->message = $message;
+        $this->message = (string) $message;
     }
 }

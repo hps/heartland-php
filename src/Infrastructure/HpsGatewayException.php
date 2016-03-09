@@ -8,7 +8,7 @@ class HpsGatewayException extends HpsException
     public function __construct($code, $message, $gatewayResponseCode = null, $gatewayResponseMessage = null, $innerException = null)
     {
         $this->code = $code;
-        $this->message = $message;
+        $this->message = (string) $message;
 
         if ($gatewayResponseCode != null || $gatewayResponseMessage != null) {
             $this->details = new HpsGatewayExceptionDetails();
