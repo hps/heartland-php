@@ -73,7 +73,8 @@ $body .= '<p>Thank you, '.$_GET['FirstName'].', for your order of $15.15.</p>';
 
 echo "Transaction Id: " . $response->transactionId;
 
+
 // i'm running windows, so i had to update this:
 //ini_set("SMTP", "my-mail-server");
 
-sendEmail($_GET['EMAIL'], 'donotreply@e-hps.com', 'Successful Charge!', $body, true);
+sendEmail($_GET['Email'], 'donotreply@e-hps.com', 'Successful Charge!', $body, true);
