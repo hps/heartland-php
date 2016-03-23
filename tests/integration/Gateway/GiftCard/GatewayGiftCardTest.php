@@ -78,4 +78,15 @@ class GatewayGiftCardTest extends PHPUnit_Framework_TestCase
         $reverseResponse = $giftService->reverse(TestGiftCard::validGiftCardNotEncrypted(), 10.00);
         $this->assertEquals('0', $reverseResponse->responseCode);
     }
+
+    /**
+     * @expectedException        HpsException
+     * @expectedExceptionMessage The pin is invalid
+     * @expectedExceptionCode    HpsExceptionCodes::INVALID_PIN
+     */
+    public function testGiftCardManualCardWithInvalidPin()
+    {
+        $giftService = new HpsGiftCardService(TestServicesCOnfig::validMultiUseConfig());
+        $response = $giftService->sale(TestGiftCard::validGiftCardNotEncrypted(), 3.05);
+    }
 }

@@ -41,8 +41,8 @@ interface HpsAltPaymentServiceInterface
         $orderId,
         $amount,
         $currency,
-        HpsBuyerData $buyer,
-        HpsPaymentData $payment,
+        HpsBuyerData $buyer = null,
+        HpsPaymentData $payment = null,
         HpsShippingInfo $shippingAddress = null,
         $lineItems = null,
         HpsOrderData $orderData = null
@@ -80,8 +80,8 @@ interface HpsAltPaymentServiceInterface
     public function createSession(
         $amount,
         $currency,
-        HpsBuyerData $buyer,
-        HpsPaymentData $payment,
+        HpsBuyerData $buyer = null,
+        HpsPaymentData $payment = null,
         HpsShippingInfo $shippingAddress = null,
         $lineItems = null,
         HpsOrderData $orderData = null
@@ -123,8 +123,8 @@ interface HpsAltPaymentServiceInterface
         $orderId,
         $amount,
         $currency,
-        HpsBuyerData $buyer,
-        HpsPaymentData $payment,
+        HpsBuyerData $buyer = null,
+        HpsPaymentData $payment = null,
         HpsShippingInfo $shippingAddress = null,
         $lineItems = null,
         HpsOrderData $orderData = null

@@ -83,6 +83,12 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
     /** @var string|null */
     public $scheduleStarted           = null;
 
+    /** @var string|null */
+    public $invoiceNbr           = null;
+
+    /** @var string|null */
+    public $description           = null;
+
     public function __construct() {
         $this->emailReceipt = 'Never';
         $this->emailAdvanceNotice = 'No';
@@ -99,13 +105,15 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
             'taxAmount',
             'numberOfPaymentsRemaining',
             'endDate',
-            'cancellationDate',
             'reprocessingCount',
             'emailReceipt',
             'emailAdvanceNotice',
             'processingDateInfo',
+            'invoiceNbr',
+            'description',
         );
         if ($schedule->scheduleStarted === 'true'){
+            $editableFields[] = 'cancellationDate';
             $editableFields[] = 'nextProcessingDate';
         }
         // Only editable when scheduleStarted = false
@@ -176,6 +184,8 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
         $ret->creationDate = property_exists($obj, 'creationDate') ? $obj->creationDate : null;
         $ret->lastChangeDate = property_exists($obj, 'lastChangeDate') ? $obj->lastChangeDate : null;
         $ret->statusSetDate = property_exists($obj, 'statusSetDate') ? $obj->statusSetDate : null;
+        $ret->description = property_exists($obj, 'description') ? $obj->description : null;
+        $ret->invoiceNbr = property_exists($obj, 'invoiceNbr') ? $obj->invoiceNbr : null;
         return $ret;
     }
 

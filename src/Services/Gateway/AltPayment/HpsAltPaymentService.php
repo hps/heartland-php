@@ -5,7 +5,7 @@ class HpsAltPaymentService extends HpsSoapGatewayService
     /** @var string|null */
     protected $_transactionType = null;
 
-    public function authorize($sessionId, $amount, $currency, HpsBuyerData $buyer, HpsPaymentData $payment, HpsShippingInfo $shippingAddress = null, $lineItems = null)
+    public function authorize($sessionId, $amount, $currency, HpsBuyerData $buyer = null, HpsPaymentData $payment = null, HpsShippingInfo $shippingAddress = null, $lineItems = null)
     {
         HpsInputValidation::checkAmount($amount);
         HpsInputValidation::checkCurrency($currency);
@@ -53,7 +53,7 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         return $this->_submitTransaction($transaction, 'AltPaymentCapture');
     }
 
-    public function createSession($amount, $currency, HpsBuyerData $buyer, HpsPaymentData $payment, HpsShippingInfo $shippingAddress = null, $lineItems = null)
+    public function createSession($amount, $currency, HpsBuyerData $buyer = null, HpsPaymentData $payment = null, HpsShippingInfo $shippingAddress = null, $lineItems = null)
     {
         HpsInputValidation::checkAmount($amount);
         HpsInputValidation::checkCurrency($currency);
@@ -101,7 +101,7 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         return $this->_submitTransaction($transaction, 'AltPaymentReturn');
     }
 
-    public function sale($sessionId, $amount, $currency, HpsBuyerData $buyer, HpsPaymentData $payment, HpsShippingInfo $shippingAddress = null, $lineItems = null)
+    public function sale($sessionId, $amount, $currency, HpsBuyerData $buyer = null, HpsPaymentData $payment = null, HpsShippingInfo $shippingAddress = null, $lineItems = null)
     {
         HpsInputValidation::checkAmount($amount);
         HpsInputValidation::checkCurrency($currency);

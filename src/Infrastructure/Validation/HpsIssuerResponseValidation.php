@@ -57,6 +57,7 @@ class HpsIssuerResponseValidation
         '10' => HpsExceptionCodes::PROCESSING_ERROR,
         '9'  => HpsExceptionCodes::INVALID_AMOUNT,
         '13' => HpsExceptionCodes::PARTIAL_APPROVAL,
+        '14' => HpsExceptionCodes::INVALID_PIN,
     );
 
     public static $_creditExceptionCodeToMessage = array(
@@ -64,7 +65,7 @@ class HpsIssuerResponseValidation
         HpsExceptionCodes::PROCESSING_ERROR     => "An error occurred while processing the card.",
         HpsExceptionCodes::INVALID_AMOUNT       => "Must be greater than or equal 0.",
         HpsExceptionCodes::EXPIRED_CARD         => "The card has expired.",
-        HpsExceptionCodes::INVALID_PIN          => "The 4-digit pin is invalid.",
+        HpsExceptionCodes::INVALID_PIN          => "The pin is invalid.",
         HpsExceptionCodes::PIN_ENTRIES_EXCEEDED => "Maximum number of pin retries exceeded.",
         HpsExceptionCodes::INVALID_EXPIRY       => "Card expiration date is invalid.",
         HpsExceptionCodes::PIN_VERIFICATION     => "Can't verify card pin number.",
