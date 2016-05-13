@@ -1013,6 +1013,11 @@ class EcommerceTest extends PHPUnit_Framework_TestCase
 
     /// ADD VALUE
 
+    /**
+     * Test only fails due to account settings.
+     *
+     * @expectedException HpsCreditException
+     */
     public function test038AddValueGsb()
     {
         $card = new HpsTrackData();

@@ -35,9 +35,7 @@ class HpsCreditService extends HpsSoapGatewayService
         if ($cardOrToken instanceof HpsCreditCard) {
             $cardData->appendChild($this->_hydrateManualEntry($cardOrToken, $xml));
         } else {
-            $tokenData = $xml->createElement('hps:TokenData');
-            $tokenData->appendChild($xml->createElement('hps:TokenValue', $cardOrToken->tokenValue));
-            $cardData->appendChild($tokenData);
+            $cardData->appendChild($this->_hydrateTokenData($cardOrToken, $xml));
         }
         $cardData->appendChild($xml->createElement('hps:TokenRequest', ($requestMultiUseToken) ? 'Y' : 'N'));
         if ($cpcReq) {
@@ -109,9 +107,7 @@ class HpsCreditService extends HpsSoapGatewayService
         if ($cardOrToken instanceof HpsCreditCard) {
             $cardData->appendChild($this->_hydrateManualEntry($cardOrToken, $xml));
         } else {
-            $tokenData = $xml->createElement('hps:TokenData');
-            $tokenData->appendChild($xml->createElement('hps:TokenValue', $cardOrToken->tokenValue));
-            $cardData->appendChild($tokenData);
+            $cardData->appendChild($this->_hydrateTokenData($cardOrToken, $xml));
         }
         if ($cpcReq) {
             $hpsBlock1->appendChild($xml->createElement('hps:CPCReq', 'Y'));
@@ -153,9 +149,7 @@ class HpsCreditService extends HpsSoapGatewayService
             $hpsBlock1->appendChild($cardData);
         } else if ($cardOrTokenOrPMKey instanceof HpsTokenData) {
             $cardData = $xml->createElement('hps:CardData');
-            $tokenData = $xml->createElement('hps:TokenData');
-            $tokenData->appendChild($xml->createElement('hps:TokenValue', $cardOrTokenOrPMKey->tokenValue));
-            $cardData->appendChild($tokenData);
+            $cardData->appendChild($this->_hydrateTokenData($cardOrTokenOrPMKey, $xml));
             $hpsBlock1->appendChild($cardData);
         } else {
             $hpsBlock1->appendChild($xml->createElement('hps:PaymentMethodKey', $cardOrTokenOrPMKey));
@@ -267,9 +261,7 @@ class HpsCreditService extends HpsSoapGatewayService
             $hpsBlock1->appendChild($cardDataElement);
         } else if ($cardData instanceof HpsTokenData) {
             $cardDataElement = $xml->createElement('hps:CardData');
-            $tokenData = $xml->createElement('hps:TokenData');
-            $tokenData->appendChild($xml->createElement('hps:TokenValue', $cardData->tokenValue));
-            $cardDataElement->appendChild($tokenData);
+            $cardDataElement->appendChild($this->_hydrateTokenData($cardData, $xml));
             $hpsBlock1->appendChild($cardDataElement);
         } else {
             $hpsBlock1->appendChild($xml->createElement('hps:GatewayTxnId', $cardData));
@@ -305,9 +297,7 @@ class HpsCreditService extends HpsSoapGatewayService
             $cardDataElement->appendChild($this->_hydrateManualEntry($cardData, $xml));
         } else if ($cardData instanceof HpsTokenData) {
             $cardDataElement = $xml->createElement('hps:CardData');
-            $tokenData = $xml->createElement('hps:TokenData');
-            $tokenData->appendChild($xml->createElement('hps:TokenValue', $cardData->tokenValue));
-            $cardDataElement->appendChild($tokenData);
+            $cardDataElement->appendChild($this->_hydrateTokenData($cardData, $xml));
         } else {
             $cardDataElement = $xml->createElement('hps:GatewayTxnId', $cardData);
         }
@@ -337,9 +327,7 @@ class HpsCreditService extends HpsSoapGatewayService
         if ($cardOrToken instanceof HpsCreditCard) {
             $cardData->appendChild($this->_hydrateManualEntry($cardOrToken, $xml));
         } else {
-            $tokenData = $xml->createElement('hps:TokenData');
-            $tokenData->appendChild($xml->createElement('hps:TokenValue', $cardOrToken->tokenValue));
-            $cardData->appendChild($tokenData);
+            $cardData->appendChild($this->_hydrateTokenData($cardOrToken, $xml));
         }
         $cardData->appendChild($xml->createElement('hps:TokenRequest', ($requestMultiUseToken) ? 'Y' : 'N'));
 

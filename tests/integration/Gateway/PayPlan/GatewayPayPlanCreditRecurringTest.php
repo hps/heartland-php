@@ -73,7 +73,6 @@ class GatewayPayPlanCreditRecurringTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('00', $response->responseCode);
     }
 
-    /** @group recurringtest */
     public function testOneTimeWithTokenData()
     {
         $token = $this->getToken(TestCreditCard::validVisaCreditCard());
@@ -100,7 +99,6 @@ class GatewayPayPlanCreditRecurringTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('00', $response->responseCode);
     }
 
-    /** @group recurringtest */
     public function testWithTokenData()
     {
         $token = $this->getToken(TestCreditCard::validVisaCreditCard());

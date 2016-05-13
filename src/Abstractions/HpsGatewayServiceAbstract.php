@@ -67,6 +67,7 @@ abstract class HpsGatewayServiceAbstract
                 curl_setopt($request, CURLOPT_CUSTOMREQUEST, $httpVerb);
                 curl_setopt($request, CURLOPT_POSTFIELDS, $data);
             }
+            $logger->log('Request headers', $headers);
             curl_setopt($request, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($request, CURLOPT_PROTOCOLS, CURLPROTO_HTTPS);
 
@@ -74,6 +75,14 @@ abstract class HpsGatewayServiceAbstract
                 curl_setopt($request, CURLOPT_PROXY, $this->_config->proxyOptions['proxy_host']);
                 curl_setopt($request, CURLOPT_PROXYPORT, $this->_config->proxyOptions['proxy_port']);
             }
+
+            if (
+                $this->_config->curlOptions != null
+                && !empty($this->_config->curlOptions)
+            ) {
+                curl_setopt_array($request, $this->_config->curlOptions);
+            }
+
             $curlResponse = curl_exec($request);
             $curlInfo = curl_getinfo($request);
             $curlError = curl_errno($request);

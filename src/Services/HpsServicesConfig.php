@@ -17,6 +17,7 @@ class HpsServicesConfig implements HpsConfigInterface
     public $proxyOptions    = null;
     public $soapServiceUri  = "https://cert.api2.heartlandportico.com/Hps.Exchange.PosGateway/PosGatewayService.asmx";
     public $payPlanBaseUri  = null;
+    public $curlOptions     = null;
 
     public function serviceUri()
     {

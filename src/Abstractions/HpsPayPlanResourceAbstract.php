@@ -11,9 +11,9 @@ abstract class HpsPayPlanResourceAbstract implements HpsPayPlanResourceInterface
     /** @var string|null */
     public $lastChangeDate = null;
 
-    protected function isNotNull($value)
+    protected function isNotNullOrEmpty($value)
     {
-        return $value !== null;
+        return $value !== null && !empty($value);
     }
 
     public function getEditableFieldsWithValues($class, $params = array())
@@ -22,6 +22,6 @@ abstract class HpsPayPlanResourceAbstract implements HpsPayPlanResourceInterface
             get_object_vars($this),
             array_flip(call_user_func($class.'::getEditableFields', $params))
         );
-        return array_filter($array, array($this, 'isNotNull'));
+        return array_filter($array, array($this, 'isNotNullOrEmpty'));
     }
 }

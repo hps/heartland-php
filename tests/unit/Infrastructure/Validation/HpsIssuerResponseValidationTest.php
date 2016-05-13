@@ -95,7 +95,7 @@ class HpsIssuerResponseValidationTest extends PHPUnit_Framework_TestCase
         $this->assertExceptionValues(
             $codes,
             HpsExceptionCodes::INVALID_PIN,
-            'The 4-digit pin is invalid.',
+            'The pin is invalid.',
             'credit'
         );
     }

@@ -211,7 +211,7 @@ class RecurringTest extends PHPUnit_Framework_TestCase
         $paymentMethod->paymentMethodType       = HpsPayPlanPaymentMethodType::ACH;
         $paymentMethod->achType                 = 'Checking';
         $paymentMethod->accountType             = 'Personal';
-        $paymentMethod->telephoneIndicator      = 0;
+        $paymentMethod->telephoneIndicator      = false;
         $paymentMethod->routingNumber           = '490000018';
         $paymentMethod->nameOnAccount           = 'John Doe';
         $paymentMethod->driversLicenseNumber    = '7418529630';
@@ -222,7 +222,6 @@ class RecurringTest extends PHPUnit_Framework_TestCase
         $paymentMethod->stateProvince           = 'TX';
         $paymentMethod->zipPostalCode           = '98765';
         $paymentMethod->customerKey             = self::$customerPersonKey;
-        $paymentMethod->country                 = 'USA';
         $paymentMethod->accountHolderYob        = '1989';
 
         $response = $this->service->addPaymentMethod($paymentMethod);
@@ -249,7 +248,6 @@ class RecurringTest extends PHPUnit_Framework_TestCase
         $paymentMethod->stateProvince           = 'NJ';
         $paymentMethod->zipPostalCode           = '12345';
         $paymentMethod->customerKey             = self::$customerCompanyKey;
-        $paymentMethod->country                 = 'USA';
         $paymentMethod->accountHolderYob        = '1989';
 
         $response = $this->service->addPaymentMethod($paymentMethod);

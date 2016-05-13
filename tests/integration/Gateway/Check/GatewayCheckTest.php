@@ -45,7 +45,7 @@ class GatewayCheckTest extends PHPUnit_Framework_TestCase
 
     public function testSaleAndVoidWithClientTxnId()
     {
-        $clientTransactionId = 10244202;
+        $clientTransactionId = 10244203;
         $response = $this->checkService->sale(TestCheck::approve(), 5.00, $clientTransactionId);
         $this->assertNotNull($response, 'Response is null');
         $this->assertEquals('0', $response->responseCode);

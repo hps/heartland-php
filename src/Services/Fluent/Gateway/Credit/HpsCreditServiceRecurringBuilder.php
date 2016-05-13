@@ -71,21 +71,19 @@ class HpsCreditServiceRecurringBuilder extends HpsBuilderAbstract
         $hpsBlock1->appendChild($xml->createElement('hps:AllowDup', 'Y'));
         $hpsBlock1->appendChild($xml->createElement('hps:Amt', $this->amount));
         if ($this->cardHolder != null) {
-            $hpsBlock1->appendChild($this->_hydrateCardHolderData($this->cardHolder, $xml));
+            $hpsBlock1->appendChild($this->service->_hydrateCardHolderData($this->cardHolder, $xml));
         }
         if ($this->details != null) {
-            $hpsBlock1->appendChild($this->_hydrateAdditionalTxnFields($this->details, $xml));
+            $hpsBlock1->appendChild($this->service->_hydrateAdditionalTxnFields($this->details, $xml));
         }
 
         if ($this->card != null) {
             $cardData = $xml->createElement('hps:CardData');
-            $cardData->appendChild($this->_hydrateManualEntry($this->card, $xml));
+            $cardData->appendChild($this->service->_hydrateManualEntry($this->card, $xml));
             $hpsBlock1->appendChild($cardData);
         } else if ($this->token != null) {
             $cardData = $xml->createElement('hps:CardData');
-            $tokenData = $xml->createElement('hps:TokenData');
-            $tokenData->appendChild($xml->createElement('hps:TokenValue', $this->token->tokenValue));
-            $cardData->appendChild($tokenData);
+            $cardData->appendChild($this->service->_hydrateTokenData($this->token, $xml));
             $hpsBlock1->appendChild($cardData);
         } else if ($this->paymentMethodKey != null) {
             $hpsBlock1->appendChild($xml->createElement('hps:PaymentMethodKey', $this->paymentMethodKey));

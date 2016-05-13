@@ -59,7 +59,6 @@ function createPaymentMethod(HpsPayPlanService $service, $customerKey, HpsCheckH
     $paymentMethod->stateProvince           = $checkHolder->address->state;
     $paymentMethod->zipPostalCode           = $checkHolder->address->zip;
     $paymentMethod->customerKey             = $customerKey;
-    $paymentMethod->country                 = $checkHolder->address->country;
     $paymentMethod->accountHolderYob        = $checkHolder->dobYear;
     $response = $service->addPaymentMethod($paymentMethod);
     return $response->paymentMethodKey;

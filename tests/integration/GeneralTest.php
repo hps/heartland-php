@@ -181,7 +181,6 @@ class GeneralTests extends PHPUnit_Framework_TestCase
     }
 
     /**
- * @group test
      * The get first charge test method.
      */
     public function testGetFirstWhenConfigValidShouldGetTheFirstCharge()
