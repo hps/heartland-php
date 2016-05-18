@@ -308,15 +308,15 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
         $tokenData->appendChild($xml->createElement('hps:TokenValue', $token->tokenValue));
 
         if (isset($token->expMonth)) {
-            $manualEntry->appendChild($xml->createElement('hps:ExpMonth', $token->expMonth));
+            $tokenData->appendChild($xml->createElement('hps:ExpMonth', $token->expMonth));
         }
 
         if (isset($token->expYear)) {
-            $manualEntry->appendChild($xml->createElement('hps:ExpYear', $token->expYear));
+            $tokenData->appendChild($xml->createElement('hps:ExpYear', $token->expYear));
         }
 
         if (isset($token->cvv)) {
-            $manualEntry->appendChild($xml->createElement('hps:CVV2', $token->cvv));
+            $tokenData->appendChild($xml->createElement('hps:CVV2', $token->cvv));
         }
 
         $tokenData->appendChild($xml->createElement('hps:CardPresent', ($cardPresent ? 'Y' : 'N')));
