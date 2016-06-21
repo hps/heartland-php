@@ -97,7 +97,7 @@ class GeneralTests extends PHPUnit_Framework_TestCase
 
         $ChargeAmount = 50;
         $Currency = "usd";
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
 
         $chargeSvc->Charge($ChargeAmount, $Currency, TestCreditCard::invalidCreditCard(), TestCardHolder::validCardHolder());
     }
@@ -110,7 +110,7 @@ class GeneralTests extends PHPUnit_Framework_TestCase
         date_default_timezone_set("UTC");
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
 
         $dateFormat = 'Y-m-d\TH:i:s.00\Z';
         $dateMinus10 = new DateTime();
@@ -135,7 +135,7 @@ class GeneralTests extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
 
         $dateFormat = 'Y-m-d\TH:i:s.00\Z';
         $dateMinus10 = new DateTime();
@@ -161,7 +161,7 @@ class GeneralTests extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
 
         $dateFormat = 'Y-m-d\TH:i:s.00\Z';
         $dateMinus10 = new DateTime();
@@ -188,7 +188,7 @@ class GeneralTests extends PHPUnit_Framework_TestCase
         date_default_timezone_set("UTC");
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
 
         $dateFormat = 'Y-m-d\TH:i:s.00\Z';
         $dateMinus10 = new DateTime();

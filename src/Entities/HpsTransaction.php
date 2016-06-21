@@ -26,7 +26,11 @@ class HpsTransaction
         }
 
         // Hydrate the body
-        $item = $rsp->Transaction->$txnType;
+        if (!isset($rsp->Transaction) || !isset($rsp->Transaction->{$txnType})) {
+            return $transaction;
+        }
+        // Hydrate the body
+        $item = $rsp->Transaction->{$txnType};
         if ($item != null) {
             $transaction->responseCode = (isset($item->RspCode) ? (string)$item->RspCode : null);
             $transaction->responseText = (isset($item->RspText) ? (string)$item->RspText : null);

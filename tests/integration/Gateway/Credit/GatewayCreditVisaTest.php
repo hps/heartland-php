@@ -98,6 +98,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($response->cvvResultCode, "N");
     }
 
+
     /**
      * @test
      * /// CVV result code should be "P" test method.
@@ -130,6 +131,88 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
 
     #endregion
 
+    #region Update Expiration date on token
+
+    /**
+     * @test
+     *
+     */
+
+    public function testUpdateTokenExpirationShouldReturnOk()
+    {
+        $testConfig = new TestServicesConfig();
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+        $response = $chargeSvc->updateTokenExpiration(TestCreditCard::validVisaMUT(), 1, 2019);
+        $this->assertEquals("0", $response->responseCode);
+    }
+
+    /**
+     * @test
+     */
+
+    public function testUpdateTokenExpirationToExpiredDate()
+    {
+        $testConfig = new TestServicesConfig();
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+        $response = $chargeSvc->updateTokenExpiration(TestCreditCard::validVisaMUT(), 1, 2009);
+        $this->assertEquals("0", $response->responseCode);
+    }
+
+    /**
+     * @test
+     * @expectedException HpsGatewayException
+     * @expectedExceptionCode 10
+     * @expectedExceptionMessage Invalid card data
+     */
+
+    public function testUpdateTokenExpirationToInvalidYear()
+    {
+        $testConfig = new TestServicesConfig();
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+        $chargeSvc->updateTokenExpiration(TestCreditCard::validVisaMUT(), 1, 19);
+    }
+
+
+    /**
+     * @test
+     * @expectedException HpsGatewayException
+     * @expectedExceptionCode 10
+     * @expectedExceptionMessage Invalid card data
+     */
+    public function testUpdateTokenExpirationToNull()
+    {
+        $testConfig = new TestServicesConfig();
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+        $chargeSvc->updateTokenExpiration(TestCreditCard::validVisaMUT(), null, null);
+    }
+
+    /**
+     * @test
+     * @expectedException HpsGatewayException
+     * @expectedExceptionCode 10
+     * @expectedExceptionMessage Invalid card data
+     */
+    public function testUpdateTokenExpirationOnInValidTokenShouldReturnException()
+    {
+        $testConfig = new TestServicesConfig();
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+        $chargeSvc->updateTokenExpiration(TestCreditCard::invalidMUT(), 1, 2019);
+    }
+    /**
+     * @test
+     * @expectedException HpsGatewayException
+     * @expectedExceptionCode 10
+     * @expectedExceptionMessage Invalid card data
+     */
+    public function testUpdateTokenExpirationOnNullTokenShouldReturnException()
+    {
+        $testConfig = new TestServicesConfig();
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+        $chargeSvc->updateTokenExpiration(TestCreditCard::NullMUT(), 1, 2019);
+    }
+
+
+    #endregion
     #region Visa to Visa 2nd
 
     /**
@@ -396,7 +479,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
         try {
             $testConfig = new TestServicesConfig();
 
-            $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+            $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
 
             $chargeSvc->authorize(10.32, 'USD', TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), true);
         } catch (HpsCreditException $e) {
@@ -531,6 +614,8 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
 
     #endregion
 
+
+
     #region Verify, Authorize & Capture
 
     /**
@@ -541,7 +626,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->Verify(TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("85", $response->responseCode);
     }
@@ -554,7 +639,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->authorize(50, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("00", $response->responseCode);
     }
@@ -567,7 +652,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->authorize(50, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), true);
         $this->assertEquals("0", $response->tokenData->responseCode);
         $this->assertEquals("00", $response->responseCode);
@@ -582,7 +667,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         // Authorize the card.
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $authResponse = $chargeSvc->authorize(50, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("00", $authResponse->responseCode);
 
@@ -625,7 +710,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
         $details->clientTransactionId = "123456789";
 
         $testConfig = new TestServicesConfig();
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
 
         $response = $chargeSvc->authorize(25, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), false, $details);
         $this->assertEquals('123456789', $response->clientTransactionId);
@@ -641,7 +726,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
         $txnDescriptor = "Best Company Every";
 
         $testConfig = new TestServicesConfig();
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
 
         $descriptorTest = $chargeSvc->charge(25, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), false, null, $txnDescriptor);
         //This is being printed so that you can look it up on the gate way to make sure it actually worked.
@@ -659,7 +744,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
         $txnDescriptor = "Best Company Every";
 
         $testConfig = new TestServicesConfig();
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
 
         $descriptorTest = $chargeSvc->authorize(25, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), false, null, $txnDescriptor);
         //This is being printed so that you can look it up on the gate way to make sure it actually worked.
@@ -679,7 +764,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->charge(50, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), true);
         $this->assertEquals("0", $response->tokenData->responseCode);
         $this->assertEquals("00", $response->responseCode);
@@ -696,7 +781,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->charge(50, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), true);
         $this->assertEquals("0", $response->tokenData->responseCode);
         $this->assertEquals("00", $response->responseCode);
@@ -717,7 +802,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->charge(112.34, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), false, null, null, false, true);
         $this->assertEquals("00", $response->responseCode);
         $this->assertEquals("B", $response->cpcIndicator);  //Business Card Check
@@ -739,7 +824,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->charge(123.45, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), false, null, null, false, true);
         $this->assertEquals("00", $response->responseCode);
         $this->assertEquals("R", $response->cpcIndicator);
@@ -761,7 +846,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->charge(134.56, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), false, null, null, false, true);
         $this->assertEquals("00", $response->responseCode);
         $this->assertEquals("S", $response->cpcIndicator);
@@ -784,7 +869,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->authorize(112.34, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), false, null, null, false, true);
         $this->assertEquals("00", $response->responseCode);
         $this->assertEquals("B", $response->cpcIndicator);  //Business Card Check
@@ -806,7 +891,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->authorize(123.45, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), false, null, null, false, true);
         $this->assertEquals("00", $response->responseCode);
         $this->assertEquals("R", $response->cpcIndicator);
@@ -828,7 +913,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->authorize(134.56, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), false, null, null, false, true);
         $this->assertEquals("00", $response->responseCode);
         $this->assertEquals("S", $response->cpcIndicator);
@@ -851,7 +936,7 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->validMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->charge($amt, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), $multiUseRequest, $details, $txnDescriptors);
         if ($response == null) {
             $this->fail("Response is null.");

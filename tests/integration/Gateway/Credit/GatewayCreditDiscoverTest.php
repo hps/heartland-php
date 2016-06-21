@@ -12,6 +12,24 @@ class GatewayCreditDiscoverTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($response->responseCode, "00");
     }
 
+    #region Update Expiration date on token
+
+    /**
+     * @test
+     *
+     */
+
+    public function testUpdateTokenExpirationShouldReturnOk()
+    {
+        $testConfig = new TestServicesConfig();
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+        $response = $chargeSvc->updateTokenExpiration(TestCreditCard::validDiscoverMUT(), 1, 2019);
+        $this->assertEquals("0", $response->responseCode);
+    }
+
+
+    #endregion
+
     #region AVS Tests
 
     /**
@@ -527,7 +545,7 @@ class GatewayCreditDiscoverTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->verify(TestCreditCard::validDiscoverCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("85", $response->responseCode);
     }
@@ -540,7 +558,7 @@ class GatewayCreditDiscoverTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->authorize(50, "usd", TestCreditCard::validDiscoverCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("00", $response->responseCode);
     }
@@ -553,7 +571,7 @@ class GatewayCreditDiscoverTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->authorize(50, "usd", TestCreditCard::validDiscoverCreditCard(), TestCardHolder::ValidCardHolder(), true);
         $this->assertEquals("0", $response->tokenData->responseCode);
         $this->assertEquals("00", $response->responseCode);
@@ -569,7 +587,7 @@ class GatewayCreditDiscoverTest extends PHPUnit_Framework_TestCase
 
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $authResponse = $chargeSvc->authorize(50, "usd", TestCreditCard::validDiscoverCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("00", $authResponse->responseCode);
 
@@ -587,7 +605,7 @@ class GatewayCreditDiscoverTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->charge($amt, "usd", TestCreditCard::validDiscoverCreditCard(), TestCardHolder::ValidCardHolder());
         if ($response == null) {
             $this->fail("Response is null.");

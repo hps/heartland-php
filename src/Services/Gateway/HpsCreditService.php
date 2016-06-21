@@ -206,6 +206,48 @@ class HpsCreditService extends HpsSoapGatewayService
         return $trans;
     }
 
+    /** builds soap transaction for Portico so that  expiration dates can be updated for expired cards with a new current issuance
+     * @param string $tokenValue
+     * @param int    $expMonth 1-12 padding will be handled automatically
+     * @param int    $expYear  must be 4 digits.
+     *
+     * @return \HpsManageTokensResponse
+     * @throws \HpsException
+     * @throws \HpsGatewayException
+     */
+    public function updateTokenExpiration($tokenValue, $expMonth, $expYear)  {
+        // new DOM
+        $xml = new DOMDocument();
+        $hpsTransaction = $xml->createElement('hps:Transaction');
+        $hpsManageTokens = $xml->createElement('hps:ManageTokens');
+
+        $hpsManageTokens->appendChild($xml->createElement('hps:TokenValue', trim((string)$tokenValue)));
+
+        $hpsTokenActions = $xml->createElement('hps:TokenActions');
+        $hpsSet = $xml->createElement('hps:Set');
+        $hpsAttribute = $xml->createElement('hps:Attribute');
+
+            $hpsAttribute->appendChild($xml->createElement('hps:Name', 'ExpMonth'));
+            $hpsAttribute->appendChild($xml->createElement('hps:Value', (string)sprintf("%'.02d", (int)$expMonth)));
+
+        $hpsSet->appendChild($hpsAttribute);
+
+        $hpsAttribute = $xml->createElement('hps:Attribute');
+
+            $hpsAttribute->appendChild($xml->createElement('hps:Name', 'ExpYear'));
+            $hpsAttribute->appendChild($xml->createElement('hps:Value', (string)$expYear));
+
+        $hpsSet->appendChild($hpsAttribute);
+
+        $hpsTokenActions->appendChild($hpsSet);
+
+        $hpsManageTokens->appendChild($hpsTokenActions);
+
+        $hpsTransaction->appendChild($hpsManageTokens);
+
+        return $this->_submitTransaction($hpsTransaction, 'ManageTokens');
+    }
+
     public function get($transactionId)
     {
         if ($transactionId <= 0) {
@@ -412,6 +454,17 @@ class HpsCreditService extends HpsSoapGatewayService
         }
     }
 
+    /**
+     * @param      $transaction
+     * @param      $txnType
+     * @param null $clientTxnId
+     * @param null $cardData
+     *
+     * @return array|null
+     * @throws \HpsCreditException
+     * @throws \HpsException
+     * @throws \HpsGatewayException
+     */
     private function _submitTransaction($transaction, $txnType, $clientTxnId = null, $cardData = null)
     {
         $options = array();
@@ -472,6 +525,9 @@ class HpsCreditService extends HpsSoapGatewayService
                 break;
             case 'RecurringBilling':
                 $rvalue = HpsRecurringBilling::fromDict($response, $txnType);
+                break;
+            case 'ManageTokens':
+                $rvalue = HpsManageTokensResponse::fromDict($response);
                 break;
             default:
                 break;

@@ -48,6 +48,13 @@ class HpsFluentCreditService extends HpsSoapGatewayService
         return new HpsCreditServiceEditBuilder($this);
     }
 
+    public function updateTokenExpiration()
+    {
+        $builder = new HpsCreditServiceUpdateTokenExpirationBuilder($this);
+        //print_r($builder);
+        return $builder;
+    }
+
     public function get($transactionId = null)
     {
         $builder = new HpsCreditServiceGetBuilder($this);
@@ -255,6 +262,9 @@ class HpsFluentCreditService extends HpsSoapGatewayService
                 break;
             case 'CreditOfflineAuth':
                 $rvalue = HpsOfflineAuthorization::fromDict($response, $txnType);
+                break;
+            case 'ManageTokens':
+                $rvalue = HpsManageTokensResponse::fromDict($response, $txnType);
                 break;
             default:
                 break;

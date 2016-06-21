@@ -96,6 +96,7 @@ if (!defined('HPS_SDK_LOADED')) {
     require_once 'Entities/Credit/HpsCPCData.php';
     require_once 'Entities/Credit/HpsCPCEdit.php';
     require_once 'Entities/Credit/HpsVoid.php';
+    require_once 'Entities/Credit/HpsManageTokensResponse.php';
     require_once 'Entities/Debit/HpsDebitAddValue.php';
     require_once 'Entities/Debit/HpsDebitReturn.php';
     require_once 'Entities/Debit/HpsDebitReversal.php';
@@ -195,6 +196,7 @@ if (!defined('HPS_SDK_LOADED')) {
     require_once 'Services/Fluent/Gateway/GiftCard/HpsGiftCardServiceRewardBuilder.php';
     require_once 'Services/Fluent/Gateway/GiftCard/HpsGiftCardServiceSaleBuilder.php';
     require_once 'Services/Fluent/Gateway/GiftCard/HpsGiftCardServiceVoidBuilder.php';
+    require_once 'Services/Fluent/Gateway/Credit/HpsCreditServiceUpdateTokenExpirationBuilder.php';
     require_once 'Services/Fluent/Gateway/HpsFluentCheckService.php';
     require_once 'Services/Fluent/Gateway/HpsFluentCreditService.php';
     require_once 'Services/Fluent/Gateway/HpsFluentDebitService.php';

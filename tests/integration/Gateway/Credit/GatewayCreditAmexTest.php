@@ -12,6 +12,24 @@ class GatewayCreditAmexTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($response->responseCode, "00");
     }
 
+    #region Update Expiration date on token
+
+    /**
+     * @test
+     *
+     */
+
+    public function testUpdateTokenExpirationShouldReturnOk()
+    {
+        $testConfig = new TestServicesConfig();
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+        $response = $chargeSvc->updateTokenExpiration(TestCreditCard::validAmexMUT(), 1, 2019);
+        $this->assertEquals("0", $response->responseCode);
+    }
+
+
+    #endregion
+
     #region AVS Tests
 
     /**
@@ -377,7 +395,7 @@ class GatewayCreditAmexTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->Verify(TestCreditCard::validAmexCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("00", $response->responseCode);
     }
@@ -390,7 +408,7 @@ class GatewayCreditAmexTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->authorize(50, "usd", TestCreditCard::validAmexCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("00", $response->responseCode);
     }
@@ -403,7 +421,7 @@ class GatewayCreditAmexTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->authorize(50, "usd", TestCreditCard::validAmexCreditCard(), TestCardHolder::ValidCardHolder(), true);
         $this->assertEquals("0", $response->tokenData->responseCode);
         $this->assertEquals("00", $response->responseCode);
@@ -418,7 +436,7 @@ class GatewayCreditAmexTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         // Authorize the card.
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $authResponse = $chargeSvc->authorize(50, "usd", TestCreditCard::validAmexCreditCard(), TestCardHolder::ValidCardHolder());
         $this->assertEquals("00", $authResponse->responseCode);
 
@@ -436,7 +454,7 @@ class GatewayCreditAmexTest extends PHPUnit_Framework_TestCase
     {
         $testConfig = new TestServicesConfig();
 
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->charge($amt, "usd", TestCreditCard::validAmexCreditCard(), TestCardHolder::ValidCardHolder());
         if ($response == null) {
             $this->Fail("Response is null.");

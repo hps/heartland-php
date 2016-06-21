@@ -11,6 +11,11 @@ class TestCreditCard
         $validVisaCreditCard->number = "4012002000060016";
         return $validVisaCreditCard;
     }
+    public static function validVisaMUT()
+    {
+        return "CT25M708HKe55S4a613i0016";
+    }
+
 
     public static function validMastercardCreditCard()
     {
@@ -20,6 +25,10 @@ class TestCreditCard
         $creditCard->expYear = "2025";
         $creditCard->number = "5473500000000014";
         return $creditCard;
+    }
+    public static function validMastercardMUT()
+    {
+        return "w4nucu08708ScCxlFCPM0014";
     }
 
     public static function validDiscoverCreditCard()
@@ -32,6 +41,10 @@ class TestCreditCard
         return $creditCard;
     }
 
+    public static function validDiscoverMUT()
+    {
+        return "Hl4mgB08bzY3CEIoHfaa6527";
+    }
     public static function validAmexCreditCard()
     {
         $creditCard = new HpsCreditCard();
@@ -40,6 +53,10 @@ class TestCreditCard
         $creditCard->expYear = "2025";
         $creditCard->number = "372700699251018";
         return $creditCard;
+    }
+    public static function validAmexMUT()
+    {
+        return "DhIQTo08cwS7f5NG5dHC1018";
     }
 
     public static function validJCBCreditCard()
@@ -60,6 +77,14 @@ class TestCreditCard
         $creditCard->expYear = "2025";
         $creditCard->number = "12345";
         return $creditCard;
+    }
+    public static function invalidMUT()
+    {
+        return "Hl4mgB08bzY3CEIoHfsdfsdfdsfaa6527";
+    }
+    public static function NullMUT()
+    {
+        return null;
     }
 
     public static function validCreditCardWithBlankExpMonth()

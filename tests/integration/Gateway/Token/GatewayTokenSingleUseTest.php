@@ -262,7 +262,7 @@ class GatewayTokenSingleUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validAmexCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->refund(15.15, "usd", $token, TestCardHolder::certCardHolderShortZip());
         $this->assertEquals($response->responseCode, "0");
     }
@@ -276,7 +276,7 @@ class GatewayTokenSingleUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validMasterCardCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->refund(15.15, "usd", $token, TestCardHolder::certCardHolderShortZip());
         $this->assertEquals($response->responseCode, "0");
     }
@@ -290,7 +290,7 @@ class GatewayTokenSingleUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validDiscoverCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->refund(15.15, "usd", $token, TestCardHolder::certCardHolderShortZip());
         $this->assertEquals($response->responseCode, "0");
     }
@@ -304,7 +304,7 @@ class GatewayTokenSingleUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validVisaCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $response = $chargeSvc->refund(15.15, "usd", $token, TestCardHolder::certCardHolderShortZip());
         $this->assertEquals($response->responseCode, "0");
     }
@@ -320,7 +320,7 @@ class GatewayTokenSingleUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validAmexCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $reverse = $chargeSvc->reverse($token, 50, 'usd');
 
         $this->assertEquals('00', $reverse->responseCode);
@@ -335,7 +335,7 @@ class GatewayTokenSingleUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validDiscoverCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $reverse = $chargeSvc->reverse($token, 50, 'usd');
 
         $this->assertEquals('00', $reverse->responseCode);
@@ -350,7 +350,7 @@ class GatewayTokenSingleUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validMasterCardCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $reverse = $chargeSvc->reverse($token, 50, 'usd');
 
         $this->assertEquals('00', $reverse->responseCode);
@@ -365,7 +365,7 @@ class GatewayTokenSingleUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validVisaCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $reverse = $chargeSvc->reverse($token, 50, 'usd');
 
         $this->assertEquals('00', $reverse->responseCode);

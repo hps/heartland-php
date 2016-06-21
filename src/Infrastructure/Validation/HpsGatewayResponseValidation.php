@@ -11,7 +11,6 @@ class HpsGatewayResponseValidation
         if ($e != null) {
             throw $e;
         }
-
         if (!isset($response->Transaction) || !isset($response->Transaction->$expectedType)) {
             throw new HpsGatewayException(
                 HpsExceptionCodes::UNEXPECTED_GATEWAY_ERROR,
@@ -57,6 +56,9 @@ class HpsGatewayResponseValidation
                     $responseText
                 );
                 break;
+            case '27':
+            case '34':
+            case '26':
             case '13':
                 $e = new HpsGatewayException(
                     HpsExceptionCodes::INVALID_CARD_DATA,

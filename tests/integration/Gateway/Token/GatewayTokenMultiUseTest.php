@@ -254,7 +254,7 @@ class GatewayTokenMultiUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validAmexCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $charge = $chargeSvc->charge(50, 'usd', $token, TestCardHolder::ValidCardHolder(), true);
         $this->assertEquals($charge->responseCode, "0");
         $this->assertNotNull($charge->tokenData->tokenValue);
@@ -273,7 +273,7 @@ class GatewayTokenMultiUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validDiscoverCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $charge = $chargeSvc->charge(50, 'usd', $token, TestCardHolder::ValidCardHolder(), true);
         $this->assertEquals($charge->responseCode, "0");
         $this->assertNotNull($charge->tokenData->tokenValue);
@@ -292,7 +292,7 @@ class GatewayTokenMultiUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validMasterCardCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $charge = $chargeSvc->charge(50, 'usd', $token, TestCardHolder::ValidCardHolder(), true);
         $this->assertEquals($charge->responseCode, "0");
         $this->assertNotNull($charge->tokenData->tokenValue);
@@ -311,7 +311,7 @@ class GatewayTokenMultiUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validVisaCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $charge = $chargeSvc->charge(50, 'usd', $token, TestCardHolder::ValidCardHolder(), true);
         $this->assertEquals($charge->responseCode, "0");
         $this->assertNotNull($charge->tokenData->tokenValue);
@@ -332,7 +332,7 @@ class GatewayTokenMultiUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validAmexCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $chargeResponse =$chargeSvc->charge(17.01, 'usd', $token, null, true);
         $this->assertEquals($chargeResponse->responseCode, "0");
 
@@ -350,7 +350,7 @@ class GatewayTokenMultiUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validDiscoverCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $chargeResponse =$chargeSvc->charge(17.01, 'usd', $token, null, true);
         $this->assertEquals($chargeResponse->responseCode, "0");
 
@@ -368,7 +368,7 @@ class GatewayTokenMultiUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validMasterCardCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $chargeResponse =$chargeSvc->charge(17.01, 'usd', $token, null, true);
         $this->assertEquals($chargeResponse->responseCode, "0");
 
@@ -386,7 +386,7 @@ class GatewayTokenMultiUseTest extends PHPUnit_Framework_TestCase
         $testConfig = new TestServicesConfig();
 
         $token = $this->getToken(TestCreditCard::validVisaCreditCard());
-        $chargeSvc = new HpsCreditService($testConfig->ValidMultiUseConfig());
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
         $chargeResponse =$chargeSvc->charge(17.01, 'usd', $token, null, true);
         $this->assertEquals($chargeResponse->responseCode, "0");
 

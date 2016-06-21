@@ -116,6 +116,90 @@ class FluentCreditTest extends PHPUnit_Framework_TestCase
             ->execute();
     }
 
+
+    /**
+     * @test
+     */
+
+    public function testUpdateTokenExpirationToExpiredDate()
+    {
+        $updateTokenExpireation = $this->service
+            ->updateTokenExpiration()
+            ->withToken(TestCreditCard::validVisaMUT())
+            ->withExpMonth(1)
+            ->withExpYear(2009)
+            ->execute();
+        $this->assertNotNull($updateTokenExpireation->transactionId);
+    }
+
+
+    /**
+     * @test
+     * @expectedException HpsGatewayException
+     * @expectedExceptionCode 10
+     * @expectedExceptionMessage Invalid card data
+     */
+    public function testUpdateTokenExpirationToNull()
+    {
+        $this->service
+            ->updateTokenExpiration()
+            ->withToken(TestCreditCard::validVisaMUT())
+            ->withExpMonth(null)
+            ->withExpYear(null)
+            ->execute();
+    }
+
+    /**
+     * @test
+     * @expectedException HpsGatewayException
+     * @expectedExceptionCode 10
+     * @expectedExceptionMessage Invalid card data
+     */
+    public function testUpdateTokenExpirationOnInValidTokenShouldReturnException()
+    {
+        $this->service
+            ->updateTokenExpiration()
+            ->withToken(TestCreditCard::invalidMUT())
+            ->withExpMonth(1)
+            ->withExpYear(2019)
+            ->execute();
+    }
+
+    /**
+     * @test
+     * @expectedException HpsArgumentException
+     * @expectedExceptionMessage Edit needs a multi use token value
+     */
+    public function testUpdateTokenExpirationOnNullTokenShouldReturnException()
+    {
+        $this->service
+            ->updateTokenExpiration()
+            ->withToken(TestCreditCard::NullMUT())
+            ->withExpMonth(1)
+            ->withExpYear(2019)
+            ->execute();
+
+    }
+
+    /**
+     * @test
+     */
+
+    public function testUpdateTokenExpiration(){
+        $updateTokenExpireation = $this->service
+            ->updateTokenExpiration()
+            ->withToken(TestCreditCard::validVisaMUT())
+            ->withExpMonth(1)
+            ->withExpYear(2019)
+            ->execute();
+
+        $this->assertNotNull($updateTokenExpireation->transactionId);
+    }
+
+
+
+
+
     public function testCpcEdit()
     {
         $charge = $this->service
