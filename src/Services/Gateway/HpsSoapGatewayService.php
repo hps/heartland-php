@@ -300,8 +300,9 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
     public function _hydrateTokenData($token, DOMDocument $xml, $cardPresent = false, $readerPresent = false)
     {
         if (!$token instanceof HpsTokenData) {
+            $tokenValue = $token;
             $token = new HpsTokenData();
-            $token->tokenValue = $token;
+            $token->tokenValue = $tokenValue;
         }
 
         $tokenData = $xml->createElement('hps:TokenData');
