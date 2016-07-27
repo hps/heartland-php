@@ -43,6 +43,9 @@
         <testsuite name="certification">
             <directory>./integration/CertificationTests/</directory>
         </testsuite>
+        <testsuite name="attachments">
+            <directory>./integration/Attachment/</directory>
+        </testsuite>
     </testsuites>
 
     <filter>

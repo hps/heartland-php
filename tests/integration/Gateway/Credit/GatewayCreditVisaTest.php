@@ -789,6 +789,22 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
         $reverseResponse = $chargeSvc->reverse($response->transactionId, 50, 'usd');
         $this->assertEquals("00", $reverseResponse->responseCode);
     }
+    /**
+     * @test
+     * Visa charge and reverseTransaction should return response code '00'.
+     */
+    public function testVisaCharge50AndRevers40TransactionShouldReturnOk()
+    {
+        $testConfig = new TestServicesConfig();
+
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+        $response = $chargeSvc->charge(50, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), true);
+        $this->assertEquals("0", $response->tokenData->responseCode);
+        $this->assertEquals("00", $response->responseCode);
+
+        $reverseResponse = $chargeSvc->reverse($response->transactionId, 50, 'usd',null,10);
+        $this->assertEquals("00", $reverseResponse->responseCode);
+    }
 
     #endregion
 

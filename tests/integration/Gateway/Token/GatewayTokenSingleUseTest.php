@@ -112,6 +112,19 @@ class GatewayTokenSingleUseTest extends PHPUnit_Framework_TestCase
         $this->assertNotNull($charge->transactionId);
         $this->assertEquals('00', $charge->responseCode);
     }
+    // Charge Testing with a token
+    /**
+     * @test
+     * Testing getting an Amex single use token then charging it
+     */
+    public function testGetTokenFromAmexAndChargeTokenValue()
+    {
+        $token = $this->getToken(TestCreditCard::validAmexCreditCard());
+        $chargeService = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
+        $charge = $chargeService->charge(1, 'USD', $token->tokenValue, TestCardHolder::validCardHolder());
+        $this->assertNotNull($charge->transactionId);
+        $this->assertEquals('00', $charge->responseCode);
+    }
 
     /**
      * @test
@@ -122,6 +135,18 @@ class GatewayTokenSingleUseTest extends PHPUnit_Framework_TestCase
         $token = $this->getToken(TestCreditCard::validDiscoverCreditCard());
         $chargeService = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $charge = $chargeService->charge(1, 'USD', $token, TestCardHolder::validCardHolder());
+        $this->assertNotNull($charge->transactionId);
+        $this->assertEquals('00', $charge->responseCode);
+    }
+    /**
+     * @test
+     * Testing getting a Discover Card single use token then charging it
+     */
+    public function testGetTokenFromDiscoverAndChargeTokenValue()
+    {
+        $token = $this->getToken(TestCreditCard::validDiscoverCreditCard());
+        $chargeService = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
+        $charge = $chargeService->charge(1, 'USD', $token->tokenValue, TestCardHolder::validCardHolder());
         $this->assertNotNull($charge->transactionId);
         $this->assertEquals('00', $charge->responseCode);
     }
@@ -138,6 +163,18 @@ class GatewayTokenSingleUseTest extends PHPUnit_Framework_TestCase
         $this->assertNotNull($charge->transactionId);
         $this->assertEquals('00', $charge->responseCode);
     }
+    /**
+     * @test
+     * Testing getting a Master Card single use token then charging it
+     */
+    public function testGetTokenFromMasterCardAndChargeTokenValue()
+    {
+        $token = $this->getToken(TestCreditCard::validMasterCardCreditCard());
+        $chargeService = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
+        $charge = $chargeService->charge(1, 'USD', $token->tokenValue, TestCardHolder::validCardHolder());
+        $this->assertNotNull($charge->transactionId);
+        $this->assertEquals('00', $charge->responseCode);
+    }
 
     /**
      * @test
@@ -148,6 +185,18 @@ class GatewayTokenSingleUseTest extends PHPUnit_Framework_TestCase
         $token = $this->getToken(TestCreditCard::validVisaCreditCard());
         $chargeService = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
         $charge = $chargeService->charge(1, 'USD', $token, TestCardHolder::validCardHolder());
+        $this->assertNotNull($charge->transactionId);
+        $this->assertEquals('00', $charge->responseCode);
+    }
+    /**
+     * @test
+     * Testing getting a Visa single use token then charging it
+     */
+    public function testGetTokenFromVisaAndChargeTokenValue()
+    {
+        $token = $this->getToken(TestCreditCard::validVisaCreditCard());
+        $chargeService = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
+        $charge = $chargeService->charge(1, 'USD', $token->tokenValue, TestCardHolder::validCardHolder());
         $this->assertNotNull($charge->transactionId);
         $this->assertEquals('00', $charge->responseCode);
     }

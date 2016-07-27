@@ -646,6 +646,7 @@ $transactionId = $saleResponse->transactionId;
 $voidResponse = $giftService->void($transactionId);
 ```
 
+
 ## Testing
 
 Clone this repository locally, install dependencies with Composer, and run PHPUnit against the provided tests.
