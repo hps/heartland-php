@@ -83,6 +83,8 @@ class HpsCreditServiceAuthorizeBuilder extends HpsBuilderAbstract
     /** @var HpsDirectMarketData|null */
     protected $directMarketData         = null;
 
+    protected $secureEcommerce          = null;
+
     /**
      * Instatiates a new HpsCreditServiceAuthorizeBuilder
      *
@@ -182,6 +184,10 @@ class HpsCreditServiceAuthorizeBuilder extends HpsBuilderAbstract
             $refElement->appendChild($xml->createElement('hps:AuthCode', $this->originalTxnReferenceData->authorizationCode));
             $refElement->appendChild($xml->createElement('hps:CardNbrLastFour', $this->originalTxnReferenceData->cardNumberLast4));
             $hpsBlock1->appendChild($refElement);
+        }
+
+        if ($this->secureEcommerce != null) {
+            $hpsBlock1->appendChild($this->service->_hydrateSecureEcommerce($this->secureEcommerce, $xml));
         }
 
         $hpsCreditAuth->appendChild($hpsBlock1);

@@ -1509,7 +1509,7 @@ class EcommerceTest extends PHPUnit_Framework_TestCase
             // printf('batch id: %s', $response->id);
             // printf('sequence number: %s', $response->sequenceNumber);
         } catch (HpsException $e) {
-            $this->fail($e->message);
+            $this->fail($e->getMessage());
         }
     }
 }

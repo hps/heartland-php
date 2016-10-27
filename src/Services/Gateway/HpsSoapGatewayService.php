@@ -16,7 +16,7 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
         $hpsHeader = $xml->createElement('hps:Header');
 
         if ($this->_config->secretApiKey != null && $this->_config->secretApiKey != "") {
-            $hpsHeader->appendChild($xml->createElement('hps:SecretAPIKey', $this->_config->secretApiKey));
+            $hpsHeader->appendChild($xml->createElement('hps:SecretAPIKey', trim($this->_config->secretApiKey)));
         } else {
             $hpsHeader->appendChild($xml->createElement('hps:SiteId', $this->_config->siteId));
             $hpsHeader->appendChild($xml->createElement('hps:DeviceId', $this->_config->deviceId));
@@ -280,19 +280,27 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
         return $manualEntry;
     }
 
-    public function _hydrateSecureEcommerce($paymentData, $xml)
+    public function _hydrateSecureEcommerce($data, $xml)
     {
         $secureEcommerce = $xml->createElement('hps:SecureECommerce');
-        $secureEcommerce->appendChild($xml->createElement('hps:TypeOfPaymentData', $paymentData->secure3d));
+        $secureEcommerce->appendChild($xml->createElement('hps:PaymentDataSource', $data->dataSource));
+        $secureEcommerce->appendChild($xml->createElement('hps:TypeOfPaymentData', $data->type));
 
-        $paymentDataElement = $xml->createElement('hps:PaymentData', $paymentData->onlinePaymentCryptogram);
+        $paymentDataElement = $xml->createElement('hps:PaymentData', $data->data);
         $paymentDataElementEncoding = $xml->createAttribute('encoding');
         $paymentDataElementEncoding->value = 'base64';
         $paymentDataElement->appendChild($paymentDataElementEncoding);
+        $secureEcommerce->appendChild($paymentDataElement);
 
-        if ($paymentData->eciIndicator != null && $paymentData->eciIndicator != '') {
-            $secureEcommerce->appendChild($xml->createElement('hps:ECommerceIndicator', $paymentData->eciIndicator));
+        if ($data->eciFlag != null && $data->eciFlag != '') {
+            $secureEcommerce->appendChild($xml->createElement('hps:ECommerceIndicator', $data->eciFlag));
         }
+
+        $xidElement = $xml->createElement('hps:XID', $data->xid);
+        $xidElementEncoding = $xml->createAttribute('encoding');
+        $xidElementEncoding->value = 'base64';
+        $xidElement->appendChild($xidElementEncoding);
+        $secureEcommerce->appendChild($xidElement);
 
         return $secureEcommerce;
     }

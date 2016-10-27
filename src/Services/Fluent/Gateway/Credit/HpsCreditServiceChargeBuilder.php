@@ -66,7 +66,7 @@ class HpsCreditServiceChargeBuilder extends HpsBuilderAbstract
     protected $readerPresent            = false;
 
     protected $originalTxnReferenceData = null;
-    protected $paymentData              = null;
+    protected $secureEcommerce          = null;
 
     /**
      * Instatiates a new HpsCreditServiceChargeBuilder
@@ -168,8 +168,8 @@ class HpsCreditServiceChargeBuilder extends HpsBuilderAbstract
 
         $hpsBlock1->appendChild($cardData);
 
-        if ($this->paymentData != null) {
-            $hpsBlock1->appendChild($this->service->_hydrateSecureEcommerce($this->paymentData->paymentData, $xml));
+        if ($this->secureEcommerce != null) {
+            $hpsBlock1->appendChild($this->service->_hydrateSecureEcommerce($this->secureEcommerce, $xml));
         }
 
         $hpsCreditSale->appendChild($hpsBlock1);

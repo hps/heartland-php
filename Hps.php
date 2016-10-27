@@ -95,6 +95,7 @@ if (!defined('HPS_SDK_LOADED')) {
     require_once 'Entities/Credit/HpsReportTransactionDetails.php';
     require_once 'Entities/Credit/HpsReportTransactionSummary.php';
     require_once 'Entities/Credit/HpsReversal.php';
+    require_once 'Entities/Credit/HpsSecureEcommerce.php';
     require_once 'Entities/Credit/HpsCPCData.php';
     require_once 'Entities/Credit/HpsCPCEdit.php';
     require_once 'Entities/Credit/HpsVoid.php';
