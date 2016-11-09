@@ -119,6 +119,8 @@
 </div>
 
 <h2>Card Information</h2>
+<div id="ss-banner">
+</div>
 <!-- make iframes styled like other form -->
 <style type="text/css">
 	#iframes iframe{
@@ -134,21 +136,65 @@
 		clear:both;
 		position:relative;
 	}
-  #iframesCardExpiration{
-    display:inline-block;
-    width:48%;
-    margin-bottom:14px;
-  }
+  #iframesCardExpiration,
   #iframesCardCvv{
-    display:inline-block;
-    width:48%;
     margin-bottom:14px;
   }
-
-  #ss-date.form-group{
-      display:inline-block;
+  .iframeholder {
+    height:50px;
+    width:100%;
+  }
+  label[for=iframesCardNumber],
+  label[for=iframesCardExpiration],
+  label[for=iframesCardCvv]{
+    text-transform:uppercase;
+    font-weight:400;
+    font-size:13px;
+    color:#555;
+    margin-bottom:2px;
+  }
+  #ss-banner{
+    background:transparent url(assets/images/ss-shield@2x.png) no-repeat left center;
+    height:40px;
+    background-size:280px 34px;
+    margin-bottom:10px;
+  }
+  .btn-primary{
+    display:block;
+    border-radius:0px;
+    width:10em;
+    height:3em;
+    font-size:15px;
+  }
+  .btn-primary:hover,
+  .btn-primary:focus{
+    box-shadow:none;
+  }
+  #heartland-frame-cardExpiration,
+  #heartland-frame-cardCvv,
+  #heartland-frame-cardNumber {
+    width:100%;
+  }
+  .form-group:nth-last-of-type(-n+3) {
+    margin-left:0px;
+    margin-right:0px;
+    width:100%;
+    height:70px;
   }
 
+  @media screen and (min-width:767px) {
+    #ss-date.form-group,
+    #ss-cvv.form-group{
+      display:inline-block;
+      width:48%;
+    }
+    #ss-cvv.form-group {
+      float:right;
+    }
+    #heartland-frame-cardNumber {
+      width : 100%;
+    }
+  }
 
 </style>
 
@@ -271,11 +317,9 @@
     				'outline-offset': '-2px'
         },
         'input:nth-child(n+1)' :{
-          'height':'30px',
-          'border':'1px solid #ccc'
-        },
-        'input[name=cardNumber]' :{
-          'width':'98%'
+          'height':'40px',
+          'border':'1px solid #ccc',
+          'width':'95%'
         },
         'input:nth-child(n+1):hover, input:nth-child(n+1):focus' :{
           'border':'1px solid transparent',
@@ -284,56 +328,82 @@
           '-webkit-box-shadow': 'none',
           'box-shadow': 'none'
         },
-
-
-        '#iframesCardExpiration' :{
-          'display':'inline-block',
-          'width':'48%',
-          'margin-bottom':'14px'
+        '#heartland-field' :{
+          'padding-left':'10px'
         },
-        '#iframesCardCvv' :{
-          'display':'inline-block',
-          'width':'48%',
-          'margin-bottom':'14px'
+        '#heartland-field[placeholder]' :{
+          'letter-spacing':'3px'
         },
-
-        '#ss-date.form-group' :{
-            'display':'inline-block',
+        'input#heartland-field[name=cardCvv]' : {
+          'background':'transparent url('+location.href+ 'assets/images/cvv1.png) no-repeat right',
+          'background-size' :'63px 40px'
         },
-        '#heartland-field.invalid.card-type-visa + .extra-div-1' :{
-          'background':'transparent url('+location.href+ 'assets/images/ss-saved-visa@2x.png) no-repeat right top'
+        'input#heartland-field[name=cardNumber]' : {
+          'background':'transparent url('+location.href+ 'assets/images/ss-inputcard-blank@2x.png) no-repeat right',
+          'background-size' :'55px 35px',
+          'height':'40px',
+          'width':'95%'
+        },
+        '#heartland-field.invalid.card-type-visa' :{
+          'background':'transparent url('+location.href+ 'assets/images/ss-saved-visa@2x.png) no-repeat right',
+          'background-size' :'83px 88px',
+          'background-position-y':'-44px'
         },
         '#heartland-field.valid.card-type-visa' :{
-          'background':'transparent url(assets/images/ss-saved-visa@2x.png) no-repeat right top'
+          'background':'transparent url('+location.href+ 'assets/images/ss-saved-visa@2x.png) no-repeat right top',
+          'background-size' :'82px 86px'
         },
 
-        '.invalid.card-type-discover' :{
-          'background':'transparent url(assets/images/ss-saved-discover.png) no-repeat right top'
+        '#heartland-field.invalid.card-type-discover' :{
+          'background':'transparent url('+location.href+ 'assets/images/ss-saved-discover@2x.png) no-repeat right bottom',
+          'background-size' :'85px 85px'
         },
-        '.valid.card-type-discover' :{
-          'background':'transparent url(assets/images/ss-saved-discover.png) no-repeat right top'
+        '#heartland-field.valid.card-type-discover' :{
+          'background':'transparent url('+location.href+ 'assets/images/ss-saved-discover@2x.png) no-repeat right top',
+          'background-size' :'85px 83px'
         },
-
-        '.invalid.card-type-amex' :{
-          'background':'transparent url(assets/images/ss-saved-amex.png) no-repeat right top'
+        '#heartland-field.invalid.card-type-amex' :{
+          'background':'transparent url('+location.href+ 'assets/images/ss-savedcards-amex@2x.png) no-repeat right',
+          'background-size' :'50px 90px',
+          'background-position-y':'-44'
         },
-        '.valid.card-type-amex' :{
-          'background':'transparent url(assets/images/ss-saved-amex.png) no-repeat right top'
-        },
-
-        '.invalid.card-type-mastercard' :{
-          'background':'transparent url(assets/images/ss-saved-mastercard.png) no-repeat right top'
-        },
-        '.valid.card-type-mastercard' :{
-          'background':'transparent url(assets/images/ss-saved-mastercard.png) no-repeat right top'
+        '#heartland-field.valid.card-type-amex' :{
+          'background':'transparent url('+location.href+ 'assets/images/ss-savedcards-amex@2x.png) no-repeat right top',
+          'background-size' :'50px 90px'
         },
 
-        '.invalid.card-type-jcb' :{
-          'background':'transparent url(assets/images/ss-saved-jcb.png) no-repeat right top'
+        '#heartland-field.invalid.card-type-mastercard' :{
+          'background':'transparent url('+location.href+ 'assets/images/ss-saved-mastercard.png) no-repeat right',
+          'background-size' :'85px 81px',
+          'background-position-y':'-55px'
         },
-        '.valid.card-type-jcb' :{
-          'background':'transparent url(assets/images/ss-saved-jcb.png) no-repeat right top'
+        '#heartland-field.valid.card-type-mastercard' :{
+          'background':'transparent url('+location.href+ 'assets/images/ss-saved-mastercard.png) no-repeat right',
+          'background-size' :'62px 105px',
+          'background-position-y':'-4px'
         },
+
+        '#heartland-field.invalid.card-type-jcb' :{
+          'background':'transparent url('+location.href+ 'assets/images/ss-saved-jcb@2x.png) no-repeat right',
+          'background-size' :'75px 78px',
+          'background-position-y':'-38px'
+        },
+        '#heartland-field.valid.card-type-jcb' :{
+          'background':'transparent url('+location.href+ 'assets/images/ss-saved-jcb@2x.png) no-repeat right top',
+          'background-size' :'75px 78px',
+          'background-position-y':'1px'
+        },
+        '#heartland-field-body' : {
+        'width':'100%'
+      },
+      '#heartland-field-wrapper' : {
+      'width':'100%'
+    },
+  '@media screen and (min-width:767px)': {
+    'input:nth-child(n+1)' :{
+      'width':'90%'
+    },
+    },
       },
       // Callback when a token is received from the service
       onTokenSuccess: function (resp) {
