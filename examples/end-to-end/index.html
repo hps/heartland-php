@@ -353,7 +353,6 @@
           'background':'transparent url('+location.href+ 'assets/images/ss-saved-visa@2x.png) no-repeat right top',
           'background-size' :'82px 86px'
         },
-
         '#heartland-field.invalid.card-type-discover' :{
           'background':'transparent url('+location.href+ 'assets/images/ss-saved-discover@2x.png) no-repeat right bottom',
           'background-size' :'85px 85px'
@@ -371,7 +370,6 @@
           'background':'transparent url('+location.href+ 'assets/images/ss-savedcards-amex@2x.png) no-repeat right top',
           'background-size' :'50px 90px'
         },
-
         '#heartland-field.invalid.card-type-mastercard' :{
           'background':'transparent url('+location.href+ 'assets/images/ss-saved-mastercard.png) no-repeat right',
           'background-size' :'85px 81px',
@@ -382,7 +380,6 @@
           'background-size' :'62px 105px',
           'background-position-y':'-4px'
         },
-
         '#heartland-field.invalid.card-type-jcb' :{
           'background':'transparent url('+location.href+ 'assets/images/ss-saved-jcb@2x.png) no-repeat right',
           'background-size' :'75px 78px',
@@ -393,17 +390,20 @@
           'background-size' :'75px 78px',
           'background-position-y':'1px'
         },
+        'input#heartland-field[name=cardNumber]::-ms-clear' : {
+          'display':'none'
+        },
         '#heartland-field-body' : {
         'width':'100%'
-      },
-      '#heartland-field-wrapper' : {
-      'width':'100%'
-    },
-  '@media screen and (min-width:767px)': {
-    'input:nth-child(n+1)' :{
-      'width':'90%'
-    },
-    },
+        },
+        '#heartland-field-wrapper' : {
+        'width':'100%'
+        },
+      '@media only screen and (min-width:767px)': {
+        'input:nth-child(n+1)#heartland-field' :{
+        'width':'97.5%'
+        }
+      }
       },
       // Callback when a token is received from the service
       onTokenSuccess: function (resp) {
