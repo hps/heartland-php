@@ -1,4 +1,10 @@
-<html lang="en">
+<!--[if IE]><![endif]-->
+<!--[if lt IE 7 ]> <html lang="en" class="ie6">    <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7">    <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8">    <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9">    <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en"><!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,8 +15,9 @@
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="assets/secure.submit-1.0.2.js"></script>
-
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link src="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -153,16 +160,19 @@
     color:#555;
     margin-bottom:2px;
   }
-  #ss-banner{
+  #ss-banner {
     background:transparent url(assets/images/ss-shield@2x.png) no-repeat left center;
     height:40px;
     background-size:280px 34px;
     margin-bottom:10px;
   }
+  .ie8 #ss-banner {
+    background:transparent url(assets/images/ss-shield-ie.png) no-repeat left center;
+  }
   .btn-primary{
     display:block;
     border-radius:0px;
-    width:10em;
+    width:98.5%;
     height:3em;
     font-size:15px;
   }
@@ -172,7 +182,10 @@
   }
   #heartland-frame-cardExpiration,
   #heartland-frame-cardCvv,
-  #heartland-frame-cardNumber {
+  #heartland-frame-cardNumber,
+  .ie8 #heartland-frame-cardExpiration,
+  .ie8 #heartland-frame-cardCvv,
+  .ie8 #heartland-frame-cardNumber  {
     width:100%;
   }
   .form-group:nth-last-of-type(-n+3) {
@@ -180,6 +193,24 @@
     margin-right:0px;
     width:100%;
     height:70px;
+  }
+  .red {
+    color:#ce2027;
+    margin-left:2px;
+    font-size:17px;
+  }
+  .ie8 form .iframeholder {
+    padding:10px;
+  }
+  .ie8 form label {
+    padding-left:10px;
+    margin:0px;
+  }
+  .ie8 form .form-group {
+    margin-bottom:5px;
+  }
+  .ie8 .btn-primary {
+    width:15%;
   }
 
   @media screen and (min-width:767px) {
@@ -195,6 +226,17 @@
       width : 100%;
     }
   }
+  @media screen and (min-width:450px) {
+      .btn-primary,
+      .ie8 .btn-primary {
+        width:10em;
+      }
+  }
+
+
+  }
+
+
 
 </style>
 
@@ -202,15 +244,15 @@
 <!-- The Payment Form -->
 <form id="iframes" action="" method="GET">
 	<div id="ss-card" class="form-group">
-		<label for="iframesCardNumber">Card Number:</label>
+		<label for="iframesCardNumber">Card Number<span class="red">*</span></label>
 		<div class="iframeholder" id="iframesCardNumber"></div>
 	</div>
 	<div id="ss-date" class="form-group">
-		<label for="iframesCardExpiration">Card Expiration:</label>
+		<label for="iframesCardExpiration">Card Expiration<span class="red">*</span></label>
 		<div class="iframeholder" id="iframesCardExpiration"></div>
 	</div>
 	<div id="ss-cvv" class="form-group">
-		<label for="iframesCardCvv">Card CVV:</label>
+		<label for="iframesCardCvv">Card CVV<span class="red">*</span></label>
 		<div class="iframeholder" id="iframesCardCvv"></div>
 	</div>
 
@@ -316,12 +358,19 @@
             'outline': '5px auto -webkit-focus-ring-color',
     				'outline-offset': '-2px'
         },
-        'input:nth-child(n+1)' :{
+        'input:nth-child(n+1), .ie8 input:nth-child(n+1)' :{
           'height':'40px',
           'border':'1px solid #ccc',
           'width':'95%'
         },
         'input:nth-child(n+1):hover, input:nth-child(n+1):focus' :{
+          'border':'1px solid transparent',
+          'border-color':'#3989e3',
+          'outline': '0',
+          '-webkit-box-shadow': 'none',
+          'box-shadow': 'none'
+        },
+        '.ie8 input:nth-child(n+1):hover, input:nth-child(n+1):focus' :{
           'border':'1px solid transparent',
           'border-color':'#3989e3',
           'outline': '0',
