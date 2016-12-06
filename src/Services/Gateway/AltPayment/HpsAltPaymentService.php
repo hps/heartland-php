@@ -226,7 +226,7 @@ class HpsAltPaymentService extends HpsSoapGatewayService
     {
         $nvp = $xml->createElement('hps:NameValuePair');
         $nvp->appendChild($xml->createElement('hps:Name', $name));
-        $nvp->appendChild($xml->createElement('hps:Value', $value));
+        $nvp->appendChild($xml->createElement('hps:Value', HpsInputValidation::cleanAscii($value)));
         return $nvp;
     }
 

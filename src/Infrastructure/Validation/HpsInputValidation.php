@@ -6,7 +6,7 @@ class HpsInputValidation
 
     public static function checkAmount($amount)
     {
-        if ($amount < 0 || $amount == null) {
+        if ($amount < 0 || $amount === null) {
             throw new HpsInvalidRequestException(
                 HpsExceptionCodes::INVALID_AMOUNT,
                 'Must be greater than or equal to 0.',
@@ -59,5 +59,10 @@ class HpsInputValidation
                 'Date cannot be in the future'
             );
         }
+    }
+
+    public static function cleanAscii($text)
+    {
+        return preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $text);
     }
 }

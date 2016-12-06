@@ -252,4 +252,26 @@ class GeneralTests extends PHPUnit_Framework_TestCase
         $this->assertNotNull($response->gatewayResponse()->message);
     }
 
+    public function testReverseWithNonZeroAmountAndZeroAuthAmount()
+    {
+        $chargeSvc = new HpsCreditService(TestServicesConfig::validMultiUseConfig());
+
+        $card = new HpsCreditCard();
+        $card->number = "4111111111111111";
+        $card->expMonth = 12;
+        $card->expYear = 2025;
+        $card->cvv = "012";
+
+        $response = $chargeSvc->charge(10, 'usd', $card, TestCardHolder::validCardHolder());
+
+        $this->assertEquals('00', $response->responseCode);
+        $this->assertNotNull($response->gatewayResponse()->code);
+        $this->assertNotNull($response->gatewayResponse()->message);
+
+        $reverse = $chargeSvc->reverse($response->transactionId, 10, 'usd', null, 0);
+
+        $this->assertEquals('00', $reverse->responseCode);
+        $this->assertNotNull($reverse->gatewayResponse()->code);
+        $this->assertNotNull($reverse->gatewayResponse()->message);
+    }
 }
