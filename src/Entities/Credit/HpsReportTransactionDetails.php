@@ -14,6 +14,7 @@ class HpsReportTransactionDetails extends HpsAuthorization
     public $invoiceNumber         = null;
     public $customerId            = null;
     public $transactionStatus     = null;
+    public $gratuityAmount        = null;
 
     public static function fromDict($rsp, $txnType, $returnType = 'HpsReportTransactionDetails')
     {
@@ -37,6 +38,8 @@ class HpsReportTransactionDetails extends HpsAuthorization
         $details->responseCode = (isset($reportResponse->Data->RspCode) ? (string)$reportResponse->Data->RspCode : null);
         $details->responseText = (isset($reportResponse->Data->RspText) ? (string)$reportResponse->Data->RspText : null);
         $details->transactionStatus = (isset($reportResponse->Data->TxnStatus) ? (string)$reportResponse->Data->TxnStatus : null);
+        $details->gratuityAmount = (isset($reportResponse->Data->GratuityAmtInfo) ? (string)$reportResponse->Data->GratuityAmtInfo : null);
+        $details->settlementAmount = (isset($reportResponse->Data->TxnStatus) ? (string)$reportResponse->Data->TxnStatus : null);
 
         if (isset($reportResponse->Data->TokenizationMsg)) {
             $details->tokenData = new HpsTokenData();
