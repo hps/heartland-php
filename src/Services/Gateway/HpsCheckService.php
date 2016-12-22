@@ -21,9 +21,9 @@ class HpsCheckService extends HpsSoapGatewayService
      *
      * @returns HpsCheckSale
      */
-    public function sale(HpsCheck $check, $amount, $clientTransactionId = null)
+    public function sale(HpsCheck $check, $amount, $clientTransactionId = null, $details = null)
     {
-        return $this->_buildTransaction('SALE', $check, $amount, $clientTransactionId);
+        return $this->_buildTransaction('SALE', $check, $amount, $clientTransactionId, $details);
     }
 
     public function returnCheck(HpsCheck $check, $amount, $clientTransactionId = null)
@@ -68,7 +68,7 @@ class HpsCheckService extends HpsSoapGatewayService
         return $this->_submitTransaction($hpsTransaction, 'CheckVoid');
     }
 
-    private function _buildTransaction($action, HpsCheck $check, $amount, $clientTransactionId = null)
+    private function _buildTransaction($action, HpsCheck $check, $amount, $clientTransactionId = null, $details = null)
     {
         $amount = HpsInputValidation::checkAmount($amount);
 
@@ -92,6 +92,9 @@ class HpsCheckService extends HpsSoapGatewayService
         $hpsBlock1->appendChild($xml->createElement('hps:SECCode', $check->secCode));
         if ($check->checkType != null) {
             $hpsBlock1->appendChild($xml->createElement('hps:CheckType', $check->checkType));
+        }
+        if ($details != null) {
+            $hpsBlock1->appendChild($this->_hydrateAdditionalTxnFields($details, $xml));
         }
         $hpsBlock1->appendChild($xml->createElement('hps:DataEntryMode', $check->dataEntryMode));
         if ($check->checkHolder != null) {
