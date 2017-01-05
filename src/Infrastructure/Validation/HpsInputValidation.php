@@ -3,6 +3,15 @@
 class HpsInputValidation
 {
     private static $_defaultAllowedCurrencies = array('usd');
+    private static $_inputFldMaxLength = array(
+        'PhoneNumber' => 20,
+        'ZipCode' => 9,
+        'FirstName' => 26,
+        'LastName' => 26,
+        'City' => 20,
+        'Email' => 100,
+	'State' => 20
+    );
 
     public static function checkAmount($amount)
     {
@@ -41,12 +50,12 @@ class HpsInputValidation
 
     public static function cleanPhoneNumber($number)
     {
-        return preg_replace('/\D+/', '', $number);
+        return preg_replace('/\D+/', '', trim($number));
     }
 
     public static function cleanZipCode($zip)
     {
-        return preg_replace('/\D+/', '', $zip);
+        return preg_replace('/[^0-9A-Za-z]/', '', trim($zip));
     }
 
     public static function checkDateNotFuture($date)
@@ -65,4 +74,95 @@ class HpsInputValidation
     {
         return preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $text);
     }
+	
+    /** 	 
+     * This method clears the user input and return the phone number in correct format or throw an exception  
+     * 	
+     * @param string $phoneNumber this is user entered phone number    
+     * @return string
+     * @throws HpsInvalidRequestException     
+     */
+    public static function checkPhoneNumber($phoneNumber) {
+        $phoneNumber = self::cleanPhoneNumber($phoneNumber);
+
+        if (!empty($phoneNumber) && strlen($phoneNumber) > self::$_inputFldMaxLength['PhoneNumber']) {
+            $errorMessage = 'The value for phone number can be no more than ' . self::$_inputFldMaxLength['PhoneNumber'] . ' characters, Please try again after making corrections';
+            throw new HpsInvalidRequestException(
+            HpsExceptionCodes::INVALID_PHONE_NUMBER, $errorMessage
+            );
+        }
+        return $phoneNumber;
+    }
+    
+    /** 	 
+     * This method clears the user input and return the Zip code in correct format or throw an exception  
+     * 	
+     * @param string $zipCode this is user entered zip code    
+     * @return string
+     * @throws HpsInvalidRequestException     
+     */
+    public static function checkZipCode($zipCode) {
+        $zipCode = self::cleanZipCode($zipCode);
+
+        if (!empty($zipCode) && strlen($zipCode) > self::$_inputFldMaxLength['ZipCode']) {
+            $errorMessage = 'The value for zip code can be no more than ' . self::$_inputFldMaxLength['ZipCode'] . ' characters, Please try again after making corrections';
+            throw new HpsInvalidRequestException(
+            HpsExceptionCodes::INVALID_ZIP_CODE, $errorMessage
+            );
+        }
+        return $zipCode;
+    }
+    
+    /** 	 
+     * This method clears the user input and return the user input in correct format or throw an exception  
+     * 	
+     * @param string $value this is user entered value (first name or last name or email or city)    
+     * @param string $type this is user entered value field name
+     * @return string
+     * @throws HpsInvalidRequestException     
+     */
+    public static function checkCardHolderData($value, $type = '') {       
+        
+        $value = filter_var(trim($value),FILTER_SANITIZE_SPECIAL_CHARS);
+        
+        //validate length of input data and throw exception
+        //if maximum characters is not mentioned in $_inputFldMaxLength the sanitized values will be returned
+        if (!empty(self::$_inputFldMaxLength[$type]) && strlen($value) > self::$_inputFldMaxLength[$type]) {            
+            $errorMessage = "The value for $type can be no more than " . self::$_inputFldMaxLength[$type] . ' characters, Please try again after making corrections';
+            throw new HpsInvalidRequestException(
+                HpsExceptionCodes::INVALID_INPUT_LENGTH, $errorMessage
+            );
+        }
+        return $value;
+    }
+    
+    /** 	 
+     * This method clears the user input and return the email in correct format or throw an exception  
+     * 	
+     * @param string $value this is user entered email address 
+     * @return string
+     * @throws HpsInvalidRequestException     
+     */
+    public static function checkEmailAddress($value) {
+        $value = filter_var(trim($value),FILTER_SANITIZE_EMAIL);
+        
+        //validate the email address format
+        if(!empty($value) && filter_var($value, FILTER_VALIDATE_EMAIL) === false){            
+            throw new HpsInvalidRequestException(
+                HpsExceptionCodes::INVALID_EMAIL_ADDRESS, 'Invalid email address'
+            );
+        }
+
+        //validate length of input data and throw exception
+        if (!empty(self::$_inputFldMaxLength['Email']) && strlen($value) > self::$_inputFldMaxLength['Email']) {            
+            $errorMessage = "The value for Email can be no more than " . self::$_inputFldMaxLength['Email'] . ' characters, Please try again after making corrections';
+            throw new HpsInvalidRequestException(
+                HpsExceptionCodes::INVALID_INPUT_LENGTH, $errorMessage
+            );
+        }
+        return $value;
+    }
+    
+    
+
 }

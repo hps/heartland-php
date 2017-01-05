@@ -274,4 +274,38 @@ class GeneralTests extends PHPUnit_Framework_TestCase
         $this->assertNotNull($reverse->gatewayResponse()->code);
         $this->assertNotNull($reverse->gatewayResponse()->message);
     }
+
+    public function testVersion3EncryptedTrack()
+    {
+        $service = new HpsFluentCreditService(TestServicesConfig::validMultiUseConfig());
+        $hexEncodedTrack = "DEF9B18FDEBF65D82164390C4A5D290C52EF8E9AAB02E598FC49CBB5D8D97ADA454F1279977A0003AB07EE90791C580990E1A68D35C9473F1ADE3E971112378E5ABB15B9261EAF3F11728E652DC0233DC65BD6774BE9886626F507C15E4FCB75ED8918A6F21C98170DC15C65F031B7D2C027374150B4A883A9F596C83BE63930";
+        $hexEncodedKsn = "FFFFC120119009C0000B";
+        $binaryTrack = hex2bin($hexEncodedTrack);
+        $binaryKsn = hex2bin($hexEncodedKsn);
+
+        if (false === $binaryTrack) {
+            $this->assertTrue(false, 'cannot decode encrypted track');
+        }
+        if (false === $binaryKsn) {
+            $this->assertTrue(false, 'cannot decode encrypted track ksn');
+        }
+
+        $submissionTrack = base64_encode($binaryTrack);
+        $submissionKsn = base64_encode($binaryKsn);
+
+        $encryptionData = new HpsEncryptionData();
+        $encryptionData->version = "03";
+        $encryptionData->encryptedTrackNumber = "1";
+        $encryptionData->ksn = $submissionKsn;
+
+        $trackData = new HpsTrackData();
+        $trackData->value = $submissionTrack;
+        $trackData->encryptionData = $encryptionData;
+
+        $response = $service->verify()
+            ->withTrackData($trackData)
+            ->execute();
+
+        $this->assertEquals('85', $response->responseCode);
+    }
 }

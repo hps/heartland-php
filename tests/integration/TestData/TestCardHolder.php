@@ -113,4 +113,157 @@ class TestCardHolder
         $validCardHolder->address = $address;
         return $validCardHolder;
     }
+    
+    //Test data for sanitize user input
+    public static function certCardHolderLongFirstName()
+    {
+        $address = new HpsAddress();
+        $address->address = "6860 Dallas Pkwy";
+        $address->city = "Irvine";
+        $address->state = "Tx";
+        $address->zip = "75024";
+        $address->country = "United States";
+
+        $validCardHolder = new HpsCardHolder();
+        $validCardHolder->firstName = "Bill Johnson Bill Johnson Bill Johnson Bill Johnson";
+        $validCardHolder->lastName = "Johnson";
+        $validCardHolder->address = $address;
+        return $validCardHolder;
+    }
+    
+    public static function certCardHolderLongLastName()
+    {
+        $address = new HpsAddress();
+        $address->address = "6860 Dallas Pkwy";
+        $address->city = "Irvine";
+        $address->state = "Tx";
+        $address->zip = "75024";
+        $address->country = "United States";
+
+        $validCardHolder = new HpsCardHolder();
+        $validCardHolder->firstName = "Bill";
+        $validCardHolder->lastName = "Bill Johnson Bill Johnson Bill Johnson Bill Johnson";
+        $validCardHolder->address = $address;
+        return $validCardHolder;
+    }
+    
+    public static function certCardHolderLongCityName()
+    {
+        $address = new HpsAddress();
+        $address->address = "6860 Dallas Pkwy";
+        $address->city = "Irvine Irvine Irvine Irvine Irvine";
+        $address->state = "Tx";
+        $address->zip = "75024";
+        $address->country = "United States";
+
+        $validCardHolder = new HpsCardHolder();
+        $validCardHolder->firstName = "Bill";
+        $validCardHolder->lastName = "Johnson";
+        $validCardHolder->address = $address;
+        return $validCardHolder;
+    }
+    
+    public static function certCardHolderLongStateName()
+    {
+        $address = new HpsAddress();
+        $address->address = "6860 Dallas Pkwy";
+        $address->city = "Irvine";
+        $address->state = "Tx Irvine Irvine Irvine Irvine";
+        $address->zip = "75024";
+        $address->country = "United States";
+
+        $validCardHolder = new HpsCardHolder();
+        $validCardHolder->firstName = "Bill";
+        $validCardHolder->lastName = "Johnson";
+        $validCardHolder->address = $address;
+        return $validCardHolder;
+    }
+    
+    public static function certCardHolderLongEmailAddress()
+    {
+        $address = new HpsAddress();
+        $address->address = "6860 Dallas Pkwy";
+        $address->city = "Irvine";
+        $address->state = "Tx";
+        $address->zip = "75024";
+        $address->country = "United States";        
+
+        $validCardHolder = new HpsCardHolder();
+        $validCardHolder->firstName = "Bill";
+        $validCardHolder->lastName = "Johnson";
+        $validCardHolder->address = $address;
+        $validCardHolder->email = 'Loremipsumdonsecthisisadum.mysLoremipsum+donsectetur@textthisisadummytextLoremipsuconsecteturthisisadummy.com';
+        
+        return $validCardHolder;
+    }
+    
+    public static function certCardHolderInvalidEmailAddress()
+    {
+        $address = new HpsAddress();
+        $address->address = "6860 Dallas Pkwy";
+        $address->city = "Irvine";
+        $address->state = "Tx";
+        $address->zip = "75024";
+        $address->country = "United States";        
+
+        $validCardHolder = new HpsCardHolder();
+        $validCardHolder->firstName = "Bill";
+        $validCardHolder->lastName = "Johnson";
+        $validCardHolder->address = $address;
+        $validCardHolder->email = 'www.invalidmail.com';
+        
+        return $validCardHolder;
+    }
+    
+    public static function certCardHolderLongPhoneNumber()
+    {
+        $address = new HpsAddress();
+        $address->address = "6860 Dallas Pkwy";
+        $address->city = "Irvine";
+        $address->state = "Tx";
+        $address->zip = "75024";
+        $address->country = "United States";        
+
+        $validCardHolder = new HpsCardHolder();
+        $validCardHolder->firstName = "Bill";
+        $validCardHolder->lastName = "Johnson";
+        $validCardHolder->address = $address;
+        $validCardHolder->phone = '555-555-555-555-555-555-555-555-555555-555-555-555-555-555-555-555-555';
+        
+        return $validCardHolder;
+    }
+    
+    public static function certCardHolderLongZipCode()
+    {
+        $address = new HpsAddress();
+        $address->address = "6860 Dallas Pkwy";
+        $address->city = "Irvine";
+        $address->state = "Tx";
+        $address->zip = "CAD 123 CAD 123 CAD 123";
+        $address->country = "United States";        
+
+        $validCardHolder = new HpsCardHolder();
+        $validCardHolder->firstName = "Bill";
+        $validCardHolder->lastName = "Johnson";
+        $validCardHolder->address = $address;
+        
+        return $validCardHolder;
+    }
+    
+    public static function certCardHolderCanadianZipCode()
+    {
+        $address = new HpsAddress();
+        $address->address = "6860 Dallas Pkwy";
+        $address->city = "Irvine";
+        $address->state = "Tx";
+        $address->zip = "CAD 123";
+        $address->country = "United States";        
+
+        $validCardHolder = new HpsCardHolder();
+        $validCardHolder->firstName = "Bill";
+        $validCardHolder->lastName = "Johnson";
+        $validCardHolder->address = $address;
+        
+        return $validCardHolder;
+    }
 }

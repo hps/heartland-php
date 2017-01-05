@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="643a0b7a-4711-4e30-85d3-7f521c9a1956" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/GeneralTest.php" afterPath="$PROJECT_DIR$/tests/GeneralTest.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Abstractions/HpsBuilderAbstract.php" afterPath="$PROJECT_DIR$/src/Abstractions/HpsBuilderAbstract.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Services/Fluent/Gateway/Credit/HpsCreditServiceCaptureBuilder.php" afterPath="$PROJECT_DIR$/src/Services/Fluent/Gateway/Credit/HpsCreditServiceCaptureBuilder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Services/Gateway/HpsSoapGatewayService.php" afterPath="$PROJECT_DIR$/src/Services/Gateway/HpsSoapGatewayService.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/integration/Fluent/FluentCreditTest.php" afterPath="$PROJECT_DIR$/tests/integration/Fluent/FluentCreditTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/integration/Gateway/Credit/GatewayCreditVisaTest.php" afterPath="$PROJECT_DIR$/tests/integration/Gateway/Credit/GatewayCreditVisaTest.php" />
     </list>
     <ignored path="PHP-SDK.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -18,31 +25,57 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DaemonCodeAnalyzer">
-    <disable_hints />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="PHP-SDK" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="HpsGatewayResponseValidation.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Infrastructure/Validation/HpsGatewayResponseValidation.php">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="FluentCreditTest.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/integration/Fluent/FluentCreditTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.444445" vertical-offset="375" max-vertical-offset="1854">
-              <caret line="53" column="45" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GeneralTest.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/GeneralTest.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38285714" vertical-offset="3741" max-vertical-offset="4356">
-              <caret line="219" column="44" selection-start-line="219" selection-start-column="44" selection-end-line="219" selection-end-column="44" />
-              <folding />
+            <state vertical-scroll-proportion="0.60714287">
+              <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
+              <folding>
+                <element signature="n#setUp#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testAuthorizeAndCapture#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="e#2127#2251#0#PHP" expanded="true" />
+                <element signature="n#testAuthorizeWithNoAmount#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testAuthorizeWithMultiplePaymentOptions#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testCaptureWithNoTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testCharge#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testChargeWithNoAmount#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testChargeWithMultiplePaymentOptions#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testUpdateTokenExpirationToExpiredDate#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testUpdateTokenExpirationToNull#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testUpdateTokenExpirationOnInValidTokenShouldReturnException#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testUpdateTokenExpirationOnNullTokenShouldReturnException#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testUpdateTokenExpiration#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testCpcEdit#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testCpcEditWithNoTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testCpcEditWithNoCpcData#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testEdit#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testEditWithNoTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testGet#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testGetWithNoTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testListTransactions#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testListTransactionsWithNoStartDate#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testListTransactionsWithNoEndDate#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testRefund#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testRefundWithNoAmount#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testRefundWithTransactionIdAndCard#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testRefundWithTransactionIdAndToken#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testRefundWithCardAndToken#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testReverse#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testReverseWithNoAmount#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testReverseWithCardAndTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testReverseWithTokenAndTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testReverseWithCardAndToken#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testVerify#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testVerifyWithCardAndToken#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testVoid#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+                <element signature="n#testVoidWithNoTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -58,20 +91,27 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
-    <option name="changedFiles">
+    <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/infrastructure/HpsArgumentException.php" />
-        <option value="$PROJECT_DIR$/tests/TestData/TestServicesConfig.php" />
-        <option value="$PROJECT_DIR$/tests/GeneralTest.php" />
+        <option value="$PROJECT_DIR$/tests/integration/Gateway/Credit/GatewayCreditVisaTest.php" />
+        <option value="$PROJECT_DIR$/tests/integration/Fluent/FluentCreditTest.php" />
+        <option value="$PROJECT_DIR$/src/Services/Gateway/HpsSoapGatewayService.php" />
+        <option value="$PROJECT_DIR$/src/Services/Fluent/Gateway/Credit/HpsCreditServiceCaptureBuilder.php" />
+        <option value="$PROJECT_DIR$/src/Abstractions/HpsBuilderAbstract.php" />
       </list>
     </option>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 5.5" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="-4" />
-    <option name="width" value="1855" />
-    <option name="height" value="958" />
+    <option name="x" value="-588" />
+    <option name="y" value="-1084" />
+    <option name="width" value="1928" />
+    <option name="height" value="1088" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -97,6 +137,8 @@
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="ProjectPane">
@@ -145,7 +187,77 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="integration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="integration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="integration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Credit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="integration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fluent" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -163,69 +275,172 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fluent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PHP-SDK" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Fluent" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gateway" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Credit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/setup.php" />
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="org.jetbrains.plugins.terminal.TerminalOptionsConfigurable" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="FullScreen" value="false" />
+    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="PHPUnit.GeneralTests">
-    <configuration default="false" name="VisaTests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="VisaTests" file="$PROJECT_DIR$/tests/VisaTest.php" scope="Class" />
-      <RunnerSettings RunnerId="PhpRunner" />
-      <ConfigurationWrapper RunnerId="PhpRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="VisaTests.Visa_WhenCardIsOk_ShouldReturnValidResult" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="VisaTests" file="$PROJECT_DIR$/tests/VisaTest.php" method="Visa_WhenCardIsOk_ShouldReturnValidResult" scope="Method" />
-      <RunnerSettings RunnerId="PhpRunner" />
-      <ConfigurationWrapper RunnerId="PhpRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="GatewayPayPlanPaymentMethodTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="GatewayPayPlanPaymentMethodTest" file="$PROJECT_DIR$/tests/Gateway/PayPlan/GatewayPayPlanPaymentMethodTest.php" scope="Class" />
-      <RunnerSettings RunnerId="PhpRunner" />
-      <ConfigurationWrapper RunnerId="PhpRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="GeneralTests.testCvvWithLeadingZero" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="GeneralTests" file="$PROJECT_DIR$/tests/GeneralTest.php" method="testCvvWithLeadingZero" scope="Method" />
-      <RunnerSettings RunnerId="PhpRunner" />
-      <ConfigurationWrapper RunnerId="PhpRunner" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="PHPUnit.FluentCreditTest.testAuthorizeAndCaptureWithGratuity">
     <configuration default="false" name="GeneralTests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="GeneralTests" file="$PROJECT_DIR$/tests/GeneralTest.php" scope="Class" />
       <RunnerSettings RunnerId="PhpRunner" />
       <ConfigurationWrapper RunnerId="PhpRunner" />
       <method />
     </configuration>
-    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner />
+    <configuration default="false" name="GatewayCreditVisaTest.testVisaCaptureShouldReturnOk" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="GatewayCreditVisaTest" file="$PROJECT_DIR$/tests/integration/Gateway/Credit/GatewayCreditVisaTest.php" method="testVisaCaptureShouldReturnOk" scope="Method" />
       <method />
     </configuration>
-    <configuration default="true" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server">
+    <configuration default="false" name="GatewayCreditVisaTest.testVisaCapturewithGratuityShouldReturnOk" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="GatewayCreditVisaTest" file="$PROJECT_DIR$/tests/integration/Gateway/Credit/GatewayCreditVisaTest.php" method="testVisaCapturewithGratuityShouldReturnOk" scope="Method" />
       <method />
     </configuration>
-    <configuration default="true" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug">
+    <configuration default="false" name="FluentCreditTest.testAuthorizeAndCapture" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="FluentCreditTest" file="$PROJECT_DIR$/tests/integration/Fluent/FluentCreditTest.php" method="testAuthorizeAndCapture" scope="Method" />
       <method />
     </configuration>
-    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+    <configuration default="false" name="FluentCreditTest.testAuthorizeAndCaptureWithGratuity" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="FluentCreditTest" file="$PROJECT_DIR$/tests/integration/Fluent/FluentCreditTest.php" method="testAuthorizeAndCaptureWithGratuity" scope="Method" />
+      <method />
+    </configuration>
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
     <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
       <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug">
       <method />
     </configuration>
     <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
@@ -235,28 +450,37 @@
       <node-options />
       <gulpfile />
       <tasks />
-      <pass-parent-env-vars>false</pass-parent-env-vars>
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
       <envs />
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="PHPUnit.VisaTests" />
-      <item index="1" class="java.lang.String" itemvalue="PHPUnit.VisaTests.Visa_WhenCardIsOk_ShouldReturnValidResult" />
-      <item index="2" class="java.lang.String" itemvalue="PHPUnit.GatewayPayPlanPaymentMethodTest" />
-      <item index="3" class="java.lang.String" itemvalue="PHPUnit.GeneralTests.testCvvWithLeadingZero" />
-      <item index="4" class="java.lang.String" itemvalue="PHPUnit.GeneralTests" />
+      <item index="0" class="java.lang.String" itemvalue="PHPUnit.GeneralTests" />
+      <item index="1" class="java.lang.String" itemvalue="PHPUnit.GatewayCreditVisaTest.testVisaCaptureShouldReturnOk" />
+      <item index="2" class="java.lang.String" itemvalue="PHPUnit.GatewayCreditVisaTest.testVisaCapturewithGratuityShouldReturnOk" />
+      <item index="3" class="java.lang.String" itemvalue="PHPUnit.FluentCreditTest.testAuthorizeAndCapture" />
+      <item index="4" class="java.lang.String" itemvalue="PHPUnit.FluentCreditTest.testAuthorizeAndCaptureWithGratuity" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="PHPUnit.GeneralTests" />
-        <item index="1" class="java.lang.String" itemvalue="PHPUnit.GeneralTests.testCvvWithLeadingZero" />
-        <item index="2" class="java.lang.String" itemvalue="PHPUnit.GatewayPayPlanPaymentMethodTest" />
-        <item index="3" class="java.lang.String" itemvalue="PHPUnit.VisaTests.Visa_WhenCardIsOk_ShouldReturnValidResult" />
-        <item index="4" class="java.lang.String" itemvalue="PHPUnit.VisaTests" />
+        <item index="0" class="java.lang.String" itemvalue="PHPUnit.FluentCreditTest.testAuthorizeAndCaptureWithGratuity" />
+        <item index="1" class="java.lang.String" itemvalue="PHPUnit.FluentCreditTest.testAuthorizeAndCapture" />
+        <item index="2" class="java.lang.String" itemvalue="PHPUnit.GatewayCreditVisaTest.testVisaCapturewithGratuityShouldReturnOk" />
+        <item index="3" class="java.lang.String" itemvalue="PHPUnit.GatewayCreditVisaTest.testVisaCaptureShouldReturnOk" />
+        <item index="4" class="java.lang.String" itemvalue="PHPUnit.GeneralTests" />
       </list>
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",SHOW_INHERITED,ALPHA_COMPARATOR" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -269,30 +493,63 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="FluentCreditTest_testAuthorizeAndCapture - 2016.12.21 at 08h 30m 55s.xml">
+      <configuration name="FluentCreditTest.testAuthorizeAndCapture" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="FluentCreditTest_testAuthorizeAndCapture - 2016.12.21 at 08h 31m 51s.xml">
+      <configuration name="FluentCreditTest.testAuthorizeAndCapture" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="FluentCreditTest_testAuthorizeAndCapture - 2016.12.21 at 08h 32m 34s.xml">
+      <configuration name="FluentCreditTest.testAuthorizeAndCapture" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="FluentCreditTest_testAuthorizeAndCapture - 2016.12.21 at 08h 36m 24s.xml">
+      <configuration name="FluentCreditTest.testAuthorizeAndCapture" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="FluentCreditTest_testAuthorizeAndCapture - 2016.12.21 at 08h 38m 45s.xml">
+      <configuration name="FluentCreditTest.testAuthorizeAndCapture" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="FluentCreditTest_testAuthorizeAndCapture - 2016.12.21 at 08h 39m 54s.xml">
+      <configuration name="FluentCreditTest.testAuthorizeAndCapture" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="FluentCreditTest_testAuthorizeAndCapture - 2016.12.21 at 08h 40m 09s.xml">
+      <configuration name="FluentCreditTest.testAuthorizeAndCapture" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="FluentCreditTest_testAuthorizeAndCapture - 2016.12.21 at 08h 40m 29s.xml">
+      <configuration name="FluentCreditTest.testAuthorizeAndCapture" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="FluentCreditTest_testAuthorizeAndCapture - 2016.12.21 at 08h 40m 38s.xml">
+      <configuration name="FluentCreditTest.testAuthorizeAndCapture" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="FluentCreditTest_testAuthorizeAndCaptureWithGratuity - 2016.12.21 at 08h 48m 21s.xml">
+      <configuration name="FluentCreditTest.testAuthorizeAndCaptureWithGratuity" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1855" height="958" extended-state="6" />
-    <editor active="false" />
+    <frame x="-588" y="-1084" width="1928" height="1088" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33932853" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2172471" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30215827" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297362" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="GfmBrowser" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2196162" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.301769" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33932853" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297362" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -306,51 +563,39 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="myTodoPanelSettings">
-      <TodoPanelSettings />
-    </option>
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Services/Fluent/Gateway/Credit/HpsCreditServiceCaptureBuilder.php</url>
+          <line>54</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Infrastructure/Validation/HpsGatewayResponseValidation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1854">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/CertificationTests/CheckRetailCertificationTests.php">
+    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Validation/HpsGatewayResponseValidation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8510" max-vertical-offset="10980">
-          <caret line="492" column="76" selection-start-line="492" selection-start-column="76" selection-end-line="492" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestServicesConfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1548">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Gateway/PayPlan/GatewayPayPlanPaymentMethodTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="3978">
-          <caret line="11" column="87" selection-start-line="11" selection-start-column="87" selection-end-line="11" selection-end-column="87" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Services/Gateway/HpsCreditService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="107" max-vertical-offset="1332">
+        <state vertical-scroll-proportion="0.0">
           <caret line="97" column="59" selection-start-line="97" selection-start-column="59" selection-end-line="97" selection-end-column="59" />
           <folding>
             <element signature="n#__construct#0;n#HpsCreditService#0;n#!!top" expanded="false" />
@@ -358,132 +603,40 @@
             <element signature="e#1033#1156#0#PHP" expanded="false" />
             <element signature="e#1165#1287#0#PHP" expanded="false" />
             <element signature="e#1296#1454#0#PHP" expanded="false" />
-            <element signature="e#1521#1889#0#PHP" expanded="false" />
-            <element signature="e#1660#1889#0#PHP" expanded="false" />
-            <element signature="e#2008#2109#0#PHP" expanded="false" />
             <element signature="n#capture#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#2856#3035#0#PHP" expanded="false" />
-            <element signature="e#3044#3180#0#PHP" expanded="false" />
-            <element signature="e#3190#3381#0#PHP" expanded="false" />
-            <element signature="e#4507#4630#0#PHP" expanded="false" />
-            <element signature="e#4770#4928#0#PHP" expanded="false" />
-            <element signature="e#4995#5363#0#PHP" expanded="false" />
-            <element signature="e#5134#5363#0#PHP" expanded="false" />
-            <element signature="e#5372#5473#0#PHP" expanded="false" />
-            <element signature="e#5593#5774#0#PHP" expanded="false" />
             <element signature="n#recurring#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#6687#6810#0#PHP" expanded="false" />
-            <element signature="e#6819#6941#0#PHP" expanded="false" />
-            <element signature="e#6951#7727#0#PHP" expanded="false" />
-            <element signature="e#7218#7727#0#PHP" expanded="false" />
-            <element signature="e#7608#7727#0#PHP" expanded="false" />
-            <element signature="e#7762#7867#0#PHP" expanded="false" />
             <element signature="n#cpcEdit#0;n#HpsCreditService#0;n#!!top" expanded="false" />
             <element signature="n#edit#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#9421#9597#0#PHP" expanded="false" />
-            <element signature="e#9606#9739#0#PHP" expanded="false" />
             <element signature="n#get#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#10056#10162#0#PHP" expanded="false" />
             <element signature="n#listTransactions#0;n#HpsCreditService#0;n#!!top" expanded="false" />
             <element signature="n#refund#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#12144#12908#0#PHP" expanded="false" />
-            <element signature="e#12412#12908#0#PHP" expanded="false" />
-            <element signature="e#12803#12908#0#PHP" expanded="false" />
-            <element signature="e#12917#13040#0#PHP" expanded="false" />
-            <element signature="e#13049#13171#0#PHP" expanded="false" />
             <element signature="n#reverse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#14027#14675#0#PHP" expanded="false" />
-            <element signature="e#14240#14675#0#PHP" expanded="false" />
-            <element signature="e#14576#14675#0#PHP" expanded="false" />
-            <element signature="e#14735#14857#0#PHP" expanded="false" />
             <element signature="n#verify#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#15508#15631#0#PHP" expanded="false" />
-            <element signature="e#15698#16066#0#PHP" expanded="false" />
-            <element signature="e#15837#16066#0#PHP" expanded="false" />
             <element signature="n#void#0;n#HpsCreditService#0;n#!!top" expanded="false" />
             <element signature="n#_processChargeGatewayResponse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#17263#17322#0#PHP" expanded="false" />
-            <element signature="e#17332#17773#0#PHP" expanded="false" />
-            <element signature="e#17375#17763#0#PHP" expanded="false" />
-            <element signature="e#17477#17763#0#PHP" expanded="false" />
             <element signature="n#_processChargeIssuerResponse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#18115#19790#0#PHP" expanded="false" />
-            <element signature="e#18303#19780#0#PHP" expanded="false" />
-            <element signature="e#18401#19660#0#PHP" expanded="false" />
-            <element signature="e#18450#19642#0#PHP" expanded="false" />
-            <element signature="e#18568#19263#0#PHP" expanded="false" />
-            <element signature="e#18722#18910#0#PHP" expanded="false" />
-            <element signature="e#19264#19642#0#PHP" expanded="false" />
             <element signature="n#_submitTransaction#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#19915#20697#0#PHP" expanded="false" />
-            <element signature="e#20005#20697#0#PHP" expanded="false" />
-            <element signature="e#20043#20665#0#PHP" expanded="false" />
-            <element signature="e#20151#20518#0#PHP" expanded="false" />
-            <element signature="e#20232#20500#0#PHP" expanded="false" />
-            <element signature="e#20345#20500#0#PHP" expanded="false" />
-            <element signature="e#20865#22400#0#PHP" expanded="false" />
-            <element signature="e#20897#21029#0#PHP" expanded="false" />
-            <element signature="e#21042#21191#0#PHP" expanded="false" />
-            <element signature="e#21204#21313#0#PHP" expanded="false" />
-            <element signature="e#21326#21451#0#PHP" expanded="false" />
-            <element signature="e#21464#21580#0#PHP" expanded="false" />
-            <element signature="e#21593#21704#0#PHP" expanded="false" />
-            <element signature="e#21717#21832#0#PHP" expanded="false" />
-            <element signature="e#21845#21952#0#PHP" expanded="false" />
-            <element signature="e#21965#22078#0#PHP" expanded="false" />
-            <element signature="e#22091#22208#0#PHP" expanded="false" />
-            <element signature="e#22221#22346#0#PHP" expanded="false" />
-            <element signature="e#22359#22390#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Services/Gateway/HpsSoapGatewayService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="5274">
+        <state vertical-scroll-proportion="0.0">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Entities/Credit/HpsReportTransactionDetails.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1278">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestCheck.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="1908">
-          <caret line="82" column="30" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/CertificationTests/CheckRetailCertificationTests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8510" max-vertical-offset="10980">
-          <caret line="492" column="76" selection-start-line="492" selection-start-column="76" selection-end-line="492" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestServicesConfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1548">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Gateway/PayPlan/GatewayPayPlanPaymentMethodTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="3978">
-          <caret line="11" column="87" selection-start-line="11" selection-start-column="87" selection-end-line="11" selection-end-column="87" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Services/Gateway/HpsCreditService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1242">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#__construct#0;n#HpsCreditService#0;n#!!top" expanded="false" />
@@ -491,118 +644,26 @@
             <element signature="e#1033#1156#0#PHP" expanded="false" />
             <element signature="e#1165#1287#0#PHP" expanded="false" />
             <element signature="e#1296#1454#0#PHP" expanded="false" />
-            <element signature="e#1521#1889#0#PHP" expanded="false" />
-            <element signature="e#1660#1889#0#PHP" expanded="false" />
-            <element signature="e#2008#2109#0#PHP" expanded="false" />
             <element signature="n#capture#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#2856#3035#0#PHP" expanded="false" />
-            <element signature="e#3044#3180#0#PHP" expanded="false" />
-            <element signature="e#3190#3381#0#PHP" expanded="false" />
-            <element signature="e#4507#4630#0#PHP" expanded="false" />
-            <element signature="e#4770#4928#0#PHP" expanded="false" />
-            <element signature="e#4995#5363#0#PHP" expanded="false" />
-            <element signature="e#5134#5363#0#PHP" expanded="false" />
-            <element signature="e#5372#5473#0#PHP" expanded="false" />
-            <element signature="e#5593#5774#0#PHP" expanded="false" />
             <element signature="n#recurring#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#6687#6810#0#PHP" expanded="false" />
-            <element signature="e#6819#6941#0#PHP" expanded="false" />
-            <element signature="e#6951#7727#0#PHP" expanded="false" />
-            <element signature="e#7218#7727#0#PHP" expanded="false" />
-            <element signature="e#7608#7727#0#PHP" expanded="false" />
-            <element signature="e#7762#7867#0#PHP" expanded="false" />
             <element signature="n#cpcEdit#0;n#HpsCreditService#0;n#!!top" expanded="false" />
             <element signature="n#edit#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#9421#9597#0#PHP" expanded="false" />
-            <element signature="e#9606#9739#0#PHP" expanded="false" />
             <element signature="n#get#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#10056#10162#0#PHP" expanded="false" />
             <element signature="n#listTransactions#0;n#HpsCreditService#0;n#!!top" expanded="false" />
             <element signature="n#refund#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#12144#12908#0#PHP" expanded="false" />
-            <element signature="e#12412#12908#0#PHP" expanded="false" />
-            <element signature="e#12803#12908#0#PHP" expanded="false" />
-            <element signature="e#12917#13040#0#PHP" expanded="false" />
-            <element signature="e#13049#13171#0#PHP" expanded="false" />
             <element signature="n#reverse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#14027#14675#0#PHP" expanded="false" />
-            <element signature="e#14240#14675#0#PHP" expanded="false" />
-            <element signature="e#14576#14675#0#PHP" expanded="false" />
-            <element signature="e#14735#14857#0#PHP" expanded="false" />
             <element signature="n#verify#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#15508#15631#0#PHP" expanded="false" />
-            <element signature="e#15698#16066#0#PHP" expanded="false" />
-            <element signature="e#15837#16066#0#PHP" expanded="false" />
             <element signature="n#void#0;n#HpsCreditService#0;n#!!top" expanded="false" />
             <element signature="n#_processChargeGatewayResponse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#17263#17322#0#PHP" expanded="false" />
-            <element signature="e#17332#17773#0#PHP" expanded="false" />
-            <element signature="e#17375#17763#0#PHP" expanded="false" />
-            <element signature="e#17477#17763#0#PHP" expanded="false" />
             <element signature="n#_processChargeIssuerResponse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#18115#19790#0#PHP" expanded="false" />
-            <element signature="e#18303#19780#0#PHP" expanded="false" />
-            <element signature="e#18401#19660#0#PHP" expanded="false" />
-            <element signature="e#18450#19642#0#PHP" expanded="false" />
-            <element signature="e#18568#19263#0#PHP" expanded="false" />
-            <element signature="e#18722#18910#0#PHP" expanded="false" />
-            <element signature="e#19264#19642#0#PHP" expanded="false" />
             <element signature="n#_submitTransaction#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#19915#20697#0#PHP" expanded="false" />
-            <element signature="e#20005#20697#0#PHP" expanded="false" />
-            <element signature="e#20043#20665#0#PHP" expanded="false" />
-            <element signature="e#20151#20518#0#PHP" expanded="false" />
-            <element signature="e#20232#20500#0#PHP" expanded="false" />
-            <element signature="e#20345#20500#0#PHP" expanded="false" />
-            <element signature="e#20865#22400#0#PHP" expanded="false" />
-            <element signature="e#20897#21029#0#PHP" expanded="false" />
-            <element signature="e#21042#21191#0#PHP" expanded="false" />
-            <element signature="e#21204#21313#0#PHP" expanded="false" />
-            <element signature="e#21326#21451#0#PHP" expanded="false" />
-            <element signature="e#21464#21580#0#PHP" expanded="false" />
-            <element signature="e#21593#21704#0#PHP" expanded="false" />
-            <element signature="e#21717#21832#0#PHP" expanded="false" />
-            <element signature="e#21845#21952#0#PHP" expanded="false" />
-            <element signature="e#21965#22078#0#PHP" expanded="false" />
-            <element signature="e#22091#22208#0#PHP" expanded="false" />
-            <element signature="e#22221#22346#0#PHP" expanded="false" />
-            <element signature="e#22359#22390#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestCheck.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="1908">
-          <caret line="82" column="30" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/CertificationTests/CheckRetailCertificationTests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8510" max-vertical-offset="10980">
-          <caret line="492" column="76" selection-start-line="492" selection-start-column="76" selection-end-line="492" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestServicesConfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1548">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Gateway/PayPlan/GatewayPayPlanPaymentMethodTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="3978">
-          <caret line="11" column="87" selection-start-line="11" selection-start-column="87" selection-end-line="11" selection-end-column="87" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Services/Gateway/HpsCreditService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1242">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#__construct#0;n#HpsCreditService#0;n#!!top" expanded="false" />
@@ -610,118 +671,26 @@
             <element signature="e#1033#1156#0#PHP" expanded="false" />
             <element signature="e#1165#1287#0#PHP" expanded="false" />
             <element signature="e#1296#1454#0#PHP" expanded="false" />
-            <element signature="e#1521#1889#0#PHP" expanded="false" />
-            <element signature="e#1660#1889#0#PHP" expanded="false" />
-            <element signature="e#2008#2109#0#PHP" expanded="false" />
             <element signature="n#capture#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#2856#3035#0#PHP" expanded="false" />
-            <element signature="e#3044#3180#0#PHP" expanded="false" />
-            <element signature="e#3190#3381#0#PHP" expanded="false" />
-            <element signature="e#4507#4630#0#PHP" expanded="false" />
-            <element signature="e#4770#4928#0#PHP" expanded="false" />
-            <element signature="e#4995#5363#0#PHP" expanded="false" />
-            <element signature="e#5134#5363#0#PHP" expanded="false" />
-            <element signature="e#5372#5473#0#PHP" expanded="false" />
-            <element signature="e#5593#5774#0#PHP" expanded="false" />
             <element signature="n#recurring#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#6687#6810#0#PHP" expanded="false" />
-            <element signature="e#6819#6941#0#PHP" expanded="false" />
-            <element signature="e#6951#7727#0#PHP" expanded="false" />
-            <element signature="e#7218#7727#0#PHP" expanded="false" />
-            <element signature="e#7608#7727#0#PHP" expanded="false" />
-            <element signature="e#7762#7867#0#PHP" expanded="false" />
             <element signature="n#cpcEdit#0;n#HpsCreditService#0;n#!!top" expanded="false" />
             <element signature="n#edit#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#9421#9597#0#PHP" expanded="false" />
-            <element signature="e#9606#9739#0#PHP" expanded="false" />
             <element signature="n#get#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#10056#10162#0#PHP" expanded="false" />
             <element signature="n#listTransactions#0;n#HpsCreditService#0;n#!!top" expanded="false" />
             <element signature="n#refund#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#12144#12908#0#PHP" expanded="false" />
-            <element signature="e#12412#12908#0#PHP" expanded="false" />
-            <element signature="e#12803#12908#0#PHP" expanded="false" />
-            <element signature="e#12917#13040#0#PHP" expanded="false" />
-            <element signature="e#13049#13171#0#PHP" expanded="false" />
             <element signature="n#reverse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#14027#14675#0#PHP" expanded="false" />
-            <element signature="e#14240#14675#0#PHP" expanded="false" />
-            <element signature="e#14576#14675#0#PHP" expanded="false" />
-            <element signature="e#14735#14857#0#PHP" expanded="false" />
             <element signature="n#verify#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#15508#15631#0#PHP" expanded="false" />
-            <element signature="e#15698#16066#0#PHP" expanded="false" />
-            <element signature="e#15837#16066#0#PHP" expanded="false" />
             <element signature="n#void#0;n#HpsCreditService#0;n#!!top" expanded="false" />
             <element signature="n#_processChargeGatewayResponse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#17263#17322#0#PHP" expanded="false" />
-            <element signature="e#17332#17773#0#PHP" expanded="false" />
-            <element signature="e#17375#17763#0#PHP" expanded="false" />
-            <element signature="e#17477#17763#0#PHP" expanded="false" />
             <element signature="n#_processChargeIssuerResponse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#18115#19790#0#PHP" expanded="false" />
-            <element signature="e#18303#19780#0#PHP" expanded="false" />
-            <element signature="e#18401#19660#0#PHP" expanded="false" />
-            <element signature="e#18450#19642#0#PHP" expanded="false" />
-            <element signature="e#18568#19263#0#PHP" expanded="false" />
-            <element signature="e#18722#18910#0#PHP" expanded="false" />
-            <element signature="e#19264#19642#0#PHP" expanded="false" />
             <element signature="n#_submitTransaction#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#19915#20697#0#PHP" expanded="false" />
-            <element signature="e#20005#20697#0#PHP" expanded="false" />
-            <element signature="e#20043#20665#0#PHP" expanded="false" />
-            <element signature="e#20151#20518#0#PHP" expanded="false" />
-            <element signature="e#20232#20500#0#PHP" expanded="false" />
-            <element signature="e#20345#20500#0#PHP" expanded="false" />
-            <element signature="e#20865#22400#0#PHP" expanded="false" />
-            <element signature="e#20897#21029#0#PHP" expanded="false" />
-            <element signature="e#21042#21191#0#PHP" expanded="false" />
-            <element signature="e#21204#21313#0#PHP" expanded="false" />
-            <element signature="e#21326#21451#0#PHP" expanded="false" />
-            <element signature="e#21464#21580#0#PHP" expanded="false" />
-            <element signature="e#21593#21704#0#PHP" expanded="false" />
-            <element signature="e#21717#21832#0#PHP" expanded="false" />
-            <element signature="e#21845#21952#0#PHP" expanded="false" />
-            <element signature="e#21965#22078#0#PHP" expanded="false" />
-            <element signature="e#22091#22208#0#PHP" expanded="false" />
-            <element signature="e#22221#22346#0#PHP" expanded="false" />
-            <element signature="e#22359#22390#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestCheck.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="1908">
-          <caret line="82" column="30" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/CertificationTests/CheckRetailCertificationTests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8510" max-vertical-offset="10980">
-          <caret line="492" column="76" selection-start-line="492" selection-start-column="76" selection-end-line="492" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestServicesConfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1548">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Gateway/PayPlan/GatewayPayPlanPaymentMethodTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="3978">
-          <caret line="11" column="87" selection-start-line="11" selection-start-column="87" selection-end-line="11" selection-end-column="87" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Services/Gateway/HpsCreditService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1242">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#__construct#0;n#HpsCreditService#0;n#!!top" expanded="false" />
@@ -729,329 +698,238 @@
             <element signature="e#1033#1156#0#PHP" expanded="false" />
             <element signature="e#1165#1287#0#PHP" expanded="false" />
             <element signature="e#1296#1454#0#PHP" expanded="false" />
-            <element signature="e#1521#1889#0#PHP" expanded="false" />
-            <element signature="e#1660#1889#0#PHP" expanded="false" />
-            <element signature="e#2008#2109#0#PHP" expanded="false" />
             <element signature="n#capture#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#2856#3035#0#PHP" expanded="false" />
-            <element signature="e#3044#3180#0#PHP" expanded="false" />
-            <element signature="e#3190#3381#0#PHP" expanded="false" />
-            <element signature="e#4507#4630#0#PHP" expanded="false" />
-            <element signature="e#4770#4928#0#PHP" expanded="false" />
-            <element signature="e#4995#5363#0#PHP" expanded="false" />
-            <element signature="e#5134#5363#0#PHP" expanded="false" />
-            <element signature="e#5372#5473#0#PHP" expanded="false" />
-            <element signature="e#5593#5774#0#PHP" expanded="false" />
             <element signature="n#recurring#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#6687#6810#0#PHP" expanded="false" />
-            <element signature="e#6819#6941#0#PHP" expanded="false" />
-            <element signature="e#6951#7727#0#PHP" expanded="false" />
-            <element signature="e#7218#7727#0#PHP" expanded="false" />
-            <element signature="e#7608#7727#0#PHP" expanded="false" />
-            <element signature="e#7762#7867#0#PHP" expanded="false" />
             <element signature="n#cpcEdit#0;n#HpsCreditService#0;n#!!top" expanded="false" />
             <element signature="n#edit#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#9421#9597#0#PHP" expanded="false" />
-            <element signature="e#9606#9739#0#PHP" expanded="false" />
             <element signature="n#get#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#10056#10162#0#PHP" expanded="false" />
             <element signature="n#listTransactions#0;n#HpsCreditService#0;n#!!top" expanded="false" />
             <element signature="n#refund#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#12144#12908#0#PHP" expanded="false" />
-            <element signature="e#12412#12908#0#PHP" expanded="false" />
-            <element signature="e#12803#12908#0#PHP" expanded="false" />
-            <element signature="e#12917#13040#0#PHP" expanded="false" />
-            <element signature="e#13049#13171#0#PHP" expanded="false" />
             <element signature="n#reverse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#14027#14675#0#PHP" expanded="false" />
-            <element signature="e#14240#14675#0#PHP" expanded="false" />
-            <element signature="e#14576#14675#0#PHP" expanded="false" />
-            <element signature="e#14735#14857#0#PHP" expanded="false" />
             <element signature="n#verify#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#15508#15631#0#PHP" expanded="false" />
-            <element signature="e#15698#16066#0#PHP" expanded="false" />
-            <element signature="e#15837#16066#0#PHP" expanded="false" />
             <element signature="n#void#0;n#HpsCreditService#0;n#!!top" expanded="false" />
             <element signature="n#_processChargeGatewayResponse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#17263#17322#0#PHP" expanded="false" />
-            <element signature="e#17332#17773#0#PHP" expanded="false" />
-            <element signature="e#17375#17763#0#PHP" expanded="false" />
-            <element signature="e#17477#17763#0#PHP" expanded="false" />
             <element signature="n#_processChargeIssuerResponse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#18115#19790#0#PHP" expanded="false" />
-            <element signature="e#18303#19780#0#PHP" expanded="false" />
-            <element signature="e#18401#19660#0#PHP" expanded="false" />
-            <element signature="e#18450#19642#0#PHP" expanded="false" />
-            <element signature="e#18568#19263#0#PHP" expanded="false" />
-            <element signature="e#18722#18910#0#PHP" expanded="false" />
-            <element signature="e#19264#19642#0#PHP" expanded="false" />
             <element signature="n#_submitTransaction#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#19915#20697#0#PHP" expanded="false" />
-            <element signature="e#20005#20697#0#PHP" expanded="false" />
-            <element signature="e#20043#20665#0#PHP" expanded="false" />
-            <element signature="e#20151#20518#0#PHP" expanded="false" />
-            <element signature="e#20232#20500#0#PHP" expanded="false" />
-            <element signature="e#20345#20500#0#PHP" expanded="false" />
-            <element signature="e#20865#22400#0#PHP" expanded="false" />
-            <element signature="e#20897#21029#0#PHP" expanded="false" />
-            <element signature="e#21042#21191#0#PHP" expanded="false" />
-            <element signature="e#21204#21313#0#PHP" expanded="false" />
-            <element signature="e#21326#21451#0#PHP" expanded="false" />
-            <element signature="e#21464#21580#0#PHP" expanded="false" />
-            <element signature="e#21593#21704#0#PHP" expanded="false" />
-            <element signature="e#21717#21832#0#PHP" expanded="false" />
-            <element signature="e#21845#21952#0#PHP" expanded="false" />
-            <element signature="e#21965#22078#0#PHP" expanded="false" />
-            <element signature="e#22091#22208#0#PHP" expanded="false" />
-            <element signature="e#22221#22346#0#PHP" expanded="false" />
-            <element signature="e#22359#22390#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestCheck.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="1908">
-          <caret line="82" column="30" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/CertificationTests/CheckRetailCertificationTests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8510" max-vertical-offset="10980">
-          <caret line="492" column="76" selection-start-line="492" selection-start-column="76" selection-end-line="492" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestServicesConfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1548">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Gateway/PayPlan/GatewayPayPlanPaymentMethodTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3978">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestCheck.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1332" max-vertical-offset="1908">
-          <caret line="82" column="30" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/CertificationTests/CheckRetailCertificationTests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7952" max-vertical-offset="10296">
-          <caret line="461" column="76" selection-start-line="461" selection-start-column="76" selection-end-line="461" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestServicesConfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1152">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestCheck.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1242" max-vertical-offset="1800">
-          <caret line="77" column="30" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/CertificationTests/CheckRetailCertificationTests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7952" max-vertical-offset="10296">
-          <caret line="461" column="76" selection-start-line="461" selection-start-column="76" selection-end-line="461" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestServicesConfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1152">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestCheck.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1242" max-vertical-offset="1800">
-          <caret line="77" column="30" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53333336" vertical-offset="0" max-vertical-offset="540">
+        <state vertical-scroll-proportion="0.53333336">
           <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="472">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestCheck.php">
+    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Validation/HpsGatewayResponseValidation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29149798" vertical-offset="1332" max-vertical-offset="1908">
-          <caret line="82" column="30" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/CertificationTests/CheckRetailCertificationTests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8510" max-vertical-offset="10980">
-          <caret line="492" column="76" selection-start-line="492" selection-start-column="76" selection-end-line="492" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestData/TestServicesConfig.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="270" max-vertical-offset="1548">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        <state vertical-scroll-proportion="-2.3846154">
+          <caret line="53" column="39" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Gateway/PayPlan/GatewayPayPlanPaymentMethodTest.php">
+    <entry file="file://$PROJECT_DIR$/src/Entities/HpsTransactionDetails.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="198" max-vertical-offset="3978">
-          <caret line="11" column="87" selection-start-line="11" selection-start-column="87" selection-end-line="11" selection-end-column="87" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Services/Gateway/HpsCreditService.php">
+    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Validation/HpsInputValidation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="107" max-vertical-offset="1332">
-          <caret line="97" column="59" selection-start-line="97" selection-start-column="59" selection-end-line="97" selection-end-column="59" />
+        <state vertical-scroll-proportion="-14.384615">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entities/Credit/HpsReportTransactionDetails.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3076923">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="33" />
           <folding>
-            <element signature="n#__construct#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="n#authorize#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#1033#1156#0#PHP" expanded="false" />
-            <element signature="e#1165#1287#0#PHP" expanded="false" />
-            <element signature="e#1296#1454#0#PHP" expanded="false" />
-            <element signature="e#1521#1889#0#PHP" expanded="false" />
-            <element signature="e#1660#1889#0#PHP" expanded="false" />
-            <element signature="e#2008#2109#0#PHP" expanded="false" />
-            <element signature="n#capture#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#2856#3035#0#PHP" expanded="false" />
-            <element signature="e#3044#3180#0#PHP" expanded="false" />
-            <element signature="e#3190#3381#0#PHP" expanded="false" />
-            <element signature="e#4507#4630#0#PHP" expanded="false" />
-            <element signature="e#4770#4928#0#PHP" expanded="false" />
-            <element signature="e#4995#5363#0#PHP" expanded="false" />
-            <element signature="e#5134#5363#0#PHP" expanded="false" />
-            <element signature="e#5372#5473#0#PHP" expanded="false" />
-            <element signature="e#5593#5774#0#PHP" expanded="false" />
-            <element signature="n#recurring#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#6687#6810#0#PHP" expanded="false" />
-            <element signature="e#6819#6941#0#PHP" expanded="false" />
-            <element signature="e#6951#7727#0#PHP" expanded="false" />
-            <element signature="e#7218#7727#0#PHP" expanded="false" />
-            <element signature="e#7608#7727#0#PHP" expanded="false" />
-            <element signature="e#7762#7867#0#PHP" expanded="false" />
-            <element signature="n#cpcEdit#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="n#edit#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#9421#9597#0#PHP" expanded="false" />
-            <element signature="e#9606#9739#0#PHP" expanded="false" />
-            <element signature="n#get#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#10056#10162#0#PHP" expanded="false" />
-            <element signature="n#listTransactions#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="n#refund#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#12144#12908#0#PHP" expanded="false" />
-            <element signature="e#12412#12908#0#PHP" expanded="false" />
-            <element signature="e#12803#12908#0#PHP" expanded="false" />
-            <element signature="e#12917#13040#0#PHP" expanded="false" />
-            <element signature="e#13049#13171#0#PHP" expanded="false" />
-            <element signature="n#reverse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#14027#14675#0#PHP" expanded="false" />
-            <element signature="e#14240#14675#0#PHP" expanded="false" />
-            <element signature="e#14576#14675#0#PHP" expanded="false" />
-            <element signature="e#14735#14857#0#PHP" expanded="false" />
-            <element signature="n#verify#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#15508#15631#0#PHP" expanded="false" />
-            <element signature="e#15698#16066#0#PHP" expanded="false" />
-            <element signature="e#15837#16066#0#PHP" expanded="false" />
-            <element signature="n#void#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="n#_processChargeGatewayResponse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#17263#17322#0#PHP" expanded="false" />
-            <element signature="e#17332#17773#0#PHP" expanded="false" />
-            <element signature="e#17375#17763#0#PHP" expanded="false" />
-            <element signature="e#17477#17763#0#PHP" expanded="false" />
-            <element signature="n#_processChargeIssuerResponse#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#18115#19790#0#PHP" expanded="false" />
-            <element signature="e#18303#19780#0#PHP" expanded="false" />
-            <element signature="e#18401#19660#0#PHP" expanded="false" />
-            <element signature="e#18450#19642#0#PHP" expanded="false" />
-            <element signature="e#18568#19263#0#PHP" expanded="false" />
-            <element signature="e#18722#18910#0#PHP" expanded="false" />
-            <element signature="e#19264#19642#0#PHP" expanded="false" />
-            <element signature="n#_submitTransaction#0;n#HpsCreditService#0;n#!!top" expanded="false" />
-            <element signature="e#19915#20697#0#PHP" expanded="false" />
-            <element signature="e#20005#20697#0#PHP" expanded="false" />
-            <element signature="e#20043#20665#0#PHP" expanded="false" />
-            <element signature="e#20151#20518#0#PHP" expanded="false" />
-            <element signature="e#20232#20500#0#PHP" expanded="false" />
-            <element signature="e#20345#20500#0#PHP" expanded="false" />
-            <element signature="e#20865#22400#0#PHP" expanded="false" />
-            <element signature="e#20897#21029#0#PHP" expanded="false" />
-            <element signature="e#21042#21191#0#PHP" expanded="false" />
-            <element signature="e#21204#21313#0#PHP" expanded="false" />
-            <element signature="e#21326#21451#0#PHP" expanded="false" />
-            <element signature="e#21464#21580#0#PHP" expanded="false" />
-            <element signature="e#21593#21704#0#PHP" expanded="false" />
-            <element signature="e#21717#21832#0#PHP" expanded="false" />
-            <element signature="e#21845#21952#0#PHP" expanded="false" />
-            <element signature="e#21965#22078#0#PHP" expanded="false" />
-            <element signature="e#22091#22208#0#PHP" expanded="false" />
-            <element signature="e#22221#22346#0#PHP" expanded="false" />
-            <element signature="e#22359#22390#0#PHP" expanded="false" />
+            <element signature="n#fromDict#0;n#HpsReportTransactionDetails#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/integration/Gateway/Credit/GatewayCreditVisaTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.76923">
+          <caret line="693" column="45" selection-start-line="693" selection-start-column="18" selection-end-line="693" selection-end-column="45" />
+          <folding>
+            <element signature="n#testVisaResponseCodeShouldIndicateReferCardIssuer#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVisaCaptureShouldReturnOk#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="e#23069#23136#0#PHP" expanded="true" />
+            <element signature="n#testVisaAdditionalTxnFields#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVisaClientTransactionIdOnAuth#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVisaDynamicDescriptorCharge#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVisaDynamicDescriptorAuth#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVisaChargeAndVoidShouldReturnOk#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVisaChargeAndTransactionShouldReturnOk#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVisaCharge50AndRevers40TransactionShouldReturnOk#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVisaChargeCPCReqShouldReturnBusiness#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVisaChargeCPCReqShouldReturnCorporate#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVisaChargeCPCReqShouldReturnPurchasing#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVisaAuthCPCReqShouldReturnBusiness#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVisaAuthCPCReqShouldReturnCorporate#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVisaAuthCPCReqShouldReturnPurchasing#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+            <element signature="n#chargeValidVisa#0;n#GatewayCreditVisaTest#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Abstractions/HpsGatewayServiceAbstract.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3076923">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Abstractions/HpsGatewayServiceInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3076923">
+          <caret line="2" column="36" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Services/Gateway/HpsRestGatewayService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3076923">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+          <folding>
+            <element signature="n#doRequest#0;n#HpsRestGatewayService#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Services/Gateway/HpsSoapGatewayService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="5274">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.055194806">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="27" />
+          <folding>
+            <element signature="n#doRequest#0;n#HpsSoapGatewayService#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entities/Credit/HpsReportTransactionDetails.php">
+    <entry file="file://$PROJECT_DIR$/src/Services/Gateway/HpsCreditService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="1278">
-          <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.8279221">
+          <caret line="75" column="33" selection-start-line="75" selection-start-column="33" selection-end-line="75" selection-end-column="33" />
+          <folding>
+            <element signature="e#1033#1156#0#PHP" expanded="false" />
+            <element signature="e#1165#1287#0#PHP" expanded="false" />
+            <element signature="e#1296#1454#0#PHP" expanded="false" />
+            <element signature="n#charge#0;n#HpsCreditService#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Infrastructure/Validation/HpsGatewayResponseValidation.php">
+    <entry file="file://$PROJECT_DIR$/src/Services/Fluent/Gateway/Credit/HpsCreditServiceAuthorizeBuilder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.444445" vertical-offset="375" max-vertical-offset="1854">
-          <caret line="53" column="45" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="45" />
-          <folding />
+        <state vertical-scroll-proportion="-18.307692">
+          <caret line="193" column="53" selection-start-line="193" selection-start-column="53" selection-end-line="193" selection-end-column="53" />
+          <folding>
+            <element signature="n#__construct#0;n#HpsCreditServiceAuthorizeBuilder#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/GeneralTest.php">
+    <entry file="file://$PROJECT_DIR$/src/Abstractions/HpsBuilderAbstract.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38285714" vertical-offset="3741" max-vertical-offset="4356">
-          <caret line="219" column="44" selection-start-line="219" selection-start-column="44" selection-end-line="219" selection-end-column="44" />
-          <folding />
+        <state vertical-scroll-proportion="-6.576923">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="e#377#522#0#PHP" expanded="true" />
+            <element signature="n#__construct#0;n#HpsBuilderAbstract#0;n#!!top" expanded="true" />
+            <element signature="n#execute#0;n#HpsBuilderAbstract#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Services/Fluent/Gateway/Credit/HpsCreditServiceCaptureBuilder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30357143">
+          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+          <folding>
+            <element signature="e#987#1106#0#PHP" expanded="true" />
+            <element signature="n#__construct#0;n#HpsCreditServiceCaptureBuilder#0;n#!!top" expanded="true" />
+            <element signature="n#execute#0;n#HpsCreditServiceCaptureBuilder#0;n#!!top" expanded="true" />
+            <element signature="e#2571#2661#0#PHP" expanded="true" />
+            <element signature="n#transactionIdNotNull#0;n#HpsCreditServiceCaptureBuilder#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Services/Fluent/Gateway/HpsFluentCreditService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41396105">
+          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+          <folding>
+            <element signature="n#__construct#0;n#HpsFluentCreditService#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/integration/Fluent/FluentCreditTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60714287">
+          <caret line="58" column="24" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
+          <folding>
+            <element signature="n#setUp#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testAuthorizeAndCapture#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="e#2127#2251#0#PHP" expanded="true" />
+            <element signature="n#testAuthorizeWithNoAmount#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testAuthorizeWithMultiplePaymentOptions#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testCaptureWithNoTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testCharge#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testChargeWithNoAmount#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testChargeWithMultiplePaymentOptions#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testUpdateTokenExpirationToExpiredDate#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testUpdateTokenExpirationToNull#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testUpdateTokenExpirationOnInValidTokenShouldReturnException#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testUpdateTokenExpirationOnNullTokenShouldReturnException#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testUpdateTokenExpiration#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testCpcEdit#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testCpcEditWithNoTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testCpcEditWithNoCpcData#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testEdit#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testEditWithNoTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testGet#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testGetWithNoTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testListTransactions#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testListTransactionsWithNoStartDate#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testListTransactionsWithNoEndDate#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testRefund#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testRefundWithNoAmount#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testRefundWithTransactionIdAndCard#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testRefundWithTransactionIdAndToken#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testRefundWithCardAndToken#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testReverse#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testReverseWithNoAmount#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testReverseWithCardAndTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testReverseWithTokenAndTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testReverseWithCardAndToken#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVerify#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVerifyWithCardAndToken#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVoid#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+            <element signature="n#testVoidWithNoTransactionId#0;n#FluentCreditTest#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
   </component>
 </project>
-

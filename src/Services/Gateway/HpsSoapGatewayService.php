@@ -95,15 +95,24 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
 
     public function _hydrateCardHolderData(HpsCardHolder $cardHolder, DOMDocument $xml)
     {
+        //handle both phone and phoneNumber properties as a valid phone
+        if($cardHolder->phone === null && !empty($cardHolder->phoneNumber) === true){
+            $cardHolder->phone = $cardHolder->phoneNumber;
+        }              
+        //handle both email and emailAddress properties as a valid email
+        if($cardHolder->email === null && !empty($cardHolder->emailAddress) === true){
+            $cardHolder->email = $cardHolder->emailAddress;
+        }               
+        
         $cardHolderData = $xml->createElement('hps:CardHolderData');
-        $cardHolderData->appendChild($xml->createElement('hps:CardHolderFirstName', $cardHolder->firstName));
-        $cardHolderData->appendChild($xml->createElement('hps:CardHolderLastName', $cardHolder->lastName));
-        $cardHolderData->appendChild($xml->createElement('hps:CardHolderEmail', $cardHolder->email));
-        $cardHolderData->appendChild($xml->createElement('hps:CardHolderPhone', $cardHolder->phone));
-        $cardHolderData->appendChild($xml->createElement('hps:CardHolderAddr', $cardHolder->address->address));
-        $cardHolderData->appendChild($xml->createElement('hps:CardHolderCity', $cardHolder->address->city));
-        $cardHolderData->appendChild($xml->createElement('hps:CardHolderState', $cardHolder->address->state));
-        $cardHolderData->appendChild($xml->createElement('hps:CardHolderZip', $cardHolder->address->zip));
+        $cardHolderData->appendChild($xml->createElement('hps:CardHolderFirstName', HpsInputValidation::checkCardHolderData($cardHolder->firstName, 'FirstName')));
+        $cardHolderData->appendChild($xml->createElement('hps:CardHolderLastName', HpsInputValidation::checkCardHolderData($cardHolder->lastName,'LastName')));
+        $cardHolderData->appendChild($xml->createElement('hps:CardHolderEmail', HpsInputValidation::checkEmailAddress($cardHolder->email)));
+        $cardHolderData->appendChild($xml->createElement('hps:CardHolderPhone', HpsInputValidation::checkPhoneNumber($cardHolder->phone)));
+        $cardHolderData->appendChild($xml->createElement('hps:CardHolderAddr', HpsInputValidation::checkCardHolderData($cardHolder->address->address)));
+        $cardHolderData->appendChild($xml->createElement('hps:CardHolderCity', HpsInputValidation::checkCardHolderData($cardHolder->address->city, 'City')));
+        $cardHolderData->appendChild($xml->createElement('hps:CardHolderState', HpsInputValidation::checkCardHolderData($cardHolder->address->state, 'State')));
+        $cardHolderData->appendChild($xml->createElement('hps:CardHolderZip', HpsInputValidation::checkZipCode($cardHolder->address->zip)));
 
         return $cardHolderData;
     }
@@ -225,7 +234,7 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
             $encData->appendChild($xml->createElement('hps:EncryptedTrackNumber', $encryptionData->encryptedTrackNumber));
         }
         $encData->appendChild($xml->createElement('hps:KSN', $encryptionData->ksn));
-        $encData->appendChild($xml->createElement('hps:KTB', $encryptionData->ksn));
+        $encData->appendChild($xml->createElement('hps:KTB', $encryptionData->ktb));
         $encData->appendChild($xml->createElement('hps:Version', $encryptionData->version));
         return $encData;
     }

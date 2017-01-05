@@ -76,7 +76,8 @@ class HpsCreditServiceVerifyBuilder extends HpsBuilderAbstract
             ));
             if ($this->card->encryptionData != null) {
                 $cardData->appendChild($this->service->_hydrateEncryptionData(
-                    $this->card->encryptionData
+                    $this->card->encryptionData,
+                    $xml
                 ));
             }
         } else if ($this->token != null) {
@@ -87,10 +88,11 @@ class HpsCreditServiceVerifyBuilder extends HpsBuilderAbstract
                 $this->readerPresent
             ));
         } else if ($this->trackData != null) {
-            $cardData->appendChild($this->service->_hydrateTrackData($this->trackData));
+            $cardData->appendChild($this->service->_hydrateTrackData($this->trackData, $xml));
             if ($this->trackData->encryptionData != null) {
                 $cardData->appendChild($this->service->_hydrateEncryptionData(
-                    $this->trackData->encryptionData
+                    $this->trackData->encryptionData,
+                    $xml
                 ));
             }
         }
@@ -125,11 +127,10 @@ class HpsCreditServiceVerifyBuilder extends HpsBuilderAbstract
      */
     public function onlyOnePaymentMethod($actionCounts)
     {
-        return (isset($actionCounts['card']) && $actionCounts['card'] == 1
-                && (!isset($actionCounts['token'])
-                    || isset($actionCounts['token']) && $actionCounts['token'] == 0))
-            || (isset($actionCounts['token']) && $actionCounts['token'] == 1
-                && (!isset($actionCounts['card'])
-                    || isset($actionCounts['card']) && $actionCounts['card'] == 0));
+        $count = 0;
+        if (isset($actionCounts['card'])) { $count++; }
+        if (isset($actionCounts['token'])) { $count++; }
+        if (isset($actionCounts['trackData'])) { $count++; }
+        return 1 === $count;
     }
 }

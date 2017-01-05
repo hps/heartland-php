@@ -220,12 +220,11 @@ class HpsCreditServiceAuthorizeBuilder extends HpsBuilderAbstract
      */
     public function onlyOnePaymentMethod($actionCounts)
     {
-        return (isset($actionCounts['card']) && $actionCounts['card'] == 1
-                && (!isset($actionCounts['token'])
-                    || isset($actionCounts['token']) && $actionCounts['token'] == 0))
-            || (isset($actionCounts['token']) && $actionCounts['token'] == 1
-                && (!isset($actionCounts['card'])
-                    || isset($actionCounts['card']) && $actionCounts['card'] == 0));
+        $count = 0;
+        if (isset($actionCounts['card'])) { $count++; }
+        if (isset($actionCounts['token'])) { $count++; }
+        if (isset($actionCounts['trackData'])) { $count++; }
+        return 1 === $count;
     }
 
     /**

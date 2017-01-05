@@ -2,6 +2,7 @@
 
 class FluentCreditTest extends PHPUnit_Framework_TestCase
 {
+    /** @var HpsFluentCreditService $service */
     protected $service;
 
     protected function setUp()
@@ -19,18 +20,47 @@ class FluentCreditTest extends PHPUnit_Framework_TestCase
             ->withCurrency("usd")
             ->withCard(TestCreditCard::validVisaCreditCard())
             ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withAllowDuplicates(true)
             ->execute();
 
         $this->assertEquals("00", $auth->responseCode);
         $this->assertNotNull($auth->transactionId);
 
+        /** @var \HpsReportTransactionDetails $capture */
         $capture = $this->service
-            ->capture()
-            ->withTransactionId($auth->transactionId)
-            ->withAmount(10)
+            ->capture($auth->transactionId)
+            ->withAmount(15)
             ->execute();
 
         $this->assertEquals("0", $capture->responseCode);
+        $this->assertEquals("15.00", $capture->settlementAmount);
+    }
+    public function testAuthorizeAndCaptureWithGratuity()
+    {
+        $config = TestServicesConfig::validMultiUseConfig();
+
+        $auth = $this->service
+            ->authorize()
+            ->withAmount(10)
+            ->withCurrency("usd")
+            ->withCard(TestCreditCard::validVisaCreditCard())
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withAllowDuplicates(true)
+            ->execute();
+
+        $this->assertEquals("00", $auth->responseCode);
+        $this->assertNotNull($auth->transactionId);
+/** @var \HpsReportTransactionDetails $capture */
+        $capture = $this->service
+            ->capture()
+            ->withTransactionId($auth->transactionId)
+            ->withAmount(15)
+            ->withGratuity(5)
+            ->execute();
+
+        $this->assertEquals("0", $capture->responseCode);
+        $this->assertEquals("15.00", $capture->settlementAmount);
+        $this->assertEquals("5.00", $capture->gratuityAmount);
     }
 
     /**

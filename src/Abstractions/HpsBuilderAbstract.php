@@ -11,11 +11,11 @@ abstract class HpsBuilderAbstract
     /** @var array(callable) */
     public $validations    = array();
 
-    /** @var HpsRestGatewayService */
+    /** @var HpsGatewayServiceAbstract|HpsSoapGatewayService|HpsRestGatewayService */
     protected $service     = null;
 
     /**
-     * @param HpsGatewayServiceAbstract $service
+     * @param HpsGatewayServiceAbstract|HpsSoapGatewayService|HpsRestGatewayService $service
      *
      * @return HpsBuilderAbstract
      */

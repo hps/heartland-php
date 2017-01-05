@@ -672,7 +672,29 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("00", $authResponse->responseCode);
 
         // Capture the authorization.
+        /** @var \HpsReportTransactionDetails $captureResponse */
         $captureResponse = $chargeSvc->capture($authResponse->transactionId);
+        $this->assertEquals("50.00", $captureResponse->settlementAmount);
+        $this->assertEquals("0", $captureResponse->responseCode);
+    }
+    /**
+     * @test
+     * /// Visa authorize should return response code '00'.
+     */
+    public function testVisaCaptureWithGratuityShouldReturnOk()
+    {
+        $testConfig = new TestServicesConfig();
+
+        // Authorize the card.
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+        $authResponse = $chargeSvc->authorize(50, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder());
+        $this->assertEquals("00", $authResponse->responseCode);
+
+        // Capture the authorization.
+        /** @var \HpsReportTransactionDetails $captureResponse */
+        $captureResponse = $chargeSvc->capture($authResponse->transactionId,55,5);
+        $this->assertEquals("55.00", $captureResponse->settlementAmount);
+        $this->assertEquals("5.00", $captureResponse->gratuityAmount);
         $this->assertEquals("0", $captureResponse->responseCode);
     }
 
