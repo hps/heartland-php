@@ -130,6 +130,9 @@
 </div>
 <!-- make iframes styled like other form -->
 <style type="text/css">
+form {
+  padding:10px;
+}
 	#iframes iframe{
 		float:left;
 		width:100%;
@@ -172,13 +175,17 @@
   .btn-primary{
     display:block;
     border-radius:0px;
-    width:98.5%;
-    height:3em;
-    font-size:15px;
+    font-size:18px;
+    float:right;
+    background-color:#36b46e;
+    border:1px solid #2a8d56;
+    margin-bottom:10px;
+    width:100%;
   }
   .btn-primary:hover,
   .btn-primary:focus{
-    box-shadow:none;
+    color: #fff;
+    background-color: #2a8d56;
   }
   #heartland-frame-cardExpiration,
   #heartland-frame-cardCvv,
@@ -256,9 +263,8 @@
 		<div class="iframeholder" id="iframesCardCvv"></div>
 	</div>
 
-	<input type="submit" class="btn btn-primary" value="Submit" />
+	<input type="submit" class="btn btn-lg btn-primary" value="Submit" />
 
-	<p><button class="btn btn-xs btn-link" id="iframesShowCode" type="button">Show Code</button></p>
 </form>
 
 
@@ -482,7 +488,6 @@
 </script>
 
 <br />
-<input type="submit" value="Submit Payment" id="PaymentButton" /><br>
 </form>
 </div>
 
