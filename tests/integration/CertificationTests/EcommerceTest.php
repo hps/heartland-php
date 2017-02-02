@@ -901,13 +901,116 @@ class EcommerceTest extends PHPUnit_Framework_TestCase
             ->offlineCharge(17.10)
             ->withCard(TestCreditCard::validVisaCreditCard())
             ->withOfflineAuthCode('654321')
-            ->withDirectMarketData($directMarketData)
+            ->withDirectMarketData($directMarketData)                
             ->execute();
 
         $this->assertEquals(true, $response != null);
-        $this->assertEquals('00', $response->responseCode);
+        $this->assertEquals('00', $response->responseCode);        
     }
+    
+    
+    public function testOfflineChargeConvenienceAmount()
+    {
+        $directMarketData = new HpsDirectMarketData('123456');
+        
+        $offlineCharge = $this->service
+            ->offlineCharge(37.10)
+            ->withCard(TestCreditCard::validVisaCreditCard())            
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withDirectMarketData($directMarketData)                
+            ->withOfflineAuthCode('654321')   
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(20)                           
+            ->execute();
 
+        $this->assertEquals('00', $offlineCharge->responseCode);
+        $this->assertNotNull($offlineCharge->transactionId);        
+
+        $reportTxnDetail = $this->service
+                ->get()
+                ->withTransactionId($offlineCharge->transactionId)
+                ->execute();        
+       
+        $this->assertNotNull($reportTxnDetail);
+        $this->assertEquals(20, $reportTxnDetail->convenienceAmount);
+    }
+    
+    public function testOfflineChargeShippingAmount()
+    {
+        $directMarketData = new HpsDirectMarketData('123456');
+        $offlineCharge = $this->service
+            ->offlineCharge(32.10)
+            ->withCard(TestCreditCard::validVisaCreditCard())            
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withDirectMarketData($directMarketData)                
+            ->withOfflineAuthCode('654321')   
+            ->withAllowDuplicates(true)
+            ->withShippingAmtInfo(15)
+            ->execute();
+
+        $this->assertEquals('00', $offlineCharge->responseCode);
+        $this->assertNotNull($offlineCharge->transactionId);        
+
+        $reportTxnDetail = $this->service
+                ->get()
+                ->withTransactionId($offlineCharge->transactionId)
+                ->execute();        
+        
+        $this->assertNotNull($reportTxnDetail);
+        $this->assertEquals(15, $reportTxnDetail->shippingAmount);
+    }    
+
+    public function testOfflineAuthConvenienceAmount()
+    {
+        $directMarketData = new HpsDirectMarketData('123456');
+        
+        $offlineCharge = $this->service
+            ->offlineAuth(37.10)
+            ->withCard(TestCreditCard::validVisaCreditCard())            
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withDirectMarketData($directMarketData)                
+            ->withOfflineAuthCode('654321')   
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(20)                           
+            ->execute();
+
+        $this->assertEquals('00', $offlineCharge->responseCode);
+        $this->assertNotNull($offlineCharge->transactionId);        
+
+        $reportTxnDetail = $this->service
+                ->get()
+                ->withTransactionId($offlineCharge->transactionId)
+                ->execute();        
+       
+        $this->assertNotNull($reportTxnDetail);
+        $this->assertEquals(20, $reportTxnDetail->convenienceAmount);
+    }
+    
+    public function testOfflineAuthShippingAmount()
+    {
+        $directMarketData = new HpsDirectMarketData('123456');
+        $offlineCharge = $this->service
+            ->offlineAuth(32.10)
+            ->withCard(TestCreditCard::validVisaCreditCard())            
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withDirectMarketData($directMarketData)                
+            ->withOfflineAuthCode('654321')   
+            ->withAllowDuplicates(true)
+            ->withShippingAmtInfo(15)
+            ->execute();
+
+        $this->assertEquals('00', $offlineCharge->responseCode);
+        $this->assertNotNull($offlineCharge->transactionId);        
+
+        $reportTxnDetail = $this->service
+                ->get()
+                ->withTransactionId($offlineCharge->transactionId)
+                ->execute();        
+        
+        $this->assertNotNull($reportTxnDetail);
+        $this->assertEquals(15, $reportTxnDetail->shippingAmount);
+    }    
+    
     public function test033OfflineAuthorization()
     {
         $directMarketData = new HpsDirectMarketData('123456');
@@ -1511,5 +1614,101 @@ class EcommerceTest extends PHPUnit_Framework_TestCase
         } catch (HpsException $e) {
             $this->fail($e->getMessage());
         }
+    }
+    
+    public function testOfflineChargeConvenienceAndShippingAmount()
+    {
+        $directMarketData = new HpsDirectMarketData('123456');
+        $offlineCharge = $this->service
+            ->offlineCharge(50)
+            ->withCard(TestCreditCard::validVisaCreditCard())            
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withDirectMarketData($directMarketData)                
+            ->withOfflineAuthCode('654321')   
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(20)                    
+            ->withShippingAmtInfo(15)
+            ->execute();
+
+        $this->assertEquals('00', $offlineCharge->responseCode);
+        $this->assertNotNull($offlineCharge->transactionId);        
+
+        $reportTxnDetail = $this->service
+                ->get()
+                ->withTransactionId($offlineCharge->transactionId)
+                ->execute();        
+        
+        $this->assertNotNull($reportTxnDetail);
+        $this->assertEquals(20, $reportTxnDetail->convenienceAmount);
+        $this->assertEquals(15, $reportTxnDetail->shippingAmount);
+    }    
+
+    public function testOfflineAuthConvenienceAndShippingAmount()
+    {
+        $directMarketData = new HpsDirectMarketData('123456');
+        
+        $offlineCharge = $this->service
+            ->offlineAuth(50)
+            ->withCard(TestCreditCard::validVisaCreditCard())            
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withDirectMarketData($directMarketData)                
+            ->withOfflineAuthCode('654321')   
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(20)                    
+            ->withShippingAmtInfo(15)                           
+            ->execute();
+
+        $this->assertEquals('00', $offlineCharge->responseCode);
+        $this->assertNotNull($offlineCharge->transactionId);        
+
+        $reportTxnDetail = $this->service
+                ->get()
+                ->withTransactionId($offlineCharge->transactionId)
+                ->execute();        
+       
+        $this->assertNotNull($reportTxnDetail);
+        $this->assertEquals(20, $reportTxnDetail->convenienceAmount);
+        $this->assertEquals(15, $reportTxnDetail->shippingAmount);
+    }
+    
+    /**
+     * @expectedException        HpsInvalidRequestException
+     * @expectedExceptionCode    HpsExceptionCodes::INVALID_AMOUNT
+     * @expectedExceptionMessage Must be greater than or equal to 0
+     */
+    public function testOfflineChargeConvenienceAndShippingInvalidAmount()
+    {
+        $directMarketData = new HpsDirectMarketData('123456');
+        $this->service
+            ->offlineCharge(50)
+            ->withCard(TestCreditCard::validVisaCreditCard())            
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withDirectMarketData($directMarketData)                
+            ->withOfflineAuthCode('654321')   
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(-20)                    
+            ->withShippingAmtInfo(-15)
+            ->execute();
+    }    
+
+    /**
+     * @expectedException        HpsInvalidRequestException
+     * @expectedExceptionCode    HpsExceptionCodes::INVALID_AMOUNT
+     * @expectedExceptionMessage Must be greater than or equal to 0
+     */
+    public function testOfflineAuthConvenienceAndShippingInvalidAmount()
+    {
+        $directMarketData = new HpsDirectMarketData('123456');
+        
+        $this->service
+            ->offlineAuth(50)
+            ->withCard(TestCreditCard::validVisaCreditCard())            
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withDirectMarketData($directMarketData)                
+            ->withOfflineAuthCode('654321')   
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(-20)                    
+            ->withShippingAmtInfo(-15)                           
+            ->execute();
     }
 }

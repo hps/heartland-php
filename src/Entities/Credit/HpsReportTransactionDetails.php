@@ -15,10 +15,12 @@ class HpsReportTransactionDetails extends HpsAuthorization
     public $customerId            = null;
     public $transactionStatus     = null;
     public $gratuityAmount        = null;
+    public $convenienceAmount     = null;
+    public $shippingAmount        = null;
 
     public static function fromDict($rsp, $txnType, $returnType = 'HpsReportTransactionDetails')
     {
-        $reportResponse = $rsp->Transaction->$txnType;
+        $reportResponse = $rsp->Transaction->$txnType;        
 
         $details = parent::fromDict($rsp, $txnType, $returnType);
         $details->originalTransactionId = (isset($reportResponse->OriginalGatewayTxnId) ? (string)$reportResponse->OriginalGatewayTxnId : null);
@@ -40,6 +42,8 @@ class HpsReportTransactionDetails extends HpsAuthorization
         $details->transactionStatus = (isset($reportResponse->Data->TxnStatus) ? (string)$reportResponse->Data->TxnStatus : null);
         $details->gratuityAmount = (isset($reportResponse->Data->GratuityAmtInfo) ? (string)$reportResponse->Data->GratuityAmtInfo : null);
         $details->settlementAmount = (isset($reportResponse->Data->SettlementAmt) ? (string)$reportResponse->Data->SettlementAmt : null);
+        $details->convenienceAmount = (isset($reportResponse->Data->ConvenienceAmtInfo) ? (string)$reportResponse->Data->ConvenienceAmtInfo : null);
+        $details->shippingAmount = (isset($reportResponse->Data->ShippingAmtInfo) ? (string)$reportResponse->Data->ShippingAmtInfo : null);
 
         if (isset($reportResponse->Data->TokenizationMsg)) {
             $details->tokenData = new HpsTokenData();
@@ -52,8 +56,8 @@ class HpsReportTransactionDetails extends HpsAuthorization
             $details->invoiceNumber = (isset($additionalTxnFields->InvoiceNbr) ? (string)$additionalTxnFields->InvoiceNbr : null);
             $details->customerId = (isset($additionalTxnFields->CustomerID) ? (string)$additionalTxnFields->CustomerID : null);
         }
-
-        if ((string)$reportResponse->Data->RspCode != '00') {
+        
+        if ((string)$reportResponse->GatewayRspCode != '0' && (string)$reportResponse->Data->RspCode != '00') {
             if ($details->exceptions == null) {
                 $details->exceptions = new HpsChargeExceptions();
             }

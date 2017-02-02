@@ -7,7 +7,7 @@ class HpsCreditService extends HpsSoapGatewayService
         parent::__construct($config);
     }
 
-    public function authorize($amount, $currency, $cardOrToken, $cardHolder = null, $requestMultiUseToken = false, $details = null, $txnDescriptor = null, $allowPartialAuth = false, $cpcReq = false)
+    public function authorize($amount, $currency, $cardOrToken, $cardHolder = null, $requestMultiUseToken = false, $details = null, $txnDescriptor = null, $allowPartialAuth = false, $cpcReq = false, $convenienceAmtInfo = null, $shippingAmtInfo = null)
     {
         HpsInputValidation::checkCurrency($currency);
         $this->_currency = $currency;
@@ -21,6 +21,16 @@ class HpsCreditService extends HpsSoapGatewayService
         $hpsBlock1->appendChild($xml->createElement('hps:AllowDup', 'Y'));
         $hpsBlock1->appendChild($xml->createElement('hps:AllowPartialAuth', ($allowPartialAuth ? 'Y' : 'N')));
         $hpsBlock1->appendChild($xml->createElement('hps:Amt', $amount));
+        //update convenienceAmtInfo if passed
+        if ($convenienceAmtInfo != null && $convenienceAmtInfo != '') {
+            $hpsBlock1->appendChild($xml->createElement('hps:ConvenienceAmtInfo', $convenienceAmtInfo));
+        }
+        
+         //update shippingAmtInfo if passed
+        if ($shippingAmtInfo != null && $shippingAmtInfo != '') {
+            $hpsBlock1->appendChild($xml->createElement('hps:ShippingAmtInfo', $shippingAmtInfo));
+        }
+        
         if ($cardHolder != null) {
             $hpsBlock1->appendChild($this->_hydrateCardHolderData($cardHolder, $xml));
         }
@@ -30,7 +40,7 @@ class HpsCreditService extends HpsSoapGatewayService
         if ($txnDescriptor != null && $txnDescriptor != '') {
             $hpsBlock1->appendChild($xml->createElement('hps:TxnDescriptor', $txnDescriptor));
         }
-
+        
         $cardData = $xml->createElement('hps:CardData');
         if ($cardOrToken instanceof HpsCreditCard) {
             $cardData->appendChild($this->_hydrateManualEntry($cardOrToken, $xml));
@@ -79,7 +89,7 @@ class HpsCreditService extends HpsSoapGatewayService
         return $this->get($transactionId);
     }
 
-    public function charge($amount, $currency, $cardOrToken, $cardHolder = null, $requestMultiUseToken = false, $details = null, $txnDescriptor = null, $allowPartialAuth = false, $cpcReq = false, $directMarketData = null)
+    public function charge($amount, $currency, $cardOrToken, $cardHolder = null, $requestMultiUseToken = false, $details = null, $txnDescriptor = null, $allowPartialAuth = false, $cpcReq = false, $directMarketData = null, $convenienceAmtInfo = null, $shippingAmtInfo = null)
     {
         HpsInputValidation::checkCurrency($currency);
         $this->_currency = $currency;
@@ -93,6 +103,15 @@ class HpsCreditService extends HpsSoapGatewayService
         $hpsBlock1->appendChild($xml->createElement('hps:AllowDup', 'Y'));
         $hpsBlock1->appendChild($xml->createElement('hps:AllowPartialAuth', ($allowPartialAuth ? 'Y' : 'N')));
         $hpsBlock1->appendChild($xml->createElement('hps:Amt', $amount));
+        //update convenienceAmtInfo if passed
+        if ($convenienceAmtInfo != null && $convenienceAmtInfo != '') {
+            $hpsBlock1->appendChild($xml->createElement('hps:ConvenienceAmtInfo', $convenienceAmtInfo));
+        }
+        
+         //update shippingAmtInfo if passed
+        if ($shippingAmtInfo != null && $shippingAmtInfo != '') {
+            $hpsBlock1->appendChild($xml->createElement('hps:ShippingAmtInfo', $shippingAmtInfo));
+        }
         if ($cardHolder != null) {
             $hpsBlock1->appendChild($this->_hydrateCardHolderData($cardHolder, $xml));
         }

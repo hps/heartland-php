@@ -23,6 +23,8 @@
  * @method HpsCreditServiceAuthorizeBuilder withAutoSubstantiation(HpsAutoSubstantiation $autoSubstantiation)
  * @method HpsCreditServiceAuthorizeBuilder withOriginalTxnReferenceData(HpsOriginalTxnReferenceData $originalTxnReferenceData)
  * @method HpsCreditServiceAuthorizeBuilder withDirectMarketData(HpsDirectMarketData $directMarketData)
+ * @method HpsCreditServiceAuthorizeBuilder withConvenienceAmtInfo(double $convenienceAmtInfo)
+ * @method HpsCreditServiceAuthorizeBuilder withShippingAmtInfo(double $shippingAmtInfo)
  */
 class HpsCreditServiceAuthorizeBuilder extends HpsBuilderAbstract
 {
@@ -84,6 +86,12 @@ class HpsCreditServiceAuthorizeBuilder extends HpsBuilderAbstract
     protected $directMarketData         = null;
 
     protected $secureEcommerce          = null;
+    
+    /** @var double|null */
+    protected $convenienceAmtInfo       = null;
+    
+    /** @var double|null */
+    protected $shippingAmtInfo          = null;
 
     /**
      * Instatiates a new HpsCreditServiceAuthorizeBuilder
@@ -114,6 +122,16 @@ class HpsCreditServiceAuthorizeBuilder extends HpsBuilderAbstract
         $hpsBlock1->appendChild($xml->createElement('hps:AllowDup', ($this->allowDuplicates ? 'Y' : 'N')));
         $hpsBlock1->appendChild($xml->createElement('hps:AllowPartialAuth', ($this->allowPartialAuth ? 'Y' : 'N')));
         $hpsBlock1->appendChild($xml->createElement('hps:Amt', $this->amount));
+        
+        //update convenienceAmtInfo if passed
+        if ($this->convenienceAmtInfo != null && $this->convenienceAmtInfo != '') {
+            $hpsBlock1->appendChild($xml->createElement('hps:ConvenienceAmtInfo', HpsInputValidation::checkAmount($this->convenienceAmtInfo)));
+        }
+        
+         //update shippingAmtInfo if passed
+        if ($this->shippingAmtInfo != null && $this->shippingAmtInfo != '') {
+            $hpsBlock1->appendChild($xml->createElement('hps:ShippingAmtInfo', HpsInputValidation::checkAmount($this->shippingAmtInfo)));
+        }
 
         if ($this->gratuity != null) {
             $hpsBlock1->appendChild($xml->createElement('hps:GratuityAmtInfo', $this->gratuity));

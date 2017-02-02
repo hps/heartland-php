@@ -49,14 +49,14 @@ $address = new HpsAddress();
 $address->address = $_GET["Address"];
 $address->city = $_GET["City"];
 $address->state = $_GET["State"];
-$address->zip = $_GET["Zip"];
+$address->zip = preg_replace('/[^0-9]/', '', $_GET["Zip"]);
 $address->country = "United States";
 
 $validCardHolder = new HpsCardHolder();
 $validCardHolder->firstName = $_GET["FirstName"];
 $validCardHolder->lastName = $_GET["LastName"];
 $validCardHolder->address = $address;
-$validCardHolder->phone = $_GET["PhoneNumber"];
+$validCardHolder->phoneNumber = preg_replace('/[^0-9]/', '', $_GET["PhoneNumber"]);
 
 $suToken = new HpsTokenData();
 $suToken->tokenValue = $_GET['token_value'];

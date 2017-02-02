@@ -982,4 +982,93 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
 
         return $response;
     }
+    
+    /**
+     * @test
+     * /// Visa Test Convenience amount
+     */
+    public function testVisaConvenienceAmount()
+    {
+        $convenienceAmtInfo = 10;
+        
+        $testConfig = new TestServicesConfig();
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+
+        $charge = $chargeSvc->charge(25, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), false, null, null, false, false, null, $convenienceAmtInfo);
+        
+        //get the transaction details
+        $this->assertNotNull($charge->transactionId);        
+        $reportTxnDetail = $chargeSvc->get($charge->transactionId);
+        $this->assertNotNull($reportTxnDetail);
+        
+        //check same amount returned in reportTxnDetail
+        $this->assertEquals($convenienceAmtInfo, $reportTxnDetail->ConvenienceAmount);
+    }
+    
+    /**
+     * @test
+     * /// Visa Test Shipping amount
+     */
+    public function testVisaShippingAmount()
+    {
+        $shippingAmtInfo = 20;
+
+        $testConfig = new TestServicesConfig();
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+
+        $charge = $chargeSvc->charge(25, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), false, null, null, false, false, null, null, $shippingAmtInfo );
+        
+        //get the transaction details
+        $this->assertNotNull($charge->transactionId);        
+        $reportTxnDetail = $chargeSvc->get($charge->transactionId);
+        $this->assertNotNull($reportTxnDetail);
+        
+        //check same amount returned in reportTxnDetail
+        $this->assertEquals($shippingAmtInfo, $reportTxnDetail->ShippingAmount);
+    }    
+    
+    /**
+     * @test
+     * /// Visa Test Authorization with Convenience amount
+     */
+    public function testVisaConvenienceAmountAuthorize()
+    {
+        $convenienceAmtInfo = 10;
+        
+        $testConfig = new TestServicesConfig();
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+
+        $charge = $chargeSvc->authorize(25, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), false, null, null, false, false, $convenienceAmtInfo);
+        
+        //get the transaction details
+        $this->assertNotNull($charge->transactionId);        
+        $reportTxnDetail = $chargeSvc->get($charge->transactionId);
+        $this->assertNotNull($reportTxnDetail);        
+        
+        //check same amount returned in reportTxnDetail
+        $this->assertEquals($convenienceAmtInfo, $reportTxnDetail->ConvenienceAmount);
+    }
+    
+    /**
+     * @test
+     * /// Visa Test Authorization with Shipping amount
+     */
+    public function testVisaShippingAmountAuthorize()
+    {
+        $shippingAmtInfo = 20;
+
+        $testConfig = new TestServicesConfig();
+        $chargeSvc = new HpsCreditService($testConfig::validMultiUseConfig());
+
+        $charge = $chargeSvc->authorize(25, "usd", TestCreditCard::validVisaCreditCard(), TestCardHolder::ValidCardHolder(), false, null, null, false, false, null, $shippingAmtInfo);
+        
+        //get the transaction details
+        $this->assertNotNull($charge->transactionId);        
+        $reportTxnDetail = $chargeSvc->get($charge->transactionId);
+        $this->assertNotNull($reportTxnDetail);
+        
+        //check same amount returned in reportTxnDetail
+        $this->assertEquals($shippingAmtInfo, $reportTxnDetail->ShippingAmount);
+    }    
+    
 }

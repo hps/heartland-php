@@ -26,6 +26,10 @@ class FluentCreditTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("00", $auth->responseCode);
         $this->assertNotNull($auth->transactionId);
 
+        $get = $this->service->get($auth->transactionId)->execute();
+
+        $this->assertEquals($get->authorizedAmount, $get->settlementAmount);
+
         /** @var \HpsReportTransactionDetails $capture */
         $capture = $this->service
             ->capture($auth->transactionId)
@@ -34,6 +38,7 @@ class FluentCreditTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals("0", $capture->responseCode);
         $this->assertEquals("15.00", $capture->settlementAmount);
+        $this->assertNotEquals($capture->authorizedAmount, $capture->settlementAmount);
     }
     public function testAuthorizeAndCaptureWithGratuity()
     {
@@ -612,5 +617,224 @@ class FluentCreditTest extends PHPUnit_Framework_TestCase
         $this->service
             ->void()
             ->execute();
+    }    
+    
+    public function testChargeConvenienceAmount()
+    {
+        $charge = $this->service
+            ->charge()
+            ->withAmount(30)
+            ->withCurrency("usd")
+            ->withCard(TestCreditCard::validVisaCreditCard())
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(20)
+            ->execute();
+
+        $this->assertNotNull($charge->transactionId);
+
+        $reportTxnDetail = $this->service
+            ->get()
+            ->withTransactionId($charge->transactionId)
+            ->execute();
+        
+        $this->assertNotNull($reportTxnDetail);
+        $this->assertEquals(20, $reportTxnDetail->convenienceAmount);
     }
+    
+    public function testChargeShippingAmount()
+    {
+        $charge = $this->service
+            ->charge()
+            ->withAmount(25)
+            ->withCurrency("usd")
+            ->withCard(TestCreditCard::validVisaCreditCard())
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withAllowDuplicates(true)
+            ->withShippingAmtInfo(15)
+            ->execute();
+
+        $this->assertNotNull($charge->transactionId);
+
+        $reportTxnDetail = $this->service
+            ->get()
+            ->withTransactionId($charge->transactionId)
+            ->execute();
+        
+        $this->assertNotNull($reportTxnDetail);
+        $this->assertEquals(15, $reportTxnDetail->shippingAmount);
+    }
+    
+    public function testAuthorizeConvenienceAmount()
+    {
+        $charge = $this->service
+            ->authorize()
+            ->withAmount(30)
+            ->withCurrency("usd")
+            ->withCard(TestCreditCard::validVisaCreditCard())
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(20)
+            ->execute();
+
+        $this->assertNotNull($charge->transactionId);
+
+        $reportTxnDetail = $this->service
+            ->get()
+            ->withTransactionId($charge->transactionId)
+            ->execute();
+        
+        $this->assertNotNull($reportTxnDetail);
+        $this->assertEquals(20, $reportTxnDetail->convenienceAmount);
+    }
+    
+    public function testAuthorizeShippingAmount()
+    {
+        $charge = $this->service
+            ->authorize()
+            ->withAmount(25)
+            ->withCurrency("usd")
+            ->withCard(TestCreditCard::validVisaCreditCard())
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withAllowDuplicates(true)
+            ->withShippingAmtInfo(15)
+            ->execute();
+
+        $this->assertNotNull($charge->transactionId);
+
+        $reportTxnDetail = $this->service
+            ->get()
+            ->withTransactionId($charge->transactionId)
+            ->execute();
+        
+        $this->assertNotNull($reportTxnDetail);
+        $this->assertEquals(15, $reportTxnDetail->shippingAmount);
+    }
+    
+    public function testChargeConvenienceAndShippingAmount()
+    {
+        $charge = $this->service
+            ->charge()
+            ->withAmount(35)
+            ->withCurrency("usd")
+            ->withCard(TestCreditCard::validVisaCreditCard())
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(10)                
+            ->withShippingAmtInfo(15)
+            ->execute();
+
+        $this->assertNotNull($charge->transactionId);
+
+        $reportTxnDetail = $this->service
+            ->get()
+            ->withTransactionId($charge->transactionId)
+            ->execute();
+        
+        $this->assertNotNull($reportTxnDetail);
+        $this->assertEquals(10, $reportTxnDetail->convenienceAmount);
+        $this->assertEquals(15, $reportTxnDetail->shippingAmount);
+    }
+    
+    public function testAuthorizeConvenienceAndShippingAmount()
+    {
+        $charge = $this->service
+            ->authorize()
+            ->withAmount(35)
+            ->withCurrency("usd")
+            ->withCard(TestCreditCard::validVisaCreditCard())
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(10)                
+            ->withShippingAmtInfo(15)
+            ->execute();
+
+        $this->assertNotNull($charge->transactionId);
+
+        $reportTxnDetail = $this->service
+            ->get()
+            ->withTransactionId($charge->transactionId)
+            ->execute();
+        
+        $this->assertNotNull($reportTxnDetail);
+        $this->assertEquals(10, $reportTxnDetail->convenienceAmount);
+        $this->assertEquals(15, $reportTxnDetail->shippingAmount);
+    }
+    
+    /**
+     * @expectedException        HpsInvalidRequestException
+     * @expectedExceptionCode    HpsExceptionCodes::INVALID_AMOUNT
+     * @expectedExceptionMessage Must be greater than or equal to 0
+     */
+    public function testChargeConvenienceAndShippingInvalidAmount()
+    {
+        $this->service
+            ->charge()
+            ->withAmount(35)
+            ->withCurrency("usd")
+            ->withCard(TestCreditCard::validVisaCreditCard())
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(-10)                
+            ->withShippingAmtInfo(-10)
+            ->execute();
+    }
+    
+    /**
+     * @expectedException        HpsInvalidRequestException
+     * @expectedExceptionCode    HpsExceptionCodes::INVALID_AMOUNT
+     * @expectedExceptionMessage Must be greater than or equal to 0
+     */
+    public function testChargeInvalidShippingAmount()
+    {       
+        $this->service
+            ->charge()
+            ->withAmount(35)
+            ->withCurrency("usd")
+            ->withCard(TestCreditCard::validVisaCreditCard())
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(20)                
+            ->withShippingAmtInfo(-10)
+            ->execute();        
+    }
+    
+    /**
+     * @expectedException        HpsInvalidRequestException
+     * @expectedExceptionCode    HpsExceptionCodes::INVALID_AMOUNT
+     * @expectedExceptionMessage Must be greater than or equal to 0
+     */
+    public function testAuthorizeConvenienceAndShippingInvalidAmount()
+    {
+        $this->service
+            ->authorize()
+            ->withAmount(35)
+            ->withCurrency("usd")
+            ->withCard(TestCreditCard::validVisaCreditCard())
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(-10)                
+            ->withShippingAmtInfo(-15)
+            ->execute();
+    }
+    
+    /**
+     * @expectedException        HpsInvalidRequestException
+     * @expectedExceptionCode    HpsExceptionCodes::INVALID_AMOUNT
+     * @expectedExceptionMessage Must be greater than or equal to 0
+     */
+    public function testAuthorizeInvalidShippingAmount()
+    {       
+        $this->service
+            ->authorize()
+            ->withAmount(35)
+            ->withCurrency("usd")
+            ->withCard(TestCreditCard::validVisaCreditCard())
+            ->withCardHolder(TestCardHolder::ValidCardHolder())
+            ->withAllowDuplicates(true)
+            ->withConvenienceAmtInfo(20)                
+            ->withShippingAmtInfo(-10)
+            ->execute();        
+    }
+    
 }
