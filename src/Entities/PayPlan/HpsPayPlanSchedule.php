@@ -112,7 +112,7 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
             'invoiceNbr',
             'description',
         );
-        if ($schedule->scheduleStarted === 'true'){
+        if ($schedule->scheduleStarted === true){
             $editableFields[] = 'cancellationDate';
             $editableFields[] = 'nextProcessingDate';
         }

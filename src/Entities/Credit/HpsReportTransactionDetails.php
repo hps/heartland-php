@@ -20,7 +20,7 @@ class HpsReportTransactionDetails extends HpsAuthorization
 
     public static function fromDict($rsp, $txnType, $returnType = 'HpsReportTransactionDetails')
     {
-        $reportResponse = $rsp->Transaction->$txnType;        
+        $reportResponse = $rsp->Transaction->$txnType;
 
         $details = parent::fromDict($rsp, $txnType, $returnType);
         $details->originalTransactionId = (isset($reportResponse->OriginalGatewayTxnId) ? (string)$reportResponse->OriginalGatewayTxnId : null);
@@ -56,7 +56,7 @@ class HpsReportTransactionDetails extends HpsAuthorization
             $details->invoiceNumber = (isset($additionalTxnFields->InvoiceNbr) ? (string)$additionalTxnFields->InvoiceNbr : null);
             $details->customerId = (isset($additionalTxnFields->CustomerID) ? (string)$additionalTxnFields->CustomerID : null);
         }
-        
+
         if ((string)$reportResponse->GatewayRspCode != '0' && (string)$reportResponse->Data->RspCode != '00') {
             if ($details->exceptions == null) {
                 $details->exceptions = new HpsChargeExceptions();
@@ -65,7 +65,8 @@ class HpsReportTransactionDetails extends HpsAuthorization
             $details->exceptions->issuerException = HpsIssuerResponseValidation::getException(
                 (string)$rsp->Header->GatewayTxnId,
                 (string)$reportResponse->Data->RspCode,
-                (string)$reportResponse->Data->RspText
+                (string)$reportResponse->Data->RspText,
+                'credit'
             );
         }
 
