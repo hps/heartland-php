@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsBuilderAbstract
+ */
 abstract class HpsBuilderAbstract
 {
     /** @var array(HpsBuilderAction) */
@@ -11,7 +14,7 @@ abstract class HpsBuilderAbstract
     /** @var array(callable) */
     public $validations    = array();
 
-    /** @var HpsGatewayServiceAbstract|HpsSoapGatewayService|HpsRestGatewayService */
+    /** @var HpsGatewayServiceAbstract|HpsSoapGatewayService|HpsRestGatewayService|HpsFluentCreditService */
     protected $service     = null;
 
     /**
@@ -36,9 +39,10 @@ abstract class HpsBuilderAbstract
         $this->executed = true;
         return $this;
     }
-
     /**
-     * @return HpsBuilderAbstract
+     * @param $action
+     *
+     * @return \HpsBuilderAbstract
      */
     public function addAction($action)
     {
@@ -151,6 +155,7 @@ abstract class HpsBuilderAbstract
         } else {
             throw new HpsUnknownPropertyException($this, $property);
         }
+        return $this;
     }
 
     /**

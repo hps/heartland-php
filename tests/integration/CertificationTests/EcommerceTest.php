@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class EcommerceTest
+ */
 class EcommerceTest extends PHPUnit_Framework_TestCase
 {
     const BATCH_NOT_OPEN = 'Transaction was rejected because it requires a batch to be open.';
@@ -48,7 +51,9 @@ class EcommerceTest extends PHPUnit_Framework_TestCase
 
     /** @var string|null */
     public static $transactionId53 = null;
-
+    /**
+     * @return \HpsServicesConfig
+     */
     private function config()
     {
         $config = new HpsServicesConfig();
@@ -91,9 +96,11 @@ class EcommerceTest extends PHPUnit_Framework_TestCase
 
     public function test001VerifyVisa()
     {
+
+        /** @var HpsAccountVerify $response */
         $response = $this->service
             ->verify()
-            ->withCard(TestCreditCard::validVisaCreditCard(array('cvv'=>false)))
+            ->withCard(TestCreditCard::validVisaCreditCard())
             ->withRequestMultiUseToken($this->useTokens)
             ->execute();
 
@@ -103,9 +110,10 @@ class EcommerceTest extends PHPUnit_Framework_TestCase
 
     public function test002VerifyMasterCard()
     {
+        /** @var HpsAccountVerify $response */
         $response = $this->service
             ->verify()
-            ->withCard(TestCreditCard::validMastercardCreditCard(array('cvv'=>false)))
+            ->withCard(TestCreditCard::validMastercardCreditCard())
             ->withRequestMultiUseToken($this->useTokens)
             ->execute();
 
@@ -119,9 +127,10 @@ class EcommerceTest extends PHPUnit_Framework_TestCase
         $cardHolder->address = new HpsAddress();
         $cardHolder->address->zip = '75024';
 
+        /** @var HpsAccountVerify $response */
         $response = $this->service
             ->verify()
-            ->withCard(TestCreditCard::validDiscoverCreditCard(array('cvv'=>false)))
+            ->withCard(TestCreditCard::validDiscoverCreditCard())
             ->withCardHolder($cardHolder)
             ->withRequestMultiUseToken($this->useTokens)
             ->execute();
@@ -138,6 +147,7 @@ class EcommerceTest extends PHPUnit_Framework_TestCase
         $cardHolder->address = new HpsAddress();
         $cardHolder->address->zip = '75024';
 
+        /** @var HpsAccountVerify $response */
         $response = $this->service
             ->verify()
             ->withCard(TestCreditCard::validAmexCreditCard(array('cvv'=>false)))
@@ -159,9 +169,10 @@ class EcommerceTest extends PHPUnit_Framework_TestCase
      */
     public function test005BalanceInquiryVisa()
     {
+        /** @var HpsAccountVerify $response */
         $response = $this->service
             ->prepaidBalanceInquiry()
-            ->withCard(TestCreditCard::validVisaCreditCard(array('cvv'=>false)))
+            ->withCard(TestCreditCard::validVisaCreditCard())
             ->execute();
 
         $this->assertEquals(true, $response != null);
@@ -1193,6 +1204,9 @@ class EcommerceTest extends PHPUnit_Framework_TestCase
 
     /// GIFT
 
+    /**
+     * @return \HpsGiftCard
+     */
     public function giftCard1()
     {
         $card = new HpsGiftCard();
@@ -1200,7 +1214,9 @@ class EcommerceTest extends PHPUnit_Framework_TestCase
 
         return $card;
     }
-
+    /**
+     * @return \HpsGiftCard
+     */
     public function giftCard2()
     {
         $card = new HpsGiftCard();

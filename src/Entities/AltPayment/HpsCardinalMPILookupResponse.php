@@ -1,12 +1,20 @@
 <?php
 
+/**
+ * Class HpsCardinalMPILookupResponse
+ */
 class HpsCardinalMPILookupResponse extends HpsCardinalMPIResponse
 {
     public $acsUrl = null;
     public $enrolled = null;
     public $payload = null;
     public $processorTransactionIdPairing = null;
-
+    /**
+     * @param        $data
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromObject($data, $returnType = 'HpsCardinalMPILookupResponse')
     {
         $response = parent::fromObject($data, $returnType);

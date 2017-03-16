@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * Class TestCardHolder
+ */
 class TestCardHolder
 {
+    /**
+     * @return \HpsCardHolder
+     */
     public static function validCardHolder()
     {
         $address = new HpsAddress();
@@ -17,7 +23,9 @@ class TestCardHolder
         $validCardHolder->address = $address;
         return $validCardHolder;
     }
-
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderShortZip()
     {
         $address = new HpsAddress();
@@ -33,7 +41,9 @@ class TestCardHolder
         $validCardHolder->address = $address;
         return $validCardHolder;
     }
-
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderLongZip()
     {
         $address = new HpsAddress();
@@ -49,7 +59,9 @@ class TestCardHolder
         $validCardHolder->address = $address;
         return $validCardHolder;
     }
-
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderLongZipStreet()
     {
         $address = new HpsAddress();
@@ -65,7 +77,9 @@ class TestCardHolder
         $validCardHolder->address = $address;
         return $validCardHolder;
     }
-
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderLongZipNoStreet()
     {
         $address = new HpsAddress();
@@ -81,7 +95,9 @@ class TestCardHolder
         $validCardHolder->address = $address;
         return $validCardHolder;
     }
-
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderShortZipNoStreet()
     {
         $address = new HpsAddress();
@@ -97,7 +113,9 @@ class TestCardHolder
         $validCardHolder->address = $address;
         return $validCardHolder;
     }
-
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderShortZipStreet()
     {
         $address = new HpsAddress();
@@ -115,6 +133,9 @@ class TestCardHolder
     }
     
     //Test data for sanitize user input
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderLongFirstName()
     {
         $address = new HpsAddress();
@@ -130,7 +151,9 @@ class TestCardHolder
         $validCardHolder->address = $address;
         return $validCardHolder;
     }
-    
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderLongLastName()
     {
         $address = new HpsAddress();
@@ -146,7 +169,9 @@ class TestCardHolder
         $validCardHolder->address = $address;
         return $validCardHolder;
     }
-    
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderLongCityName()
     {
         $address = new HpsAddress();
@@ -162,7 +187,9 @@ class TestCardHolder
         $validCardHolder->address = $address;
         return $validCardHolder;
     }
-    
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderLongStateName()
     {
         $address = new HpsAddress();
@@ -178,7 +205,9 @@ class TestCardHolder
         $validCardHolder->address = $address;
         return $validCardHolder;
     }
-    
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderLongEmailAddress()
     {
         $address = new HpsAddress();
@@ -196,7 +225,9 @@ class TestCardHolder
         
         return $validCardHolder;
     }
-    
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderInvalidEmailAddress()
     {
         $address = new HpsAddress();
@@ -214,7 +245,9 @@ class TestCardHolder
         
         return $validCardHolder;
     }
-    
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderLongPhoneNumber()
     {
         $address = new HpsAddress();
@@ -232,7 +265,9 @@ class TestCardHolder
         
         return $validCardHolder;
     }
-    
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderLongZipCode()
     {
         $address = new HpsAddress();
@@ -249,7 +284,9 @@ class TestCardHolder
         
         return $validCardHolder;
     }
-    
+    /**
+     * @return \HpsCardHolder
+     */
     public static function certCardHolderCanadianZipCode()
     {
         $address = new HpsAddress();

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsItemChoiceTypePosResponseVer10Transaction
+ */
 abstract class HpsItemChoiceTypePosResponseVer10Transaction
 {
     const ADD_ATTACHMENT                = 'AddAttachment';

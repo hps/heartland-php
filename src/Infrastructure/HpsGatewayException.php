@@ -1,10 +1,21 @@
 <?php
 
+/**
+ * Class HpsGatewayException
+ */
 class HpsGatewayException extends HpsException
 {
     public $code    = null;
     public $details = null;
-
+    /**
+     * HpsGatewayException constructor.
+     *
+     * @param string $code
+     * @param null   $message
+     * @param null   $gatewayResponseCode
+     * @param null   $gatewayResponseMessage
+     * @param null   $innerException
+     */
     public function __construct($code, $message, $gatewayResponseCode = null, $gatewayResponseMessage = null, $innerException = null)
     {
         $this->code = $code;

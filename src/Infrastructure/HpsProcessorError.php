@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsProcessorError
+ */
 class HpsProcessorError
 {
     public $code;

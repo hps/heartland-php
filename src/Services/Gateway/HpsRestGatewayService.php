@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsRestGatewayService
+ */
 class HpsRestGatewayService extends HpsGatewayServiceAbstract
 {
     const CERT_URL = 'https://cert.api2.heartlandportico.com/Portico.PayPlan.v2';
@@ -8,20 +11,36 @@ class HpsRestGatewayService extends HpsGatewayServiceAbstract
     protected $limit = null;
     protected $offset = null;
     protected $searchFields = null;
-
+    /**
+     * @param $limit
+     * @param $offset
+     *
+     * @return $this
+     */
     public function page($limit, $offset)
     {
         $this->limit = $limit;
         $this->offset = $offset;
         return $this;
     }
-
+    /**
+     * @param $searchFields
+     *
+     * @return $this
+     */
     public function search($searchFields)
     {
         $this->searchFields = $searchFields;
         return $this;
     }
-
+    /**
+     * @param null  $data
+     * @param array $options
+     *
+     * @return mixed
+     * @throws \HpsAuthenticationException
+     * @throws \HpsGatewayException
+     */
     protected function doRequest($data = null, $options = array())
     {
         $endpoint = isset($options['endpoint']) ? $options['endpoint'] : '';
@@ -69,7 +88,14 @@ class HpsRestGatewayService extends HpsGatewayServiceAbstract
         // print "\n" . $encodedData;
         return $this->submitRequest($url, $header, $encodedData, $verb, $keyType);
     }
-
+    /**
+     * @param $curlResponse
+     * @param $curlInfo
+     * @param $curlError
+     *
+     * @return mixed
+     * @throws \HpsException
+     */
     protected function processResponse($curlResponse, $curlInfo, $curlError)
     {
         // print "\n" . $curlResponse;
@@ -88,12 +114,22 @@ class HpsRestGatewayService extends HpsGatewayServiceAbstract
                 break;
         }
     }
-
+    /**
+     * @param $result
+     * @param $type
+     *
+     * @return mixed
+     */
     protected function hydrateObject($result, $type)
     {
         return call_user_func(array($type, 'fromStdClass'), $result);
     }
-
+    /**
+     * @param $resultSet
+     * @param $type
+     *
+     * @return object
+     */
     protected function hydrateSearchResults($resultSet, $type)
     {
         $results = array();
@@ -109,7 +145,9 @@ class HpsRestGatewayService extends HpsGatewayServiceAbstract
             'results' => $results,
         );
     }
-
+    /**
+     * @return string
+     */
     private function _gatewayUrlForKey()
     {
         if ($this->_config->secretApiKey != null && $this->_config->secretApiKey != "") {

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsGiftCardAliasAction
+ */
 abstract class HpsGiftCardAliasAction
 {
     const DELETE = 'DELETE';

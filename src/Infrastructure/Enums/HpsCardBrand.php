@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsCardBrand
+ */
 abstract class HpsCardBrand
 {
     const MASTERCARD = 'MC';

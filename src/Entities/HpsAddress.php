@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsAddress
+ */
 class HpsAddress
 {
     public $address = null;

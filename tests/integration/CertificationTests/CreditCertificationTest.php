@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class CreditCertificationTest
+ */
 class CreditCertificationTest extends PHPUnit_Framework_TestCase
 {
     /**

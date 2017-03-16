@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class FluentCreditTest
+ */
 class FluentCreditTest extends PHPUnit_Framework_TestCase
 {
     /** @var HpsFluentCreditService $service */

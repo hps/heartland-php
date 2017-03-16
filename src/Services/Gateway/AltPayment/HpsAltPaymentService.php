@@ -1,10 +1,25 @@
 <?php
 
+/**
+ * Class HpsAltPaymentService
+ */
 class HpsAltPaymentService extends HpsSoapGatewayService
 {
     /** @var string|null */
     protected $_transactionType = null;
-
+    /**
+     * @param                       $sessionId
+     * @param                       $amount
+     * @param                       $currency
+     * @param \HpsBuyerData|null    $buyer
+     * @param \HpsPaymentData|null  $payment
+     * @param \HpsShippingInfo|null $shippingAddress
+     * @param null                  $lineItems
+     *
+     * @return null
+     * @throws \HpsException
+     * @throws \HpsInvalidRequestException
+     */
     public function authorize($sessionId, $amount, $currency, HpsBuyerData $buyer = null, HpsPaymentData $payment = null, HpsShippingInfo $shippingAddress = null, $lineItems = null)
     {
         HpsInputValidation::checkAmount($amount);
@@ -29,7 +44,14 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         $transaction->appendChild($auth);
         return $this->_submitTransaction($transaction, 'AltPaymentAuth');
     }
-
+    /**
+     * @param $transactionId
+     * @param $amount
+     *
+     * @return null
+     * @throws \HpsException
+     * @throws \HpsInvalidRequestException
+     */
     public function capture($transactionId, $amount)
     {
         HpsInputValidation::checkAmount($amount);
@@ -52,7 +74,18 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         $transaction->appendChild($capture);
         return $this->_submitTransaction($transaction, 'AltPaymentCapture');
     }
-
+    /**
+     * @param                       $amount
+     * @param                       $currency
+     * @param \HpsBuyerData|null    $buyer
+     * @param \HpsPaymentData|null  $payment
+     * @param \HpsShippingInfo|null $shippingAddress
+     * @param null                  $lineItems
+     *
+     * @return null
+     * @throws \HpsException
+     * @throws \HpsInvalidRequestException
+     */
     public function createSession($amount, $currency, HpsBuyerData $buyer = null, HpsPaymentData $payment = null, HpsShippingInfo $shippingAddress = null, $lineItems = null)
     {
         HpsInputValidation::checkAmount($amount);
@@ -76,7 +109,14 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         $transaction->appendChild($createSession);
         return $this->_submitTransaction($transaction, 'AltPaymentCreateSession');
     }
-
+    /**
+     * @param      $transactionId
+     * @param bool $isPartial
+     * @param null $partialAmount
+     *
+     * @return null
+     * @throws \HpsException
+     */
     public function refund($transactionId, $isPartial = false, $partialAmount = null)
     {
         $xml = new DOMDocument();
@@ -100,7 +140,19 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         $transaction->appendChild($return);
         return $this->_submitTransaction($transaction, 'AltPaymentReturn');
     }
-
+    /**
+     * @param                       $sessionId
+     * @param                       $amount
+     * @param                       $currency
+     * @param \HpsBuyerData|null    $buyer
+     * @param \HpsPaymentData|null  $payment
+     * @param \HpsShippingInfo|null $shippingAddress
+     * @param null                  $lineItems
+     *
+     * @return null
+     * @throws \HpsException
+     * @throws \HpsInvalidRequestException
+     */
     public function sale($sessionId, $amount, $currency, HpsBuyerData $buyer = null, HpsPaymentData $payment = null, HpsShippingInfo $shippingAddress = null, $lineItems = null)
     {
         HpsInputValidation::checkAmount($amount);
@@ -125,7 +177,12 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         $transaction->appendChild($sale);
         return $this->_submitTransaction($transaction, 'AltPaymentSale');
     }
-
+    /**
+     * @param $transactionId
+     *
+     * @return null
+     * @throws \HpsException
+     */
     public function void($transactionId)
     {
         $xml = new DOMDocument();
@@ -138,7 +195,12 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         $transaction->appendChild($void);
         return $this->_submitTransaction($transaction, 'AltPaymentVoid');
     }
-
+    /**
+     * @param $sessionId
+     *
+     * @return null
+     * @throws \HpsException
+     */
     public function sessionInfo($sessionId)
     {
         $xml = new DOMDocument();
@@ -151,12 +213,19 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         $transaction->appendChild($info);
         return $this->_submitTransaction($transaction, 'AltPaymentSessionInfo');
     }
-
+    /**
+     * @param $type
+     */
     public function setTransactionType($type)
     {
         $this->_transactionType = $type;
     }
-
+    /**
+     * @param $transactionId
+     *
+     * @return null
+     * @throws \HpsException
+     */
     public function status($transactionId)
     {
         $xml = new DOMDocument();
@@ -168,7 +237,12 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         $transaction->appendChild($status);
         return $this->_submitTransaction($transaction, 'GetTransactionStatus');
     }
-
+    /**
+     * @param \HpsBuyerData $buyer
+     * @param \DOMDocument  $xml
+     *
+     * @return \DOMElement
+     */
     protected function hydrateBuyerData(HpsBuyerData $buyer, DOMDocument $xml)
     {
         $data = $xml->createElement('hps:Buyer');
@@ -189,7 +263,12 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         }
         return $data;
     }
-
+    /**
+     * @param              $items
+     * @param \DOMDocument $xml
+     *
+     * @return \DOMElement
+     */
     protected function hydrateLineItems($items, DOMDocument $xml)
     {
         $lineItems = $xml->createElement('hps:LineItem');
@@ -221,7 +300,13 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         }
         return $lineItems;
     }
-
+    /**
+     * @param              $name
+     * @param              $value
+     * @param \DOMDocument $xml
+     *
+     * @return \DOMElement
+     */
     protected function hydrateNameValuePair($name, $value, DOMDocument $xml)
     {
         $nvp = $xml->createElement('hps:NameValuePair');
@@ -229,7 +314,12 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         $nvp->appendChild($xml->createElement('hps:Value', HpsInputValidation::cleanAscii($value)));
         return $nvp;
     }
-
+    /**
+     * @param \HpsPaymentData $payment
+     * @param \DOMDocument    $xml
+     *
+     * @return \DOMElement
+     */
     protected function hydratePaymentData(HpsPaymentData $payment, DOMDocument $xml)
     {
         $data = $xml->createElement('hps:Payment');
@@ -248,7 +338,12 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         }
         return $data;
     }
-
+    /**
+     * @param \HpsShippingInfo $info
+     * @param \DOMDocument     $xml
+     *
+     * @return \DOMElement
+     */
     protected function hydrateShippingData(HpsShippingInfo $info, DOMDocument $xml)
     {
         $shipping = $xml->createElement('hps:Shipping');
@@ -263,7 +358,14 @@ class HpsAltPaymentService extends HpsSoapGatewayService
         $shipping->appendChild($address);
         return $shipping;
     }
-
+    /**
+     * @param $response
+     * @param $expectedType
+     *
+     * @throws \HpsAuthenticationException
+     * @throws \HpsGatewayException
+     * @throws null
+     */
     private function _processGatewayResponse($response, $expectedType)
     {
         $gatewayRspCode = (isset($response->Header->GatewayRspCode) ? $response->Header->GatewayRspCode : null);
@@ -287,7 +389,13 @@ class HpsAltPaymentService extends HpsSoapGatewayService
 
         HpsGatewayResponseValidation::checkResponse($response, $expectedType);
     }
-
+    /**
+     * @param $response
+     * @param $expectedType
+     *
+     * @throws \HpsProcessorException
+     * @throws null
+     */
     private function _processProcessorResponse($response, $expectedType)
     {
         $transactionId = (isset($response->Header->GatewayTxnId) ? $response->Header->GatewayTxnId : null);
@@ -307,7 +415,16 @@ class HpsAltPaymentService extends HpsSoapGatewayService
             HpsProcessorResponseValidation::checkResponse($transactionId, $responseCode, $responseMessage, $item);
         }
     }
-
+    /**
+     * @param      $transaction
+     * @param      $txnType
+     * @param null $clientTxnId
+     * @param null $cardData
+     *
+     * @return null
+     * @throws \HpsException
+     * @throws \HpsGatewayException
+     */
     private function _submitTransaction($transaction, $txnType, $clientTxnId = null, $cardData = null)
     {
         try {
@@ -354,6 +471,7 @@ class HpsAltPaymentService extends HpsSoapGatewayService
                 break;
             case 'GetTransactionStatus':
                 $rvalue = HpsTransactionStatus::fromDict($response, $txnType);
+                break;
             default:
                 break;
         }

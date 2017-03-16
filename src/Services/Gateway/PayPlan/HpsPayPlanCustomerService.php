@@ -1,7 +1,15 @@
 <?php
 
+/**
+ * Class HpsPayPlanCustomerService
+ */
 class HpsPayPlanCustomerService extends HpsRestGatewayService
 {
+    /**
+     * @param \HpsPayPlanCustomer $customer
+     *
+     * @return mixed
+     */
     public function add(HpsPayPlanCustomer $customer)
     {
         $data = $customer->getEditableFieldsWithValues();
@@ -11,7 +19,11 @@ class HpsPayPlanCustomerService extends HpsRestGatewayService
         ));
         return $this->hydrateObject($result, 'HpsPayPlanCustomer');
     }
-
+    /**
+     * @param \HpsPayPlanCustomer $customer
+     *
+     * @return mixed
+     */
     public function edit(HpsPayPlanCustomer $customer)
     {
         $data = $customer->getEditableFieldsWithValues();
@@ -21,7 +33,11 @@ class HpsPayPlanCustomerService extends HpsRestGatewayService
         ));
         return $this->hydrateObject($result, 'HpsPayPlanCustomer');
     }
-
+    /**
+     * @param array $searchFields
+     *
+     * @return object
+     */
     public function findAll($searchFields = array())
     {
         // Cannot have an array as the root object
@@ -35,7 +51,11 @@ class HpsPayPlanCustomerService extends HpsRestGatewayService
 
         return $this->hydrateSearchResults($results, 'HpsPayPlanCustomer');
     }
-
+    /**
+     * @param $customer
+     *
+     * @return mixed
+     */
     public function get($customer)
     {
         $id = null;
@@ -50,7 +70,12 @@ class HpsPayPlanCustomerService extends HpsRestGatewayService
         ));
         return $this->hydrateObject($result, 'HpsPayPlanCustomer');
     }
-
+    /**
+     * @param      $customer
+     * @param bool $forceDelete
+     *
+     * @return mixed
+     */
     public function delete($customer, $forceDelete = false)
     {
         $id = null;

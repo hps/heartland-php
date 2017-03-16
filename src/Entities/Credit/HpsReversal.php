@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsReversal
+ */
 class HpsReversal extends HpsTransaction
 {
     public $avsResultCode = null;
@@ -7,7 +10,13 @@ class HpsReversal extends HpsTransaction
     public $cvvResultCode = null;
     public $cvvResultText = null;
     public $cpcIndicator  = null;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromDict($rsp, $txnType, $returnType = 'HpsReversal')
     {
         $reverseResponse = $rsp->Transaction->$txnType;

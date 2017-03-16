@@ -6,7 +6,7 @@
  *
  * @method HpsCreditServiceListTransactionsBuilder withStartDate(string $startDate)
  * @method HpsCreditServiceListTransactionsBuilder withEndDate(string $endDate)
- * @method HpsCreditServiceListTransactionsBuilder withFilterBy(integer|string $filterBy)
+ * @method HpsCreditServiceListTransactionsBuilder withFilterBy(string $filterBy)
  * @method HpsCreditServiceListTransactionsBuilder withClientTransactionId(string $clientTransactionId)
  */
 class HpsCreditServiceListTransactionsBuilder extends HpsBuilderAbstract

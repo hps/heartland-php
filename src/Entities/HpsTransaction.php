@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsTransaction
+ */
 class HpsTransaction
 {
     public $transactionId       = null;
@@ -8,7 +11,13 @@ class HpsTransaction
     public $responseText        = null;
     public $referenceNumber     = null;
     protected $_header          = null;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromDict($rsp, $txnType, $returnType = 'HpsTransaction')
     {
         $transaction = new $returnType();
@@ -39,7 +48,9 @@ class HpsTransaction
 
         return $transaction;
     }
-
+    /**
+     * @return object
+     */
     public function gatewayResponse()
     {
         return (object)array(
@@ -47,7 +58,11 @@ class HpsTransaction
             'message' => $this->_header->gatewayResponseMessage,
         );
     }
-
+    /**
+     * @param $transactionType
+     *
+     * @return string
+     */
     public static function transactionTypeToServiceName($transactionType)
     {
         switch ($transactionType) {
@@ -88,7 +103,11 @@ class HpsTransaction
                 return "";
         }
     }
-
+    /**
+     * @param $serviceName
+     *
+     * @return int|null
+     */
     public static function serviceNameToTransactionType($serviceName)
     {
         switch ($serviceName) {

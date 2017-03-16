@@ -1,7 +1,15 @@
 <?php
 
+/**
+ * Class HpsDebitService
+ */
 class HpsDebitService extends HpsSoapGatewayService
 {
+    /**
+     * HpsDebitService constructor.
+     *
+     * @param null $config
+     */
     public function __construct($config = null)
     {
         parent::__construct($config);
@@ -69,7 +77,7 @@ class HpsDebitService extends HpsSoapGatewayService
      * @param HpsTransactionDetails $details             Group containing additional transaction fields to be included in detail reporting.
      * @param string                $clientTransactionId Optional client transaction ID.
      *
-     * @return HpsDebit The Return (Authorization) results.
+     * @return HpsDebitReturn The Return (Authorization) results.
      */
     public function returnDebit($transactionId, $amount, $trackData, $pinBlock, $allowDuplicates = false, HpsCardHolder $cardHolder = null, HpsEncryptionData $encryptionData = null, HpsTransactionDetails $details = null, $clientTransactionId = null)
     {
@@ -112,7 +120,7 @@ class HpsDebitService extends HpsSoapGatewayService
      * @param HpsTransactionDetails $details             Group containing additional transaction fields to be included in detail reporting.
      * @param string                $clientTransactionId Optional client transaction ID.
      *
-     * @return HpsDebit The reversal result.
+     * @return HpsDebitReversal The reversal result.
      */
     public function reverse($transactionId, $amount, $trackData, $authorizedAmount = null, HpsEncryptionData $encryptionData = null, HpsTransactionDetails $details = null, $clientTransactionId = null)
     {
@@ -134,14 +142,14 @@ class HpsDebitService extends HpsSoapGatewayService
             $hpsBlock1->appendChild($this->_hydrateAdditionalTxnFields($details, $xml));
         }
 
-        $hpsGiftCard->appendChild($hpsBlock1);
-        $hpsTransaction->appendChild($hpsGiftCard);
 
         if (isset($authorizedAmount)) {
-            $block = $transaction->Item->Block1;
-            $block->authAmt = $authorizedAmount->value;
-            $block->authAmtSpecified = true;
+            $hpsBlock1->appendChild($xml->createElement('hps:authAmt', $authorizedAmount));
+            $hpsBlock1->appendChild($xml->createElement('hps:authAmtSpecified', true));
         }
+
+        $hpsGiftCard->appendChild($hpsBlock1);
+        $hpsTransaction->appendChild($hpsGiftCard);
 
         $rsp = $this->_submitTransaction($hpsTransaction, 'DebitReversal', $clientTransactionId);
         $rsp->responseCode = '00';
@@ -166,7 +174,7 @@ class HpsDebitService extends HpsSoapGatewayService
      * @param HpsTransactionDetails $details             Group containing additional transaction fields to be included in detail reporting.
      * @param string                $clientTransactionId Optional client transaction ID.
      *
-     * @return HpsDebit The Debit Charge result.
+     * @return HpsDebitSale The Debit Charge result.
      */
     public function charge($amount, $currency, $trackData, $pinBlock, HpsEncryptionData $encryptionData = null, $allowDuplicates = false, $cashBackAmount = null, $allowPartialAuth = false, HpsCardHolder $cardHolder = null, HpsTransactionDetails $details = null, $clientTransactionId = null)
     {
@@ -199,7 +207,14 @@ class HpsDebitService extends HpsSoapGatewayService
 
         return $this->_submitTransaction($hpsTransaction, 'DebitSale', $clientTransactionId);
     }
-
+    /**
+     * @param $response
+     * @param $expectedType
+     *
+     * @throws \HpsAuthenticationException
+     * @throws \HpsGatewayException
+     * @throws null
+     */
     private function _processChargeGatewayResponse($response, $expectedType)
     {
         $gatewayRspCode = (isset($response->Header->GatewayRspCode) ? $response->Header->GatewayRspCode : null);
@@ -223,7 +238,13 @@ class HpsDebitService extends HpsSoapGatewayService
 
         HpsGatewayResponseValidation::checkResponse($response, $expectedType);
     }
-
+    /**
+     * @param $response
+     * @param $expectedType
+     *
+     * @throws \HpsCreditException
+     * @throws null
+     */
     private function _processChargeIssuerResponse($response, $expectedType)
     {
         $transactionId = (isset($response->Header->GatewayTxnId) ? $response->Header->GatewayTxnId : null);
@@ -262,7 +283,17 @@ class HpsDebitService extends HpsSoapGatewayService
             }
         }
     }
-
+    /**
+     * @param      $transaction
+     * @param      $txnType
+     * @param null $clientTxnId
+     * @param null $cardData
+     *
+     * @return null
+     * @throws \HpsCreditException
+     * @throws \HpsException
+     * @throws \HpsGatewayException
+     */
     private function _submitTransaction($transaction, $txnType, $clientTxnId = null, $cardData = null)
     {
         $options = array();

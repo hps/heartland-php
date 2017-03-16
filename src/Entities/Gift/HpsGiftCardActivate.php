@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsGiftCardActivate
+ */
 class HpsGiftCardActivate extends HpsTransaction
 {
     /**
@@ -26,7 +29,13 @@ class HpsGiftCardActivate extends HpsTransaction
      * @var string
      */
     public $notes               = null;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromDict($rsp, $txnType, $returnType = 'HpsGiftCardActivate')
     {
         $activationRsp = $rsp->Transaction->$txnType;

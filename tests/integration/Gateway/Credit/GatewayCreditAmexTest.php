@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class GatewayCreditAmexTest
+ */
 class GatewayCreditAmexTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -450,6 +453,11 @@ class GatewayCreditAmexTest extends PHPUnit_Framework_TestCase
     /// Charge an AMEX with a valid config and valid AMEX info.
     /// <param name="amt">Amount to charge</param>
     /// <returns>The HPS Charge.</returns>
+    /**
+     * @param $amt
+     *
+     * @return array|null
+     */
     private function chargeValidAmex($amt)
     {
         $testConfig = new TestServicesConfig();

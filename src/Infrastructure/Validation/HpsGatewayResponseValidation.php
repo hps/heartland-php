@@ -1,7 +1,18 @@
 <?php
 
+/**
+ * Class HpsGatewayResponseValidation
+ */
 class HpsGatewayResponseValidation
 {
+    /**
+     * @param $response
+     * @param $expectedType
+     *
+     * @throws \HpsAuthenticationException
+     * @throws \HpsGatewayException
+     * @throws null
+     */
     public static function checkResponse($response, $expectedType)
     {
         $rspCode = $response->Header->GatewayRspCode;
@@ -18,7 +29,13 @@ class HpsGatewayResponseValidation
             );
         }
     }
-
+    /**
+     * @param $responseCode
+     * @param $responseText
+     * @param $response
+     *
+     * @return \HpsAuthenticationException|\HpsGatewayException|null
+     */
     public static function getException($responseCode, $responseText, $response)
     {
         $e = null;

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class CheckRetailCertificationTest
+ */
 class CheckRetailCertificationTest extends PHPUnit_Framework_TestCase
 {
     // ACH Debit Consumer Tests

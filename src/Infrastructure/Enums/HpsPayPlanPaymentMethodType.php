@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsPayPlanPaymentMethodType
+ */
 abstract class HpsPayPlanPaymentMethodType
 {
     const ACH         = 'ACH';

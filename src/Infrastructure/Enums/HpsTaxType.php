@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsTaxType
+ */
 abstract class HpsTaxType
 {
     const NOT_USED   = 'NOTUSED';

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class GatewayCreditDiscoverTest
+ */
 class GatewayCreditDiscoverTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -601,6 +604,11 @@ class GatewayCreditDiscoverTest extends PHPUnit_Framework_TestCase
     /// Charge a Discover with a valid config and valid Discover info.
     /// <param name="amt">Amount to charge</param>
     /// <returns>The HPS Charge.</returns>
+    /**
+     * @param $amt
+     *
+     * @return array|null
+     */
     private function chargeValidDiscover($amt)
     {
         $testConfig = new TestServicesConfig();

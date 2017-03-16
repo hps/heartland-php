@@ -1,7 +1,15 @@
 <?php
 
+/**
+ * Class HpsPayPlanPaymentMethodService
+ */
 class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
 {
+    /**
+     * @param \HpsPayPlanPaymentMethod $paymentMethod
+     *
+     * @return mixed
+     */
     public function add(HpsPayPlanPaymentMethod $paymentMethod)
     {
         $result = null;
@@ -12,7 +20,11 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
         }
         return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
-
+    /**
+     * @param \HpsPayPlanPaymentMethod $paymentMethod
+     *
+     * @return mixed
+     */
     public function edit(HpsPayPlanPaymentMethod $paymentMethod)
     {
         $result = null;
@@ -23,7 +35,11 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
         }
         return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
-
+    /**
+     * @param array $searchFields
+     *
+     * @return object
+     */
     public function findAll($searchFields = array())
     {
         // Cannot have an array as the root object
@@ -37,7 +53,11 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
 
         return $this->hydrateSearchResults($results, 'HpsPayPlanPaymentMethod');
     }
-
+    /**
+     * @param $paymentMethod
+     *
+     * @return mixed
+     */
     public function get($paymentMethod)
     {
         $id = null;
@@ -52,7 +72,12 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
         ));
         return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
-
+    /**
+     * @param      $paymentMethod
+     * @param bool $forceDelete
+     *
+     * @return mixed
+     */
     public function delete($paymentMethod, $forceDelete = false)
     {
         $id = null;
@@ -70,7 +95,11 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
             'endpoint' => 'paymentMethods/'.$id,
         ));
     }
-
+    /**
+     * @param \HpsPayPlanPaymentMethod $paymentMethod
+     *
+     * @return mixed
+     */
     private function addCreditCard(HpsPayPlanPaymentMethod $paymentMethod)
     {
         $data = $paymentMethod->getEditableFieldsWithValues();
@@ -86,7 +115,11 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
         ));
         return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
-
+    /**
+     * @param \HpsPayPlanPaymentMethod $paymentMethod
+     *
+     * @return mixed
+     */
     private function editCreditCard(HpsPayPlanPaymentMethod $paymentMethod)
     {
         $data = $paymentMethod->getEditableFieldsWithValues();
@@ -96,7 +129,11 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
         ));
         return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
-
+    /**
+     * @param \HpsPayPlanPaymentMethod $paymentMethod
+     *
+     * @return mixed
+     */
     private function addACH(HpsPayPlanPaymentMethod $paymentMethod)
     {
         $data = $paymentMethod->getEditableFieldsWithValues();
@@ -111,7 +148,11 @@ class HpsPayPlanPaymentMethodService extends HpsRestGatewayService
         ));
         return $this->hydrateObject($result, 'HpsPayPlanPaymentMethod');
     }
-
+    /**
+     * @param \HpsPayPlanPaymentMethod $paymentMethod
+     *
+     * @return mixed
+     */
     private function editACH(HpsPayPlanPaymentMethod $paymentMethod)
     {
         $data = $paymentMethod->getEditableFieldsWithValues();

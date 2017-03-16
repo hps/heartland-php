@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsTrackData
+ */
 class HpsTrackData
 {
     /** @var HpsTrackDataMethod **/

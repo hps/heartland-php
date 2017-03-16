@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsReportTransactionDetails
+ */
 class HpsReportTransactionDetails extends HpsAuthorization
 {
     public $issuerTransactionId   = null;
@@ -17,7 +20,13 @@ class HpsReportTransactionDetails extends HpsAuthorization
     public $gratuityAmount        = null;
     public $convenienceAmount     = null;
     public $shippingAmount        = null;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromDict($rsp, $txnType, $returnType = 'HpsReportTransactionDetails')
     {
         $reportResponse = $rsp->Transaction->$txnType;

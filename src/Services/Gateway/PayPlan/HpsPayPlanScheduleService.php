@@ -1,8 +1,15 @@
 <?php
 
+/**
+ * Class HpsPayPlanScheduleService
+ */
 class HpsPayPlanScheduleService extends HpsRestGatewayService
 {
-
+    /**
+     * @param \HpsPayPlanSchedule $schedule
+     *
+     * @return mixed
+     */
     public function add(HpsPayPlanSchedule $schedule)
     {
         $data = $schedule->getEditableFieldsWithValues();
@@ -14,6 +21,11 @@ class HpsPayPlanScheduleService extends HpsRestGatewayService
         ));
         return $this->hydrateObject($result, 'HpsPayPlanSchedule');
     }
+    /**
+     * @param \HpsPayPlanSchedule $schedule
+     *
+     * @return mixed
+     */
     public function edit(HpsPayPlanSchedule $schedule)
     {
         $data = $schedule->getEditableFieldsWithValues( $schedule );
@@ -23,7 +35,11 @@ class HpsPayPlanScheduleService extends HpsRestGatewayService
         ));
         return $this->hydrateObject($result, 'HpsPayPlanSchedule');
     }
-
+    /**
+     * @param array $searchFields
+     *
+     * @return object
+     */
     public function findAll($searchFields = array())
     {
         // Cannot have an array as the root object
@@ -36,6 +52,11 @@ class HpsPayPlanScheduleService extends HpsRestGatewayService
             ));
         return $this->hydrateSearchResults($results, 'HpsPayPlanSchedule');
     }
+    /**
+     * @param $schedule
+     *
+     * @return mixed
+     */
     public function get($schedule)
     {
         $id = null;
@@ -50,6 +71,12 @@ class HpsPayPlanScheduleService extends HpsRestGatewayService
         ));
         return $this->hydrateObject($result, 'HpsPayPlanSchedule');
     }
+    /**
+     * @param      $schedule
+     * @param bool $forceDelete
+     *
+     * @return mixed
+     */
     public function delete($schedule, $forceDelete = false)
     {
         $id = null;

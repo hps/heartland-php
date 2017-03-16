@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * Class TestGiftCard
+ */
 class TestGiftCard
 {
+    /**
+     * @return \HpsGiftCard
+     */
     public static function validGiftCardNotEncrypted()
     {
         $card = new HpsGiftCard();
@@ -9,7 +15,9 @@ class TestGiftCard
 
         return $card;
     }
-
+    /**
+     * @return \HpsGiftCard
+     */
     public static function validGiftCardNotEncrypted2()
     {
         $card = new HpsGiftCard();
@@ -17,7 +25,9 @@ class TestGiftCard
 
         return $card;
     }
-
+    /**
+     * @return \HpsGiftCard
+     */
     public static function invalidGiftCardNotEncrypted()
     {
         $card = new HpsGiftCard();

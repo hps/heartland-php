@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsBuyerData
+ */
 class HpsBuyerData
 {
     /** @var string|null */

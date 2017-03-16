@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsTransactionType
+ */
 abstract class HpsTransactionType
 {
     const AUTHORIZE        = 1;

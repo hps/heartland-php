@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsTransactionDetails
+ */
 class HpsTransactionDetails
 {
     public $memo                = null;

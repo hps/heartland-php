@@ -1,46 +1,83 @@
 <?php
 
+/**
+ * Class HpsFluentCheckService
+ */
 class HpsFluentCheckService extends HpsSoapGatewayService
 {
+    /**
+     * HpsFluentCheckService constructor.
+     *
+     * @param null $config
+     */
     public function __construct($config = null)
     {
         parent::__construct($config);
     }
-
+    /**
+     * @param $config
+     *
+     * @return $this
+     */
     public function withConfig($config)
     {
         $this->_config = $config;
         return $this;
     }
-
+    /**
+     * @return \HpsCheckServiceOverrideBuilder
+     */
     public function override()
     {
         return new HpsCheckServiceOverrideBuilder($this);
     }
-
+    /**
+     * @param null $amount
+     *
+     * @return \HpsCheckServiceRecurringBuilder
+     */
     public function recurring($amount = null)
     {
         $builder = new HpsCheckServiceRecurringBuilder($this);
         return $builder->withAmount($amount);
     }
-
+    /**
+     * @return \HpsCheckServiceReturnBuilder
+     */
     public function returnCheck()
     {
         return new HpsCheckServiceReturnBuilder($this);
     }
-
+    /**
+     * @param null $amount
+     *
+     * @return \HpsCheckServiceSaleBuilder
+     */
     public function sale($amount = null)
     {
         $builder = new HpsCheckServiceSaleBuilder($this);
         return $builder
             ->withAmount($amount);
     }
-
+    /**
+     * @return \HpsCheckServiceVoidBuilder
+     */
     public function void()
     {
         return new HpsCheckServiceVoidBuilder($this);
     }
-
+    /**
+     * @param           $action
+     * @param \HpsCheck $check
+     * @param           $amount
+     * @param null      $clientTransactionId
+     * @param bool      $checkVerify
+     * @param bool      $achVerify
+     *
+     * @return mixed
+     * @throws \HpsCheckException
+     * @throws \HpsInvalidRequestException
+     */
     public function _buildTransaction($action, HpsCheck $check, $amount, $clientTransactionId = null, $checkVerify = false, $achVerify = false)
     {
         if ($amount != null) {
@@ -92,7 +129,17 @@ class HpsFluentCheckService extends HpsSoapGatewayService
 
         return $this->_submitTransaction($hpsTransaction, 'CheckSale', $clientTransactionId);
     }
-
+    /**
+     * @param      $transaction
+     * @param      $txnType
+     * @param null $clientTransactionId
+     *
+     * @return mixed
+     * @throws \HpsAuthenticationException
+     * @throws \HpsCheckException
+     * @throws \HpsGatewayException
+     * @throws null
+     */
     public function _submitTransaction($transaction, $txnType, $clientTransactionId = null)
     {
         $rsp = $this->doRequest($transaction, $clientTransactionId);

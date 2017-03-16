@@ -1,7 +1,18 @@
 <?php
 
+/**
+ * Class HpsSoapGatewayService
+ */
 class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGatewayServiceInterface
 {
+    /**
+     * @param       $transaction
+     * @param array $options
+     *
+     * @return mixed
+     * @throws \HpsAuthenticationException
+     * @throws \HpsGatewayException
+     */
     public function doRequest($transaction, $options = array())
     {
         $xml = new DOMDocument('1.0', 'utf-8');
@@ -54,7 +65,14 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
 
         return $this->submitRequest($url, $header, $data);
     }
-
+    /**
+     * @param $curlResponse
+     * @param $curlInfo
+     * @param $curlError
+     *
+     * @return mixed
+     * @throws \HpsException
+     */
     public function processResponse($curlResponse, $curlInfo, $curlError)
     {
         // print "\n" . $curlResponse;
@@ -73,7 +91,12 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
                 break;
         }
     }
-
+    /**
+     * @param              $details
+     * @param \DOMDocument $xml
+     *
+     * @return \DOMElement
+     */
     public function _hydrateAdditionalTxnFields($details, DOMDocument $xml)
     {
         $additionalTxnFields = $xml->createElement('hps:AdditionalTxnFields');
@@ -92,7 +115,13 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
 
         return $additionalTxnFields;
     }
-
+    /**
+     * @param \HpsCardHolder $cardHolder
+     * @param \DOMDocument   $xml
+     *
+     * @return \DOMElement
+     * @throws \HpsInvalidRequestException
+     */
     public function _hydrateCardHolderData(HpsCardHolder $cardHolder, DOMDocument $xml)
     {
         //handle both phone and phoneNumber properties as a valid phone
@@ -116,7 +145,12 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
 
         return $cardHolderData;
     }
-
+    /**
+     * @param \HpsCheck    $check
+     * @param \DOMDocument $xml
+     *
+     * @return \DOMElement
+     */
     public function _hydrateCheckData(HpsCheck $check, DOMDocument $xml)
     {
         $checkData = $xml->createElement('hps:AccountInfo');
@@ -143,7 +177,12 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
 
         return $checkData;
     }
-
+    /**
+     * @param \HpsCheck    $check
+     * @param \DOMDocument $xml
+     *
+     * @return \DOMElement
+     */
     public function _hydrateConsumerInfo(HpsCheck $check, DOMDocument $xml)
     {
         $consumerInfo = $xml->createElement('hps:ConsumerInfo');
@@ -200,7 +239,12 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
 
         return $consumerInfo;
     }
-
+    /**
+     * @param \HpsCPCData  $cpcData
+     * @param \DOMDocument $xml
+     *
+     * @return \DOMElement
+     */
     public function _hydrateCPCData(HpsCPCData $cpcData, DOMDocument $xml)
     {
         $cpcDataElement = $xml->createElement('hps:CPCData');
@@ -216,7 +260,12 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
 
         return $cpcDataElement;
     }
-
+    /**
+     * @param \HpsDirectMarketData $data
+     * @param \DOMDocument         $xml
+     *
+     * @return \DOMElement
+     */
     public function _hydrateDirectMarketData(HpsDirectMarketData $data, DOMDocument $xml)
     {
         $directMktDataElement = $xml->createElement('hps:DirectMktData');
@@ -226,7 +275,12 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
 
         return $directMktDataElement;
     }
-
+    /**
+     * @param \HpsEncryptionData $encryptionData
+     * @param \DOMDocument       $xml
+     *
+     * @return \DOMElement
+     */
     public function _hydrateEncryptionData(HpsEncryptionData $encryptionData, DOMDocument $xml)
     {
         $encData = $xml->createElement('hps:EncryptionData');
@@ -238,7 +292,13 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
         $encData->appendChild($xml->createElement('hps:Version', $encryptionData->version));
         return $encData;
     }
-
+    /**
+     * @param \HpsGiftCard $giftCard
+     * @param \DOMDocument $xml
+     * @param string       $elementName
+     *
+     * @return \DOMElement
+     */
     public function _hydrateGiftCardData(HpsGiftCard $giftCard, DOMDocument $xml, $elementName = 'CardData')
     {
         $giftCardData = $xml->createElement('hps:'.$elementName);
@@ -262,7 +322,14 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
 
         return $giftCardData;
     }
-
+    /**
+     * @param \HpsCreditCard $card
+     * @param \DOMDocument   $xml
+     * @param bool           $cardPresent
+     * @param bool           $readerPresent
+     *
+     * @return \DOMElement
+     */
     public function _hydrateManualEntry(HpsCreditCard $card, DOMDocument $xml, $cardPresent = false, $readerPresent = false)
     {
         $manualEntry = $xml->createElement('hps:ManualEntry');
@@ -288,7 +355,12 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
 
         return $manualEntry;
     }
-
+    /**
+     * @param $data
+     * @param $xml
+     *
+     * @return mixed
+     */
     public function _hydrateSecureEcommerce($data, $xml)
     {
         $secureEcommerce = $xml->createElement('hps:SecureECommerce');
@@ -317,6 +389,14 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
   * @link https://github.com/hps/heartland-php/pull/21
   * @description resolves a recursion issue identified in the link above
   */
+    /**
+     * @param              $token
+     * @param \DOMDocument $xml
+     * @param bool         $cardPresent
+     * @param bool         $readerPresent
+     *
+     * @return \DOMElement
+     */
     public function _hydrateTokenData($token, DOMDocument $xml, $cardPresent = false, $readerPresent = false)
     {
         if (!$token instanceof HpsTokenData) {
@@ -344,7 +424,12 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
         $tokenData->appendChild($xml->createElement('hps:ReaderPresent', ($readerPresent ? 'Y' : 'N')));
         return $tokenData;
     }
-
+    /**
+     * @param \HpsTrackData $trackData
+     * @param               $xml
+     *
+     * @return mixed
+     */
     public function _hydrateTrackData(HpsTrackData $trackData, $xml)
     {
         $trackDataElement = $xml->createElement('hps:TrackData', $trackData->value);
@@ -353,7 +438,9 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
         $trackDataElement->appendChild($trackDataElementMethod);
         return $trackDataElement;
     }
-
+    /**
+     * @return string
+     */
     private function _gatewayUrlForKey()
     {
         if ($this->_config->secretApiKey != null && $this->_config->secretApiKey != "") {
@@ -368,7 +455,11 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
             return $this->_config->soapServiceUri;
         }
     }
-
+    /**
+     * @param $xml
+     *
+     * @return mixed
+     */
     private function _XML2Array($xml)
     {
         $envelope = simplexml_load_string($xml, "SimpleXMLElement", 0, 'http://schemas.xmlsoap.org/soap/envelope/');
@@ -377,8 +468,13 @@ class HpsSoapGatewayService extends HpsGatewayServiceAbstract implements HpsGate
                 return $item;
             }
         }
+        return null;
     }
-
+    /**
+     * @param $xml
+     *
+     * @return string
+     */
     private function _XMLFault2String($xml)
     {
         $dom = new DOMDocument();

@@ -1,10 +1,17 @@
 <?php
 // This should only be used for testing tokens.
+/**
+ * Class HpsTokenService
+ */
 class HpsTokenService extends HpsRestGatewayService
 {
     protected $_publicAPIKey = null;
     protected $_url          = null;
-
+    /**
+     * HpsTokenService constructor.
+     *
+     * @param \HpsConfigInterface|null $publicAPIKey
+     */
     public function __construct($publicAPIKey)
     {
         $this->_config = new HpsServicesConfig();
@@ -17,7 +24,13 @@ class HpsTokenService extends HpsRestGatewayService
             $this->_url = "https://cert.api2.heartlandportico.com/Hps.Exchange.PosGateway.Hpf.v1/api/token";
         }
     }
-
+    /**
+     * @param \HpsCreditCard $cardData
+     *
+     * @return mixed
+     * @throws \HpsAuthenticationException
+     * @throws \HpsGatewayException
+     */
     public function getToken(HpsCreditCard $cardData)
     {
         $data = array();
@@ -35,7 +48,14 @@ class HpsTokenService extends HpsRestGatewayService
 
         return $this->submitRequest($url, $header, null, 'GET', HpsServicesConfig::KEY_TYPE_PUBLIC);
     }
-
+    /**
+     * @param $curlResponse
+     * @param $curlInfo
+     * @param $curlError
+     *
+     * @return mixed
+     * @throws \HpsException
+     */
     protected function processResponse($curlResponse, $curlInfo, $curlError)
     {
         $response = json_decode($curlResponse);
@@ -46,7 +66,9 @@ class HpsTokenService extends HpsRestGatewayService
         
         return $response;
     }
-
+    /**
+     * @return bool
+     */
     protected function _isConfigInvalid()
     {
         return $this->_config->publicApiKey == null || $this->_url == null;

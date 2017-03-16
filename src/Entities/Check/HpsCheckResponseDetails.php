@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsCheckResponseDetails
+ */
 class HpsCheckResponseDetails
 {
     public $messageType = null;

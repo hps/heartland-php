@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsTransactionHeader
+ */
 class HpsTransactionHeader
 {
     public $gatewayResponseCode    = null;

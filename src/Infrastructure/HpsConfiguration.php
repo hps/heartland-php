@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsConfiguration
+ */
 class HpsConfiguration
 {
     public $secretApiKey      = null;

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class GatewayPayPlanScheduleTest
+ */
 class GatewayPayPlanScheduleTest extends PHPUnit_Framework_TestCase
 {
     protected $paymentMethod;

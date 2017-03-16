@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class FluentGiftCardTest
+ */
 class FluentGiftCardTest extends PHPUnit_Framework_TestCase
 {
     protected $service;

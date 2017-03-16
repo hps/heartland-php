@@ -5,6 +5,10 @@
 * @method HpsCreditServiceUpdateTokenExpirationBuilder withExpMonth(string $transactionId)
 * @method HpsCreditServiceUpdateTokenExpirationBuilder withExpYear(string $transactionId)
 */
+
+/**
+ * Class HpsCreditServiceUpdateTokenExpirationBuilder
+ */
 class HpsCreditServiceUpdateTokenExpirationBuilder extends HpsBuilderAbstract
 {
 

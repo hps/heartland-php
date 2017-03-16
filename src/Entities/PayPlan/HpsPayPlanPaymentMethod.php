@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsPayPlanPaymentMethod
+ */
 class HpsPayPlanPaymentMethod extends HpsPayPlanResourceAbstract
 {
     /** @var string|null */
@@ -109,7 +112,11 @@ class HpsPayPlanPaymentMethod extends HpsPayPlanResourceAbstract
 
     /** @var string|null */
     public $paymentToken              = null;
-
+    /**
+     * @param null $type
+     *
+     * @return array
+     */
     public static function getEditableFields($type = null)
     {
         $fields = array(
@@ -149,7 +156,9 @@ class HpsPayPlanPaymentMethod extends HpsPayPlanResourceAbstract
                 break;
         }
     }
-
+    /**
+     * @return array
+     */
     public static function getSearchableFields()
     {
         return array(
@@ -168,7 +177,11 @@ class HpsPayPlanPaymentMethod extends HpsPayPlanResourceAbstract
             'hasActiveSchedules',
         );
     }
-
+    /**
+     * @param $obj
+     *
+     * @return \HpsPayPlanPaymentMethod
+     */
     public static function fromStdClass($obj)
     {
         $ret = new HpsPayPlanPaymentMethod();
@@ -213,6 +226,12 @@ class HpsPayPlanPaymentMethod extends HpsPayPlanResourceAbstract
     }
 
     // Needs to be implemented to get name of child class
+    /**
+     * @param string $class
+     * @param array  $params
+     *
+     * @return array
+     */
     public function getEditableFieldsWithValues($class = '', $params = array())
     {
         return parent::getEditableFieldsWithValues(get_class(), array($this->paymentMethodType));

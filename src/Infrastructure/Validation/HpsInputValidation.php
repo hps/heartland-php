@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsInputValidation
+ */
 class HpsInputValidation
 {
     private static $_defaultAllowedCurrencies = array('usd');
@@ -12,7 +15,12 @@ class HpsInputValidation
         'Email' => 100,
 	'State' => 20
     );
-
+    /**
+     * @param $amount
+     *
+     * @return string
+     * @throws \HpsInvalidRequestException
+     */
     public static function checkAmount($amount)
     {
         if ($amount < 0 || $amount === null) {
@@ -25,7 +33,12 @@ class HpsInputValidation
         $amount = preg_replace('/[^0-9\.]/', '', $amount);
         return sprintf("%0.2f", round($amount, 3));
     }
-
+    /**
+     * @param      $currency
+     * @param null $allowedCurrencies
+     *
+     * @throws \HpsInvalidRequestException
+     */
     public static function checkCurrency($currency, $allowedCurrencies = null)
     {
         $currencies = self::$_defaultAllowedCurrencies;
@@ -47,17 +60,29 @@ class HpsInputValidation
             );
         }
     }
-
+    /**
+     * @param $number
+     *
+     * @return mixed
+     */
     public static function cleanPhoneNumber($number)
     {
         return preg_replace('/\D+/', '', trim($number));
     }
-
+    /**
+     * @param $zip
+     *
+     * @return mixed
+     */
     public static function cleanZipCode($zip)
     {
         return preg_replace('/[^0-9A-Za-z]/', '', trim($zip));
     }
-
+    /**
+     * @param $date
+     *
+     * @throws \HpsInvalidRequestException
+     */
     public static function checkDateNotFuture($date)
     {
         $current = date('Y-m-d\TH:i:s.00\Z', time());
@@ -69,7 +94,11 @@ class HpsInputValidation
             );
         }
     }
-
+    /**
+     * @param $text
+     *
+     * @return mixed
+     */
     public static function cleanAscii($text)
     {
         return preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $text);

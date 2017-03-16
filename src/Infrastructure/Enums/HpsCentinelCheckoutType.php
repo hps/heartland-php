@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsCentinelCheckoutType
+ */
 class HpsCentinelCheckoutType
 {
     const LIGHTBOX         = 'lightbox';

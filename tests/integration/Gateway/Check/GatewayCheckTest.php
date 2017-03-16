@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class GatewayCheckTest
+ */
 class GatewayCheckTest extends PHPUnit_Framework_TestCase
 {
     private $checkService;

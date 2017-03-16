@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsBatch
+ */
 class HpsBatch
 {
     public $id               = null;

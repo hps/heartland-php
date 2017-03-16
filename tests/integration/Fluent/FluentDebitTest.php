@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class FluentDebitTest
+ */
 class FluentDebitTest extends PHPUnit_Framework_TestCase
 {
     protected $service;

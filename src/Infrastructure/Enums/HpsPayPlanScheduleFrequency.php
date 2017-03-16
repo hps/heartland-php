@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsPayPlanScheduleFrequency
+ */
 abstract class HpsPayPlanScheduleFrequency
 {
     const WEEKLY       = 'Weekly';

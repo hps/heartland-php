@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsSecureEcommerce
+ */
 class HpsSecureEcommerce
 {
     public $dataSource = null;

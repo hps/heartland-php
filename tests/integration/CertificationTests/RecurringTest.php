@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class RecurringTest
+ */
 class RecurringTest extends PHPUnit_Framework_TestCase
 {
     const BATCH_NOT_OPEN = 'Transaction was rejected because it requires a batch to be open.';
@@ -51,7 +54,9 @@ class RecurringTest extends PHPUnit_Framework_TestCase
 
     /** @var string|null */
     private static $scheduleKeyCheckCcd        = null;
-
+    /**
+     * @return \HpsServicesConfig
+     */
     private function config()
     {
         $config = new HpsServicesConfig();
@@ -76,7 +81,11 @@ class RecurringTest extends PHPUnit_Framework_TestCase
         $this->creditService = new HpsFluentCreditService($this->config());
         $this->checkService  = new HpsFluentCheckService($this->config());
     }
-
+    /**
+     * @param $identifier
+     *
+     * @return string
+     */
     public function getIdentifier($identifier)
     {
         $rvalue = sprintf(self::$identifierBase, self::$todayDate, $identifier);

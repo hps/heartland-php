@@ -33,6 +33,9 @@ class HpsCreditServiceChargeBuilder extends HpsBuilderAbstract
 
     /** @var HpsTokenData|null */
     protected $token                    = null;
+    
+    /** @var HpsTrackData|null */
+    protected $trackData                = null;
 
     /** @var HpsCardHolder|null */
     protected $cardHolder               = null;
@@ -195,7 +198,7 @@ class HpsCreditServiceChargeBuilder extends HpsBuilderAbstract
         $hpsCreditSale->appendChild($hpsBlock1);
         $hpsTransaction->appendChild($hpsCreditSale);
 
-        return $this->service->_submitTransaction($hpsTransaction, 'CreditSale', (isset($details->clientTransactionId) ? $details->clientTransactionId : null));
+        return $this->service->_submitTransaction($hpsTransaction, 'CreditSale', (isset($this->details->clientTransactionId) ? $this->details->clientTransactionId : null));
     }
 
     /**

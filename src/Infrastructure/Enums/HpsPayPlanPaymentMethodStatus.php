@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsPayPlanPaymentMethodStatus
+ */
 abstract class HpsPayPlanPaymentMethodStatus extends HpsPayPlanCustomerStatus
 {
     const INVALID     = 'Invalid';

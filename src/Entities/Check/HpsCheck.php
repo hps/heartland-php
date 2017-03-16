@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsCheck
+ */
 class HpsCheck
 {
     public $routingNumber = null;

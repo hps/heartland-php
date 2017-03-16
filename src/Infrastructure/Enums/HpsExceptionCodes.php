@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsExceptionCodes
+ */
 abstract class HpsExceptionCodes
 {
     // general codes

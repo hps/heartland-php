@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class GatewayCreditVisaTest
+ */
 class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -970,6 +973,14 @@ class GatewayCreditVisaTest extends PHPUnit_Framework_TestCase
     /// Charge a Visa with a valid config and valid Visa info.
     /// <param name="amt">Amount to charge</param>
     /// <returns>The HPS Charge.</returns>
+    /**
+     * @param      $amt
+     * @param bool $multiUseRequest
+     * @param null $details
+     * @param null $txnDescriptors
+     *
+     * @return array|null
+     */
     private function chargeValidVisa($amt, $multiUseRequest = false, $details = null, $txnDescriptors = null)
     {
         $testConfig = new TestServicesConfig();

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsConsumer
+ */
 class HpsConsumer
 {
     public $firstName = null;

@@ -1,10 +1,19 @@
 <?php
 
+/**
+ * Class HpsGiftCardSale
+ */
 class HpsGiftCardSale extends HpsGiftCardActivate
 {
     public $splitTenderCardAmount = null;
     public $splitTenderBalanceDue = null;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromDict($rsp, $txnType, $returnType = 'HpsGiftCardSale')
     {
         $item = $rsp->Transaction;

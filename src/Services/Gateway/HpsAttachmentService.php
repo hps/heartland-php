@@ -40,13 +40,15 @@ class HpsAttachmentService extends HpsSoapGatewayService
     */
 
     /**
-     * @param float $GatewayTxnId this is actually a long but php handles long with float
-     * @param HpsAttachmentType $AttachmentType SIGNATURE_IMAGE|RECEIPT_IMAGE|CUSTOMER_IMAGE|PRODUCT_IMAGE|DOCUMENT
-     * @param bool $ReturnAttachmentTypesOnly
-     * @param null|int $AttachmentDataId
-     * @return HpsAttachment
-     * @throws HpsArgumentException
-     * @throws HpsException
+     * @param float                     $GatewayTxnId   this is actually a long but php handles long with float
+     * @param \HpsAttachmentType|string $AttachmentType SIGNATURE_IMAGE|RECEIPT_IMAGE|CUSTOMER_IMAGE|PRODUCT_IMAGE|DOCUMENT
+     * @param bool                      $ReturnAttachmentTypesOnly
+     * @param null|int                  $AttachmentDataId
+     *
+     * @return \HpsAttachment
+     * @throws \HpsArgumentException
+     * @throws \HpsException
+     * @throws \HpsGatewayException
      */
     public function getAttachments($GatewayTxnId, $AttachmentType = 'all', $ReturnAttachmentTypesOnly = false, $AttachmentDataId = null)
     {
@@ -60,7 +62,7 @@ class HpsAttachmentService extends HpsSoapGatewayService
         // this is a limitation of the gateway and we want to inform the user
         if ($AttachmentTypeProvided && $AttachmentDataId) {
             throw new HpsGatewayException(HpsExceptionCodes::GATEWAY_ERROR, "Since the AttachmentDataId was provided the AttachmentType was ignored by the server");
-            trigger_error("Since the AttachmentDataId was provided the AttachmentType was ignored by the server", E_USER_NOTICE);
+            //trigger_error("Since the AttachmentDataId was provided the AttachmentType was ignored by the server", E_USER_NOTICE);
         }
         $xml = new DOMDocument();
         $hpsTransaction = $xml->createElement('hps:Transaction');

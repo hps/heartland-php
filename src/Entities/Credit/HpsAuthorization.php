@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsAuthorization
+ */
 class HpsAuthorization extends HpsTransaction
 {
     public $avsResultCode     = null;
@@ -15,7 +18,13 @@ class HpsAuthorization extends HpsTransaction
     public $customerId        = null;
     public $descriptor        = null;
     public $tokenData         = null;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromDict($rsp, $txnType, $returnType = 'HpsAuthorization')
     {
         $authResponse = $rsp->Transaction->$txnType;

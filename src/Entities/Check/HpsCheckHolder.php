@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsCheckHolder
+ */
 class HpsCheckHolder extends HpsConsumer
 {
     public $checkName    = null;

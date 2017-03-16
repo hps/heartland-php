@@ -1,7 +1,19 @@
 <?php
 
+/**
+ * Class HpsProcessorResponseValidation
+ */
 class HpsProcessorResponseValidation
 {
+    /**
+     * @param $transactionId
+     * @param $responseCode
+     * @param $responseText
+     * @param $item
+     *
+     * @throws \HpsProcessorException
+     * @throws null
+     */
     public static function checkResponse($transactionId, $responseCode, $responseText, $item)
     {
         $e = self::getException($transactionId, $responseCode, $responseText, $item);
@@ -10,7 +22,14 @@ class HpsProcessorResponseValidation
             throw $e;
         }
     }
-
+    /**
+     * @param $transactionId
+     * @param $responseCode
+     * @param $responseText
+     * @param $item
+     *
+     * @return \HpsProcessorException|null
+     */
     public static function getException($transactionId, $responseCode, $responseText, $item)
     {
         $responseCode = (string)$responseCode;
@@ -29,7 +48,11 @@ class HpsProcessorResponseValidation
 
         return new HpsProcessorException($transactionId, $code, $message, $responseCode, $responseText);
     }
-
+    /**
+     * @param $pairs
+     *
+     * @return array
+     */
     protected static function nvpToArray($pairs)
     {
         $array = array();

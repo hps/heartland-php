@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class GatewayDebitVisaTest
+ */
 class GatewayDebitVisaTest extends PHPUnit_Framework_TestCase
 {
     public function testVisaDebitWhenValidTrackDataShouldChargeOk()

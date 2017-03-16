@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsGiftCardAlias
+ */
 class HpsGiftCardAlias extends HpsTransaction
 {
     /**
@@ -7,7 +10,13 @@ class HpsGiftCardAlias extends HpsTransaction
      */
 
     public $giftCard = null;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param string $returnType
+     *
+     * @return \HpsGiftCardAlias
+     */
     public static function fromDict($rsp, $txnType, $returnType = 'HpsGiftCardAlias')
     {
         $item = $rsp->Transaction->$txnType;

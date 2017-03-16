@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsShippingInfo
+ */
 class HpsShippingInfo
 {
     /** @var string|null */

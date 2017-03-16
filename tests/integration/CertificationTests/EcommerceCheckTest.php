@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class ECommerceCheckTest
+ */
 class ECommerceCheckTest extends PHPUnit_Framework_TestCase
 {
     /** @var HpsBatchService|null */
@@ -22,7 +25,9 @@ class ECommerceCheckTest extends PHPUnit_Framework_TestCase
 
     /** @var string|null */
     public static $transactionId23 = null;
-
+    /**
+     * @return \HpsServicesConfig
+     */
     private function config()
     {
         $config = new HpsServicesConfig();
@@ -40,6 +45,9 @@ class ECommerceCheckTest extends PHPUnit_Framework_TestCase
     }
 
     # certification check
+    /**
+     * @return \HpsCheck
+     */
     public function baseCheck()
     {
         $certification                = new HpsCheck();

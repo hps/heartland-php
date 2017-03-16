@@ -1,10 +1,16 @@
 <?php
 
+/**
+ * Class TestServicesConfig
+ */
 class TestServicesConfig
 {
     private $uatServiceUri = "https://cert.api2.heartlandportico.com/Hps.Exchange.PosGateway/PosGatewayService.asmx?wsdl";
  
     // <summary>A valid HPS services config.</summary>
+    /**
+     * @return \HpsServicesConfig
+     */
     public static function validMultiUseConfig()
     {
         $secretApiKey = "skapi_cert_MYl2AQAowiQAbLp5JesGKh7QFkcizOP2jcX9BrEMqQ";
@@ -14,12 +20,16 @@ class TestServicesConfig
         $config->developerId = '002914';
         return $config;
     }
-
+    /**
+     * @return string
+     */
     public static function validMultiUsePublicKey()
     {
         return "pkapi_cert_P6dRqs1LzfWJ6HgGVZ";
     }
-
+    /**
+     * @return \HpsServicesConfig
+     */
     public static function invalidMultiUseConfigWithPublicKey()
     {
         $config = new HpsServicesConfig();
@@ -28,7 +38,9 @@ class TestServicesConfig
         $config->developerId = '002914';
         return $config;
     }
-
+    /**
+     * @return \HpsServicesConfig
+     */
     public static function invalidMultiUseConfigWithUnknownKey()
     {
         $config = new HpsServicesConfig();
@@ -37,7 +49,9 @@ class TestServicesConfig
         $config->developerId = '002914';
         return $config;
     }
-
+    /**
+     * @return \HpsServicesConfig
+     */
     public static function validEGoldConfig()
     {
         $config = new HpsServicesConfig();
@@ -50,6 +64,9 @@ class TestServicesConfig
     }
 
     // <summary>An invalid HPS services config.</summary>
+    /**
+     * @return \HpsServicesConfig
+     */
     public static function badLicenseId()
     {
         $secretApiKey = "skapi_cert_MWpSAACkRhcAx56PfFNi9orh4N-vix5-5qMTZMBChAf";
@@ -62,6 +79,9 @@ class TestServicesConfig
     }
 
     // Use with echeck and should work with giftcards
+    /**
+     * @return \HpsServicesConfig
+     */
     public static function certServicesConfigWithDescriptor()
     {
         $config = new HpsServicesConfig();

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsPayPlanScheduleDuration
+ */
 abstract class HpsPayPlanScheduleDuration
 {
     const ONGOING        = 'Ongoing';

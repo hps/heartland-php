@@ -1,9 +1,20 @@
 <?php
 
+/**
+ * Class HpsCentinelGatewayService
+ */
 class HpsCentinelGatewayService
     extends HpsGatewayServiceAbstract
     implements HpsGatewayServiceInterface
 {
+    /**
+     * @param      $request
+     * @param null $options
+     *
+     * @return mixed
+     * @throws \HpsAuthenticationException
+     * @throws \HpsGatewayException
+     */
     public function doRequest($request, $options = null)
     {
         $request = array_merge($request, array(
@@ -32,7 +43,14 @@ class HpsCentinelGatewayService
 
         return $this->submitRequest($url, $header, $data);
     }
-
+    /**
+     * @param $curlResponse
+     * @param $curlInfo
+     * @param $curlError
+     *
+     * @return \SimpleXMLElement
+     * @throws \HpsException
+     */
     public function processResponse($curlResponse, $curlInfo, $curlError)
     {
         // error_log($curlResponse);

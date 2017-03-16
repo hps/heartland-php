@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * Class Attachment
+ */
 class Attachment extends PHPUnit_Framework_TestCase
 {
 

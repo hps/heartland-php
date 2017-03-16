@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsLineItem
+ */
 class HpsLineItem
 {
     public $name        = null;

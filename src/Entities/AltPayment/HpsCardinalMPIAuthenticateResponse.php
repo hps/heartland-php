@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsCardinalMPIAuthenticateResponse
+ */
 class HpsCardinalMPIAuthenticateResponse extends HpsCardinalMPIResponse
 {
     public $authenticateMethod = null;
@@ -49,7 +52,12 @@ class HpsCardinalMPIAuthenticateResponse extends HpsCardinalMPIResponse
     public $rewardNumber = null;
     public $scEnrollmentStatus = null;
     public $signatureVerification = null;
-
+    /**
+     * @param        $data
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromObject($data, $returnType = 'HpsCardinalMPIAuthenticateResponse')
     {
         $response = parent::fromObject($data, $returnType);

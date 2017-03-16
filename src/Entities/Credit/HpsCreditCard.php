@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsCreditCard
+ */
 class HpsCreditCard
 {
     public $number         = null;
@@ -7,7 +10,9 @@ class HpsCreditCard
     public $expMonth       = null;
     public $expYear        = null;
     public $encryptionData = null;
-
+    /**
+     * @return int|string
+     */
     public function cardType()
     {
         $regexMap = array(

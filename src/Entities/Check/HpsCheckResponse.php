@@ -1,11 +1,20 @@
 <?php
 
+/**
+ * Class HpsCheckResponse
+ */
 class HpsCheckResponse extends HpsTransaction
 {
     public $authorizationCode = null;
     public $customerId        = null;
     public $details           = null;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromDict($rsp, $txnType, $returnType = 'HpsCheckResponse')
     {
         $response = $rsp->Transaction->$txnType;
@@ -30,7 +39,11 @@ class HpsCheckResponse extends HpsTransaction
 
         return $sale;
     }
-
+    /**
+     * @param $checkInfo
+     *
+     * @return \HpsCheckResponseDetails
+     */
     private static function _hydrateRspDetails($checkInfo)
     {
         $details = new HpsCheckResponseDetails();

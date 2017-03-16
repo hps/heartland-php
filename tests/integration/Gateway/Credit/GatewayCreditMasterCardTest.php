@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class GatewayCreditMasterCardTest
+ */
 class GatewayCreditMasterCardTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -574,6 +577,11 @@ class GatewayCreditMasterCardTest extends PHPUnit_Framework_TestCase
     /// Charge a MC with a valid config and valid MC info.
     /// <param name="amt">Amount to charge</param>
     /// <returns>The HPS Charge.</returns>
+    /**
+     * @param $amt
+     *
+     * @return array|null
+     */
     private function chargeValidMasterCard($amt)
     {
         $testConfig = new TestServicesConfig();

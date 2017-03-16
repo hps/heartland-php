@@ -1,12 +1,19 @@
 <?php
 
+/**
+ * Class HpsCheckService
+ */
 class HpsCheckService extends HpsSoapGatewayService
 {
+    /**
+     * HpsCheckService constructor.
+     *
+     * @param \HpsServicesConfig $config
+     */
     public function __construct(HpsServicesConfig $config)
     {
         parent::__construct($config);
     }
-
     /**
      * A Sale transaction is used to process transactions using bank account information as the payment method.
      * The transaction service can be used to perform a Sale or Return transaction by indicating the Check Action.
@@ -15,29 +22,50 @@ class HpsCheckService extends HpsSoapGatewayService
      * the available services are the same regardless of the check processor, the services may have different behaviors.
      * For example, GETI-processed Check Sale transactions support the ability to override a Check Sale transaction
      * already presented as well as the ability to verify a check.
-     * @param string $action Type of Check Action (Sale, Return, Override)
-     * @param string $check The Check information.
-     * @param string $amount The amount of the sale.
      *
-     * @returns HpsCheckSale
+     * @param \HpsCheck|string $check  The Check information.
+     * @param string           $amount The amount of the sale.
+     *
+     * @param null             $clientTransactionId
+     *
+     * @return \HpsCheckResponse
+     * @throws \HpsInvalidRequestException
+     * @internal param string $action Type of Check Action (Sale, Return, Override)
      */
     public function sale(HpsCheck $check, $amount, $clientTransactionId = null)
     {
         return $this->_buildTransaction('SALE', $check, $amount, $clientTransactionId);
     }
-
+    /**
+     * @param \HpsCheck $check
+     * @param           $amount
+     * @param null      $clientTransactionId
+     *
+     * @return mixed
+     * @throws \HpsException
+     * @throws \HpsInvalidRequestException
+     */
     public function returnCheck(HpsCheck $check, $amount, $clientTransactionId = null)
     {
+        //TODO: implement replacement
         throw new HpsException('Check action RETURN not currently supported');
         return $this->_buildTransaction('RETURN', $check, $amount, $clientTransactionId);
     }
-
+    /**
+     * @param \HpsCheck $check
+     * @param           $amount
+     * @param null      $clientTransactionId
+     *
+     * @return mixed
+     * @throws \HpsException
+     * @throws \HpsInvalidRequestException
+     */
     public function override(HpsCheck $check, $amount, $clientTransactionId = null)
     {
+        //TODO: implement replacemen
         throw new HpsException('Check action OVERRIDE not currently supported');
         return $this->_buildTransaction('OVERRIDE', $check, $amount, $clientTransactionId);
     }
-
     /**
      * A <b>Void</b> transaction is used to cancel a previously successful sale transaction. The original sale transaction
      * can be identified by the GatewayTxnid of the original or by the ClientTxnId of the original if provided on the
@@ -45,6 +73,10 @@ class HpsCheckService extends HpsSoapGatewayService
      *
      * @param null $transactionId
      * @param null $clientTransactionId
+     *
+     * @return mixed
+     * @throws \HpsCheckException
+     * @throws \HpsException
      */
     public function void($transactionId = null, $clientTransactionId = null)
     {
@@ -67,7 +99,16 @@ class HpsCheckService extends HpsSoapGatewayService
         $hpsTransaction->appendChild($hpsCheckVoid);
         return $this->_submitTransaction($hpsTransaction, 'CheckVoid');
     }
-
+    /**
+     * @param           $action
+     * @param \HpsCheck $check
+     * @param           $amount
+     * @param null      $clientTransactionId
+     *
+     * @return mixed
+     * @throws \HpsCheckException
+     * @throws \HpsInvalidRequestException
+     */
     private function _buildTransaction($action, HpsCheck $check, $amount, $clientTransactionId = null)
     {
         $amount = HpsInputValidation::checkAmount($amount);
@@ -103,7 +144,17 @@ class HpsCheckService extends HpsSoapGatewayService
 
         return $this->_submitTransaction($hpsTransaction, 'CheckSale', $clientTransactionId);
     }
-
+    /**
+     * @param      $transaction
+     * @param      $txnType
+     * @param null $clientTransactionId
+     *
+     * @return mixed
+     * @throws \HpsAuthenticationException
+     * @throws \HpsCheckException
+     * @throws \HpsGatewayException
+     * @throws null
+     */
     private function _submitTransaction($transaction, $txnType, $clientTransactionId = null)
     {
         $options = array();

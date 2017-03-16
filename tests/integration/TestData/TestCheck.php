@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * Class TestCheck
+ */
 class TestCheck
 {
+    /**
+     * @return \HpsCheck
+     */
     public static function approve()
     {
         $check = new HpsCheck();
@@ -25,7 +31,9 @@ class TestCheck
 
         return $check;
     }
-
+    /**
+     * @return \HpsCheck
+     */
     public static function invalidCheckHolder()
     {
         $check = new HpsCheck();
@@ -49,7 +57,9 @@ class TestCheck
 
         return $check;
     }
-
+    /**
+     * @return \HpsCheck
+     */
     public static function decline()
     {
         $check = new HpsCheck();
@@ -73,7 +83,9 @@ class TestCheck
 
         return $check;
     }
-
+    /**
+     * @return \HpsCheck
+     */
     public static function certification()
     {
         $check = new HpsCheck();

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsIssuerResponseValidation
+ */
 class HpsIssuerResponseValidation
 {
     public static $_issuerCodeToCreditExceptionCode = array(
@@ -78,7 +81,15 @@ class HpsIssuerResponseValidation
         HpsExceptionCodes::PARTIAL_APPROVAL     => "The amount was partially approved.",
         HpsExceptionCodes::INVALID_CARD_DATA    => "The card data is invalid.",
     );
-
+    /**
+     * @param        $transactionId
+     * @param        $responseCode
+     * @param        $responseText
+     * @param string $type
+     *
+     * @throws \HpsCreditException
+     * @throws null
+     */
     public static function checkResponse($transactionId, $responseCode, $responseText, $type = 'credit')
     {
         $e = HpsIssuerResponseValidation::getException(
@@ -92,7 +103,14 @@ class HpsIssuerResponseValidation
             throw $e;
         }
     }
-
+    /**
+     * @param $transactionId
+     * @param $responseCode
+     * @param $responseText
+     * @param $type
+     *
+     * @return \HpsCreditException|null
+     */
     public static function getException($transactionId, $responseCode, $responseText, $type)
     {
         $acceptedCodes = array('00', '0');

@@ -1,12 +1,25 @@
 <?php
 
+/**
+ * Class HpsBatchService
+ */
 class HpsBatchService extends HpsSoapGatewayService
 {
+    /**
+     * HpsBatchService constructor.
+     *
+     * @param null $config
+     */
     public function __construct($config = null)
     {
         parent::__construct($config);
     }
-
+    /**
+     * @return \HpsBatch
+     * @throws \HpsAuthenticationException
+     * @throws \HpsGatewayException
+     * @throws null
+     */
     public function closeBatch()
     {
         $xml = new DOMDocument();

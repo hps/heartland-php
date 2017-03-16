@@ -1,10 +1,19 @@
 <?php
 
+/**
+ * Class HpsAltPaymentSale
+ */
 class HpsAltPaymentSale extends HpsAltPaymentResponse
 {
     public $status = null;
     public $statusMessage = null;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromDict($rsp, $txnType, $returnType = 'HpsAltPaymentSale')
     {
         $charge = $rsp->Transaction->$txnType;

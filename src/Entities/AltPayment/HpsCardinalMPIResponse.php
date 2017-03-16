@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsCardinalMPIResponse
+ */
 class HpsCardinalMPIResponse
 {
     public $errorDescription = null;
@@ -15,7 +18,12 @@ class HpsCardinalMPIResponse
     public $reasonDescription = null;
     public $statusCode = null;
     public $transactionId = null;
-
+    /**
+     * @param        $data
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromObject($data, $returnType = 'HpsCardinalMPIResponse')
     {
         $response = new $returnType();
@@ -34,7 +42,12 @@ class HpsCardinalMPIResponse
         $response->transactionId = self::readDataKey($data, 'TransactionId');
         return $response;
     }
-
+    /**
+     * @param $data
+     * @param $key
+     *
+     * @return null|string
+     */
     public static function readDataKey($data, $key)
     {
         return isset($data->{$key}) ? (string)$data->{$key} : null;

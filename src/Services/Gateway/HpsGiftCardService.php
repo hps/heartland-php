@@ -1,12 +1,27 @@
 <?php
 
+/**
+ * Class HpsGiftCardService
+ */
 class HpsGiftCardService extends HpsSoapGatewayService
 {
+    /**
+     * HpsGiftCardService constructor.
+     *
+     * @param \HpsServicesConfig $config
+     */
     public function __construct(HpsServicesConfig $config)
     {
         parent::__construct($config);
     }
-
+    /**
+     * @param $amount
+     * @param $currency
+     * @param $giftCard
+     *
+     * @return \HpsGiftCardAlias|string
+     * @throws \HpsInvalidRequestException
+     */
     public function activate($amount, $currency, $giftCard)
     {
         HpsInputValidation::checkCurrency($currency);
@@ -26,7 +41,14 @@ class HpsGiftCardService extends HpsSoapGatewayService
 
         return $this->_submitTransaction($hpsTransaction, $txnType);
     }
-
+    /**
+     * @param $amount
+     * @param $currency
+     * @param $giftCard
+     *
+     * @return \HpsGiftCardAlias|string
+     * @throws \HpsInvalidRequestException
+     */
     public function addValue($amount, $currency, $giftCard)
     {
         HpsInputValidation::checkCurrency($currency);
@@ -46,7 +68,13 @@ class HpsGiftCardService extends HpsSoapGatewayService
 
         return $this->_submitTransaction($hpsTransaction, $txnType);
     }
-
+    /**
+     * @param $action
+     * @param $giftCard
+     * @param $aliasStr
+     *
+     * @return \HpsGiftCardAlias|string
+     */
     public function alias($action, $giftCard, $aliasStr)
     {
         $txnType = 'GiftCardAlias';
@@ -65,7 +93,11 @@ class HpsGiftCardService extends HpsSoapGatewayService
 
         return $this->_submitTransaction($hpsTransaction, $txnType);
     }
-
+    /**
+     * @param $giftCard
+     *
+     * @return \HpsGiftCardAlias|string
+     */
     public function balance($giftCard)
     {
         $txnType = 'GiftCardBalance';
@@ -82,7 +114,11 @@ class HpsGiftCardService extends HpsSoapGatewayService
 
         return $this->_submitTransaction($hpsTransaction, $txnType);
     }
-
+    /**
+     * @param $giftCard
+     *
+     * @return \HpsGiftCardAlias|string
+     */
     public function deactivate($giftCard)
     {
         $txnType = 'GiftCardDeactivate';
@@ -99,7 +135,12 @@ class HpsGiftCardService extends HpsSoapGatewayService
 
         return $this->_submitTransaction($hpsTransaction, $txnType);
     }
-
+    /**
+     * @param $oldGiftCard
+     * @param $newGiftCard
+     *
+     * @return \HpsGiftCardAlias|string
+     */
     public function replace($oldGiftCard, $newGiftCard)
     {
         $txnType = 'GiftCardReplace';
@@ -117,7 +158,14 @@ class HpsGiftCardService extends HpsSoapGatewayService
 
         return $this->_submitTransaction($hpsTransaction, $txnType);
     }
-
+    /**
+     * @param        $cardData
+     * @param        $amount
+     * @param string $currency
+     *
+     * @return \HpsGiftCardAlias|string
+     * @throws \HpsInvalidRequestException
+     */
     public function reverse($cardData, $amount, $currency = 'usd')
     {
         $txnType = 'GiftCardReversal';
@@ -142,7 +190,16 @@ class HpsGiftCardService extends HpsSoapGatewayService
 
         return $this->_submitTransaction($hpsTransaction, $txnType);
     }
-
+    /**
+     * @param        $giftCard
+     * @param        $amount
+     * @param string $currency
+     * @param null   $gratuity
+     * @param null   $tax
+     *
+     * @return \HpsGiftCardAlias|string
+     * @throws \HpsInvalidRequestException
+     */
     public function reward($giftCard, $amount, $currency = 'usd', $gratuity = null, $tax = null)
     {
         $txnType = 'GiftCardReward';
@@ -172,7 +229,16 @@ class HpsGiftCardService extends HpsSoapGatewayService
 
         return $this->_submitTransaction($hpsTransaction, $txnType);
     }
-
+    /**
+     * @param        $giftCard
+     * @param        $amount
+     * @param string $currency
+     * @param null   $gratuity
+     * @param null   $tax
+     *
+     * @return \HpsGiftCardAlias|string
+     * @throws \HpsInvalidRequestException
+     */
     public function sale($giftCard, $amount, $currency = 'usd', $gratuity = null, $tax = null)
     {
         $txnType = 'GiftCardSale';
@@ -202,7 +268,11 @@ class HpsGiftCardService extends HpsSoapGatewayService
 
         return $this->_submitTransaction($hpsTransaction, $txnType);
     }
-
+    /**
+     * @param $transactionId
+     *
+     * @return \HpsGiftCardAlias|string
+     */
     public function void($transactionId)
     {
         $txnType = 'GiftCardVoid';
@@ -219,7 +289,17 @@ class HpsGiftCardService extends HpsSoapGatewayService
 
         return $this->_submitTransaction($hpsTransaction, $txnType);
     }
-
+    /**
+     * @param      $transaction
+     * @param      $txnType
+     * @param null $clientTxnId
+     *
+     * @return \HpsGiftCardAlias|string
+     * @throws \HpsAuthenticationException
+     * @throws \HpsCreditException
+     * @throws \HpsGatewayException
+     * @throws null
+     */
     private function _submitTransaction($transaction, $txnType, $clientTxnId = null)
     {
         $options = array();

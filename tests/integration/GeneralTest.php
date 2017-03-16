@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class GeneralTests
+ */
 class GeneralTests extends PHPUnit_Framework_TestCase
 {
     /**

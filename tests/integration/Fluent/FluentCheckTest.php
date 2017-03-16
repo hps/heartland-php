@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class FluentCheckTest
+ */
 class FluentCheckTest extends PHPUnit_Framework_TestCase
 {
     protected $service;

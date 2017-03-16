@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsIssuerResponseValidationTest
+ */
 class HpsIssuerResponseValidationTest extends PHPUnit_Framework_TestCase
 {
     public function testCheckResponseSuccess()
@@ -241,7 +244,12 @@ class HpsIssuerResponseValidationTest extends PHPUnit_Framework_TestCase
             $this->assertNull(HpsIssuerResponseValidation::getException(null, $code, null, 'gift'));
         }
     }
-
+    /**
+     * @param $codes
+     * @param $exceptionCode
+     * @param $exceptionMessage
+     * @param $type
+     */
     protected function assertExceptionValues($codes, $exceptionCode, $exceptionMessage, $type)
     {
         foreach ($codes as $code) {
@@ -251,7 +259,11 @@ class HpsIssuerResponseValidationTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($exceptionMessage, $exception->getMessage());
         }
     }
-
+    /**
+     * @param $value
+     *
+     * @return string
+     */
     protected function createStringFromTextNode($value)
     {
         return (string)simplexml_load_string('<RspCode>' . $value . '</RspCode>');

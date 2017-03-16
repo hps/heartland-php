@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsPayPlanSchedule
+ */
 class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
 {
     /** @var integer|null */
@@ -26,13 +29,13 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
     /** @var object|array|null */
     public $taxAmount                 = null;
 
-    /** @var decimal|null */
+    /** @var float|null */
     public $totalAmount               = null;
 
     /** @var integer|null */
     public $deviceId                  = null;
 
-    /** @var date|null */
+    /** @var string|null */
     public $startDate                 = null;
 
     /** @var string|null */
@@ -44,7 +47,7 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
     /** @var string|null */
     public $duration                  = null;
 
-    /** @var date|null */
+    /** @var string|null */
     public $endDate                   = null;
 
     /** @var integer|null */
@@ -68,7 +71,7 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
     /** @var integer|null */
     public $failureCount              = null;
 
-    /** @var decimal|null */
+    /** @var float|null */
     public $totalApprovedAmountToDate = null;
 
     /** @var integer|null */
@@ -88,12 +91,18 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
 
     /** @var string|null */
     public $description           = null;
-
+    /**
+     * HpsPayPlanSchedule constructor.
+     */
     public function __construct() {
         $this->emailReceipt = 'Never';
         $this->emailAdvanceNotice = 'No';
     }
-
+    /**
+     * @param \HpsPayPlanSchedule|null $schedule
+     *
+     * @return array
+     */
     public static function getEditableFields( HpsPayPlanSchedule $schedule = null  )
     {
         $editableFields = array(
@@ -125,7 +134,9 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
         }
         return  $editableFields;
     }
-
+    /**
+     * @return array
+     */
     public static function getSearchableFields()
     {
         return array(
@@ -151,7 +162,11 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
             'scheduleStatus',
         );
     }
-
+    /**
+     * @param $obj
+     *
+     * @return \HpsPayPlanSchedule
+     */
     public static function fromStdClass($obj)
     {
         $ret = new HpsPayPlanSchedule();
@@ -190,6 +205,12 @@ class HpsPayPlanSchedule extends HpsPayPlanResourceAbstract
     }
 
     // Needs to be implemented to get name of child class
+    /**
+     * @param null   $params
+     * @param string $class
+     *
+     * @return array
+     */
     public function getEditableFieldsWithValues($params = null,$class = 'HpsPayPlanSchedule'){
         if ($params===null){
             $params=$this;

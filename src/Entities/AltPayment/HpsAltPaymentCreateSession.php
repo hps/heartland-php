@@ -1,10 +1,19 @@
 <?php
 
+/**
+ * Class HpsAltPaymentCreateSession
+ */
 class HpsAltPaymentCreateSession extends HpsAltPaymentResponse
 {
     public $sessionId   = null;
     public $redirectUrl = null;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromDict($rsp, $txnType, $returnType = 'HpsAltPaymentCreateSession')
     {
         $createSession = $rsp->Transaction->$txnType;

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsPayPlanCustomer
+ */
 class HpsPayPlanCustomer extends HpsPayPlanResourceAbstract
 {
     /** @var string|null */
@@ -73,7 +76,9 @@ class HpsPayPlanCustomer extends HpsPayPlanResourceAbstract
 
     /** @var array(HpsPayPlanSchedule)|null */
     public $schedules          = null;
-
+    /**
+     * @return array
+     */
     public static function getEditableFields()
     {
         return array(
@@ -101,7 +106,9 @@ class HpsPayPlanCustomer extends HpsPayPlanResourceAbstract
             'country',
         );
     }
-
+    /**
+     * @return array
+     */
     public static function getSearchableFields()
     {
         return array(
@@ -122,7 +129,11 @@ class HpsPayPlanCustomer extends HpsPayPlanResourceAbstract
             'hasActivePaymentMethods',
         );
     }
-
+    /**
+     * @param $obj
+     *
+     * @return \HpsPayPlanCustomer
+     */
     public static function fromStdClass($obj)
     {
         $ret = new HpsPayPlanCustomer();
@@ -157,6 +168,12 @@ class HpsPayPlanCustomer extends HpsPayPlanResourceAbstract
     }
 
     // Needs to be implemented to get name of child class
+    /**
+     * @param string $class
+     * @param array  $params
+     *
+     * @return array
+     */
     public function getEditableFieldsWithValues($class = '', $params = array())
     {
         return parent::getEditableFieldsWithValues(get_class(), $params);

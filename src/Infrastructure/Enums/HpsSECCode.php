@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsSECCode
+ */
 abstract class HpsSECCode
 {
     const PPD     = 'PPD';

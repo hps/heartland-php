@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsGatewayServiceAbstract
+ */
 abstract class HpsGatewayServiceAbstract
 {
     protected $_config     = null;
@@ -9,24 +12,43 @@ abstract class HpsGatewayServiceAbstract
     protected $_currency = null;
     protected $_filterBy = null;
     const MIN_OPENSSL_VER = 268439615; //OPENSSL_VERSION_NUMBER openSSL 1.0.1c
-
+    /**
+     * HpsGatewayServiceAbstract constructor.
+     *
+     * @param \HpsConfigInterface|null $config
+     */
     public function __construct(HpsConfigInterface $config = null)
     {
         if ($config != null) {
             $this->_config = $config;
         }
     }
-
+    /**
+     * @return \HpsConfigInterface|null
+     */
     public function servicesConfig()
     {
         return $this->_config;
     }
-
+    /**
+     * @param $value
+     */
     public function setServicesConfig($value)
     {
         $this->_config = $value;
     }
-
+    /**
+     * @param        $url
+     * @param        $headers
+     * @param null   $data
+     * @param string $httpVerb
+     * @param string $keyType
+     * @param null   $options
+     *
+     * @return mixed
+     * @throws \HpsAuthenticationException
+     * @throws \HpsGatewayException
+     */
     protected function submitRequest($url, $headers, $data = null, $httpVerb = 'POST', $keyType = HpsServicesConfig::KEY_TYPE_SECRET, $options = null)
     {
         if ($this->_isConfigInvalid()) {
@@ -113,7 +135,9 @@ abstract class HpsGatewayServiceAbstract
             );
         }
     }
-
+    /**
+     * @return bool
+     */
     protected function _isConfigInvalid()
     {
         if ($this->_config == null && (

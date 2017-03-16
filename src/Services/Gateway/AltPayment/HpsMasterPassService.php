@@ -409,14 +409,14 @@ class HpsMasterPassService
             ? $orderData->checkoutType
             : 'lightbox';
     }
-
     /**
      * Converts a 3-letter currency code to 3-digit ISO 4217 version
      *
      * @param string $currency currency code
      *
-     * @raises HpsArgumentException
      * @return string
+     * @throws \HpsArgumentException
+     * @raises HpsArgumentException
      */
     protected function currencyStringToNumeric($currency)
     {
@@ -530,13 +530,13 @@ class HpsMasterPassService
         return sprintf('%s', ceil(intval($amount) * 100));
         // return $amount;
     }
-
     /**
      * Processes the response from Cardinal
      *
      * @param object $response response from Cardinal
      *
      * @return null
+     * @throws \HpsException
      */
     protected function processGatewayResponse($response)
     {
@@ -550,13 +550,13 @@ class HpsMasterPassService
 
         throw new HpsException((string)$response->ErrorDesc);
     }
-
     /**
      * Processes the response from MasterPass
      *
      * @param object $response response from Cardinal
      *
      * @return null
+     * @throws \HpsException
      */
     protected function processProcessorResponse($response)
     {

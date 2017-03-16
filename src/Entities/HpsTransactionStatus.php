@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsTransactionStatus
+ */
 class HpsTransactionStatus extends HpsTransaction
 {
     public $originalGatewayResponseCode;
@@ -10,7 +13,13 @@ class HpsTransactionStatus extends HpsTransaction
     public $originalTransactionId;
     public $altPayment;
     public $timezoneConversion;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromDict($rsp, $txnType, $returnType = 'HpsTransactionStatus')
     {
         $statusResponse = $rsp->Transaction->$txnType;

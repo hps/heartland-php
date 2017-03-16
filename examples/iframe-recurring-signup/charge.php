@@ -1,5 +1,6 @@
 <?php
-
+$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+$_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
 function SendEmail($to, $from, $subject, $body, $isHtml)
 {
     $message = '<html><body>';
@@ -74,7 +75,7 @@ function createSchedule(HpsPayPlanService $service, $customerKey, $paymentMethod
 require_once "../../Hps.php";
 
 $config = new HpsServicesConfig();
-$config->secretApiKey = 'skapi_cert_MTyMAQBiHVEAewvIzXVFcmUd2UcyBge_eCpaASUp0A';
+$config->secretApiKey = 'skapi_cert_MYl2AQAowiQAbLp5JesGKh7QFkcizOP2jcX9BrEMqQ';
 
 // the following variables will be provided to you during certificaiton.
 $config->versionNumber = '0000';

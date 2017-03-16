@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsAltPaymentSessionInfo
+ */
 class HpsAltPaymentSessionInfo extends HpsAltPaymentResponse
 {
     /** @var string|null */
@@ -16,7 +19,13 @@ class HpsAltPaymentSessionInfo extends HpsAltPaymentResponse
 
     /** @var array(HpsLineItem)|null */
     public $lineItems = null;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromDict($rsp, $txnType, $returnType = 'HpsAltPaymentSessionInfo')
     {
         $sessionInfo = $rsp->Transaction->$txnType;

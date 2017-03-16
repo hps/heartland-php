@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class GiftCardCertificationTest
+ */
 class GiftCardCertificationTest extends PHPUnit_Framework_TestCase
 {
     protected $service;
@@ -217,17 +220,23 @@ class GiftCardCertificationTest extends PHPUnit_Framework_TestCase
             ->withCard($this->sva2())
             ->execute();
     }
-
+    /**
+     * @return \HpsServicesConfig
+     */
     protected function config()
     {
         return TestServicesConfig::validMultiUseConfig();
     }
-
+    /**
+     * @return \HpsGiftCard
+     */
     protected function sva1()
     {
         return TestGiftCard::validGiftCardNotEncrypted();
     }
-
+    /**
+     * @return \HpsGiftCard
+     */
     protected function sva2()
     {
         return TestGiftCard::validGiftCardNotEncrypted2();

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsBuilderAction
+ */
 class HpsBuilderAction
 {
     /** @var callable|null */
@@ -10,7 +13,12 @@ class HpsBuilderAction
 
     /** @var array */
     public $arguments = null;
-
+    /**
+     * HpsBuilderAction constructor.
+     *
+     * @param null $name
+     * @param null $action
+     */
     public function __construct($name = null, $action = null)
     {
         $this->name = $name;

@@ -1,10 +1,19 @@
 <?php
 
+/**
+ * Class HpsAltPaymentAuth
+ */
 class HpsAltPaymentAuth extends HpsAltPaymentResponse
 {
     public $status = null;
     public $statusMessage = null;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param string $returnType
+     *
+     * @return mixed
+     */
     public static function fromDict($rsp, $txnType, $returnType = 'HpsAltPaymentAuth')
     {
         $authorize = $rsp->Transaction->$txnType;

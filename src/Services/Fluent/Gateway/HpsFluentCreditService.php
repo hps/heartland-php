@@ -1,18 +1,34 @@
 <?php
 
+/**
+ * Class HpsFluentCreditService
+ */
 class HpsFluentCreditService extends HpsSoapGatewayService
 {
+    /**
+     * HpsFluentCreditService constructor.
+     *
+     * @param null $config
+     */
     public function __construct($config = null)
     {
         parent::__construct($config);
     }
-
+    /**
+     * @param $config
+     *
+     * @return $this
+     */
     public function withConfig($config)
     {
         $this->_config = $config;
         return $this;
     }
-
+    /**
+     * @param null $amount
+     *
+     * @return \HpsCreditServiceAuthorizeBuilder
+     */
     public function authorize($amount = null)
     {
         $builder = new HpsCreditServiceAuthorizeBuilder($this);
@@ -20,14 +36,22 @@ class HpsFluentCreditService extends HpsSoapGatewayService
             ->withAmount($amount)
             ->withCurrency('usd');
     }
-
+    /**
+     * @param null $transactionId
+     *
+     * @return \HpsCreditServiceCaptureBuilder
+     */
     public function capture($transactionId = null)
     {
         $builder = new HpsCreditServiceCaptureBuilder($this);
         return $builder
             ->withTransactionId($transactionId);
     }
-
+    /**
+     * @param null $amount
+     *
+     * @return \HpsCreditServiceChargeBuilder
+     */
     public function charge($amount = null)
     {
         $builder = new HpsCreditServiceChargeBuilder($this);
@@ -35,38 +59,56 @@ class HpsFluentCreditService extends HpsSoapGatewayService
             ->withAmount($amount)
             ->withCurrency('usd');
     }
-
+    /**
+     * @param null $transactionId
+     *
+     * @return \HpsCreditServiceCpcEditBuilder
+     */
     public function cpcEdit($transactionId = null)
     {
         $builder = new HpsCreditServiceCpcEditBuilder($this);
         return $builder
             ->withTransactionId($transactionId);
     }
-
+    /**
+     * @return \HpsCreditServiceEditBuilder
+     */
     public function edit()
     {
         return new HpsCreditServiceEditBuilder($this);
     }
-
+    /**
+     * @return \HpsCreditServiceUpdateTokenExpirationBuilder
+     */
     public function updateTokenExpiration()
     {
         $builder = new HpsCreditServiceUpdateTokenExpirationBuilder($this);
         //print_r($builder);
         return $builder;
     }
-
+    /**
+     * @param null $transactionId
+     *
+     * @return \HpsCreditServiceGetBuilder
+     */
     public function get($transactionId = null)
     {
         $builder = new HpsCreditServiceGetBuilder($this);
         return $builder
             ->withTransactionId($transactionId);
     }
-
+    /**
+     * @return \HpsCreditServiceListTransactionsBuilder
+     */
     public function listTransactions()
     {
         return new HpsCreditServiceListTransactionsBuilder($this);
     }
-
+    /**
+     * @param null $amount
+     *
+     * @return \HpsCreditServiceOfflineAuthBuilder
+     */
     public function offlineAuth($amount = null)
     {
         $builder = new HpsCreditServiceOfflineAuthBuilder($this);
@@ -74,7 +116,11 @@ class HpsFluentCreditService extends HpsSoapGatewayService
             ->withAmount($amount)
             ->withCurrency('usd');
     }
-
+    /**
+     * @param null $amount
+     *
+     * @return \HpsCreditServiceOfflineChargeBuilder
+     */
     public function offlineCharge($amount = null)
     {
         $builder = new HpsCreditServiceOfflineChargeBuilder($this);
@@ -82,12 +128,18 @@ class HpsFluentCreditService extends HpsSoapGatewayService
             ->withAmount($amount)
             ->withCurrency('usd');
     }
-
+    /**
+     * @return \HpsCreditServicePrepaidBalanceInquiryBuilder
+     */
     public function prepaidBalanceInquiry()
     {
         return new HpsCreditServicePrepaidBalanceInquiryBuilder($this);
     }
-
+    /**
+     * @param null $amount
+     *
+     * @return \HpsCreditServicePrepaidAddValueBuilder
+     */
     public function prepaidAddValue($amount = null)
     {
         $builder = new HpsCreditServicePrepaidAddValueBuilder($this);
@@ -95,13 +147,21 @@ class HpsFluentCreditService extends HpsSoapGatewayService
             ->withAmount($amount)
             ->withCurrency('usd');
     }
-
+    /**
+     * @param null $amount
+     *
+     * @return \HpsCreditServiceRecurringBuilder
+     */
     public function recurring($amount = null)
     {
         $builder = new HpsCreditServiceRecurringBuilder($this);
         return $builder->withAmount($amount);
     }
-
+    /**
+     * @param null $amount
+     *
+     * @return \HpsCreditServiceRefundBuilder
+     */
     public function refund($amount = null)
     {
         $builder = new HpsCreditServiceRefundBuilder($this);
@@ -109,7 +169,11 @@ class HpsFluentCreditService extends HpsSoapGatewayService
             ->withAmount($amount)
             ->withCurrency('usd');
     }
-
+    /**
+     * @param null $amount
+     *
+     * @return \HpsCreditServiceReverseBuilder
+     */
     public function reverse($amount = null)
     {
         $builder = new HpsCreditServiceReverseBuilder($this);
@@ -117,19 +181,32 @@ class HpsFluentCreditService extends HpsSoapGatewayService
             ->withAmount($amount)
             ->withCurrency('usd');
     }
-
+    /**
+     * @return \HpsAccountVerify
+     */
     public function verify()
     {
         return new HpsCreditServiceVerifyBuilder($this);
     }
-
+    /**
+     * @param null $transactionId
+     *
+     * @return \HpsCreditServiceVoidBuilder
+     */
     public function void($transactionId = null)
     {
         $builder = new HpsCreditServiceVoidBuilder($this);
         return $builder
             ->withTransactionId($transactionId);
     }
-
+    /**
+     * @param $response
+     * @param $expectedType
+     *
+     * @throws \HpsAuthenticationException
+     * @throws \HpsGatewayException
+     * @throws null
+     */
     private function _processChargeGatewayResponse($response, $expectedType)
     {
         $gatewayRspCode = (isset($response->Header->GatewayRspCode) ? $response->Header->GatewayRspCode : null);
@@ -141,7 +218,7 @@ class HpsFluentCreditService extends HpsSoapGatewayService
 
         if ($gatewayRspCode == '30') {
             try {
-                $this->reverse($transactionId, $this->_amount, $this->_currency);
+                $this->reverse($this->_amount)->withTransactionId($transactionId)->execute();
             } catch (Exception $e) {
                 throw new HpsGatewayException(
                     HpsExceptionCodes::GATEWAY_TIMEOUT_REVERSAL_ERROR,
@@ -153,7 +230,13 @@ class HpsFluentCreditService extends HpsSoapGatewayService
 
         HpsGatewayResponseValidation::checkResponse($response, $expectedType);
     }
-
+    /**
+     * @param $response
+     * @param $expectedType
+     *
+     * @throws \HpsCreditException
+     * @throws null
+     */
     private function _processChargeIssuerResponse($response, $expectedType)
     {
         $transactionId = (isset($response->Header->GatewayTxnId) ? $response->Header->GatewayTxnId : null);
@@ -167,7 +250,7 @@ class HpsFluentCreditService extends HpsSoapGatewayService
                 // check if we need to do a reversal
                 if ($responseCode == '91') {
                     try {
-                        $this->reverse($transactionId, $this->_amount, $this->_currency);
+                        $this->reverse($this->_amount)->withTransactionId($transactionId)->execute();
                     } catch (HpsGatewayException $e) {
                         // if the transaction wasn't found; throw the original timeout exception
                         if ($e->details->gatewayResponseCode == 3) {
@@ -192,7 +275,17 @@ class HpsFluentCreditService extends HpsSoapGatewayService
             }
         }
     }
-
+    /**
+     * @param      $transaction
+     * @param      $txnType
+     * @param null $clientTxnId
+     * @param null $cardData
+     *
+     * @return array|null
+     * @throws \HpsCreditException
+     * @throws \HpsException
+     * @throws \HpsGatewayException
+     */
     public function _submitTransaction($transaction, $txnType, $clientTxnId = null, $cardData = null)
     {
         try {
@@ -201,7 +294,7 @@ class HpsFluentCreditService extends HpsSoapGatewayService
             if ($e->innerException != null && $e->innerException->getMessage() == 'gateway_time-out') {
                 if (in_array($txnType, array('CreditSale', 'CreditAuth'))) {
                     try {
-                        $this->reverse($cardData, $this->_amount, $this->_currency);
+                        $this->reverse($this->_amount)->withCard($cardData)->execute();
                     } catch (Exception $e) {
                         throw new HpsGatewayException('0', HpsExceptionCodes::GATEWAY_TIMEOUT_REVERSAL_ERROR);
                     }
@@ -256,9 +349,6 @@ class HpsFluentCreditService extends HpsSoapGatewayService
                 break;
             case 'PrePaidAddValue':
                 $rvalue = HpsAuthorization::fromDict($response, $txnType);
-                break;
-            case 'CreditOfflineAuth':
-                $rvalue = HpsOfflineAuthorization::fromDict($response, $txnType);
                 break;
             case 'CreditOfflineAuth':
                 $rvalue = HpsOfflineAuthorization::fromDict($response, $txnType);

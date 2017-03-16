@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsTrackDataMethod
+ */
 class HpsTrackDataMethod
 {
     const SWIPE     = 'swipe';

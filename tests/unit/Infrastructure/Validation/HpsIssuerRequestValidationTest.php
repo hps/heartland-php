@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsIssuerRequestValidationTest
+ */
 class HpsIssuerRequestValidationTest extends PHPUnit_Framework_TestCase{
     
     

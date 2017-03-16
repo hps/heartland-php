@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsReportTransactionSummary
+ */
 class HpsReportTransactionSummary extends HpsTransaction
 {
     public $amount                = null;
@@ -9,7 +12,14 @@ class HpsReportTransactionSummary extends HpsTransaction
     public $transactionType       = null;
     public $transactionUTCDate    = null;
     public $exceptions            = null;
-
+    /**
+     * @param        $rsp
+     * @param        $txnType
+     * @param null   $filterBy
+     * @param string $returnType
+     *
+     * @return array
+     */
     public static function fromDict($rsp, $txnType, $filterBy = null, $returnType = 'HpsReportTransactionSummary')
     {
         $transactions = array();

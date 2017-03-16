@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class HpsEncryptionData
+ */
 class HpsEncryptionData
 {
     /** @var string|null **/

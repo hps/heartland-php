@@ -2,7 +2,7 @@
   $(document).ready(function () {
     var $form = $('#payment_form');
     $form.SecureSubmit({
-      public_key: 'pkapi_cert_jKc1FtuyAydZhZfbB3',
+      public_key: 'pkapi_cert_P6dRqs1LzfWJ6HgGVZ',
       type: 'iframe',
       iframeTarget: '#securesubmit',
       buttonTarget: '#PaymentButton',

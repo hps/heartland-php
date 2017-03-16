@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class GatewayPayPlanCreditRecurringTest
+ */
 class GatewayPayPlanCreditRecurringTest extends PHPUnit_Framework_TestCase
 {
     protected $service;
@@ -116,7 +119,12 @@ class GatewayPayPlanCreditRecurringTest extends PHPUnit_Framework_TestCase
         $this->assertNotNull($response);
         $this->assertEquals('00', $response->responseCode);
     }
-
+    /**
+     * @param      $card
+     * @param null $key
+     *
+     * @return \HpsTokenData|mixed
+     */
     private function getToken($card, $key = null)
     {
         $this->tokenService = new HpsTokenService($this->publicKey);

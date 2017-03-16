@@ -1,10 +1,18 @@
 <?php
 
+/**
+ * Class GatewayTokenSingleUseTest
+ */
 class GatewayTokenSingleUseTest extends PHPUnit_Framework_TestCase
 {
     public $tokenService = null;
     public $publicKey    = null;
-
+    /**
+     * @param      $card
+     * @param null $key
+     *
+     * @return \HpsTokenData|mixed
+     */
     private function getToken($card, $key = null)
     {
         if ($key != null and $key != "") {
