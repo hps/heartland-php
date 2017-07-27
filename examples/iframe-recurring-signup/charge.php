@@ -31,13 +31,13 @@ function createCustomer(HpsPayPlanService $service, HpsCardHolder $cardHolder)
     $customer->firstName          = $cardHolder->firstName;
     $customer->lastName           = $cardHolder->lastName;
     $customer->customerStatus     = HpsPayPlanCustomerStatus::ACTIVE;
-    $customer->primaryEmail       = $cardHolder->emailAddress;
+    $customer->primaryEmail       = $cardHolder->email;
     $customer->addressLine1       = $cardHolder->address->address;
     $customer->city               = $cardHolder->address->city;
     $customer->stateProvince      = $cardHolder->address->state;
     $customer->zipPostalCode      = $cardHolder->address->zip;
     $customer->country            = $cardHolder->address->country;
-    $customer->phoneDay           = $cardHolder->phoneNumber;
+    $customer->phoneDay           = $cardHolder->phone;
     $response = $service->addCustomer($customer);
     return $response->customerKey;
 }
