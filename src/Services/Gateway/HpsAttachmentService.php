@@ -141,7 +141,11 @@ class HpsAttachmentService extends HpsSoapGatewayService
         if ($gatewayRspCode == '3') {
             throw new HpsGatewayException(
                 HpsExceptionCodes::GATEWAY_ERROR,
-                'Image could not be retrieved for ' . $transactionId
+                'Image could not be retrieved for ' . $transactionId,
+                null,
+                null,
+                null,
+                $transactionId
             );
         }
 

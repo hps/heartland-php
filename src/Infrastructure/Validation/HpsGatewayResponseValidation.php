@@ -17,15 +17,23 @@ class HpsGatewayResponseValidation
     {
         $rspCode = $response->Header->GatewayRspCode;
         $rspText = $response->Header->GatewayRspMsg;
+        $transactionId = (isset($response->Header->GatewayTxnId) ? $response->Header->GatewayTxnId : null);
         $e = HpsGatewayResponseValidation::getException($rspCode, $rspText, $response);
 
         if ($e != null) {
+            if ($e instanceof HpsGatewayException) {
+                $e->transactionId = $transactionId;
+            }
             throw $e;
         }
         if (!isset($response->Transaction) || !isset($response->Transaction->$expectedType)) {
             throw new HpsGatewayException(
                 HpsExceptionCodes::UNEXPECTED_GATEWAY_ERROR,
-                'Unexpected response from HPS gateway'
+                'Unexpected response from HPS gateway',
+                null,
+                null,
+                null,
+                $transactionId
             );
         }
     }
@@ -39,7 +47,7 @@ class HpsGatewayResponseValidation
     public static function getException($responseCode, $responseText, $response)
     {
         $e = null;
-        
+
         switch ($responseCode) {
             case '0':
                 break;

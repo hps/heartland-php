@@ -50,12 +50,12 @@ class HpsCreditService extends HpsSoapGatewayService
         if ($convenienceAmtInfo != null && $convenienceAmtInfo != '') {
             $hpsBlock1->appendChild($xml->createElement('hps:ConvenienceAmtInfo', $convenienceAmtInfo));
         }
-        
+
          //update shippingAmtInfo if passed
         if ($shippingAmtInfo != null && $shippingAmtInfo != '') {
             $hpsBlock1->appendChild($xml->createElement('hps:ShippingAmtInfo', $shippingAmtInfo));
         }
-        
+
         if ($cardHolder != null) {
             $hpsBlock1->appendChild($this->_hydrateCardHolderData($cardHolder, $xml));
         }
@@ -65,7 +65,7 @@ class HpsCreditService extends HpsSoapGatewayService
         if ($txnDescriptor != null && $txnDescriptor != '') {
             $hpsBlock1->appendChild($xml->createElement('hps:TxnDescriptor', $txnDescriptor));
         }
-        
+
         $cardData = $xml->createElement('hps:CardData');
         if ($cardOrToken instanceof HpsCreditCard) {
             $cardData->appendChild($this->_hydrateManualEntry($cardOrToken, $xml));
@@ -160,7 +160,7 @@ class HpsCreditService extends HpsSoapGatewayService
         if ($convenienceAmtInfo != null && $convenienceAmtInfo != '') {
             $hpsBlock1->appendChild($xml->createElement('hps:ConvenienceAmtInfo', $convenienceAmtInfo));
         }
-        
+
          //update shippingAmtInfo if passed
         if ($shippingAmtInfo != null && $shippingAmtInfo != '') {
             $hpsBlock1->appendChild($xml->createElement('hps:ShippingAmtInfo', $shippingAmtInfo));
@@ -570,7 +570,10 @@ class HpsCreditService extends HpsSoapGatewayService
                 throw new HpsGatewayException(
                     HpsExceptionCodes::GATEWAY_TIMEOUT_REVERSAL_ERROR,
                     'Error occurred while reversing a charge due to HPS gateway timeout',
-                    $e
+                    $e,
+                    null,
+                    null,
+                    $transactionId
                 );
             }
         }
