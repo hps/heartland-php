@@ -14,9 +14,11 @@
     <title>Simple Payment Form Demo</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="assets/secure.submit-1.0.2.js"></script>
+    <script src="https://api.heartlandportico.com/SecureSubmit.v1/token/2.1/securesubmit.js"></script>
     <link src="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="assets/heartland-styles.css">
 </head>
 <body>
 <div class="container">
@@ -134,150 +136,7 @@
             </div>
             <!-- make iframes styled like other form -->
             <style type="text/css">
-              body {
-                font-family:sans-serif;
-              }
-                #iframes iframe{
-                    float:left;
-                    width:100%;
-                }
-                .form-group {
-                  height:40px;
-                }
-              h2 {
-                margin:7px 0;
-              }
-                #ss-card,
-                #ss-date,
-                #ss-cvv {
-                  height:85px;
-                }
-                #ss-card {
-                  margin-bottom:55px;
-                  display:block;
-                }
-                #ss-date {
-                  float:left;
-                  display:block;
-                }
-                #ss-cvv.form-group {
-                    float:right;
-                }
-                .ie8 form .iframeholder {
-                    padding:10px;
-                }
-                .iframeholder::after{
-                    content:'';
-                    display:block;
-                    width:100%;
-                    height:0px;
-                    clear:both;
-                    position:relative;
-                }
-                .ie8 form .form-group {
-                    margin-bottom:5px;
-                }
-                textarea {
-                  padding:10px;
-                  font-family:sans-serif;      
-                }
-                label[for=iframesCardNumber],
-                label[for=iframesCardExpiration],
-                label[for=iframesCardCvv]{
-                    text-transform:uppercase;
-                    font-weight:500;
-                    font-size:13px;
-                    color:#555;
-                    line-height:1.5;
-                }
-                .ie8 form label {
-                    padding-left:10px;
-                    margin:0px;
-                }
-                #heartland-frame-cardExpiration,
-                #heartland-frame-cardCvv,
-                #heartland-frame-cardNumber,
-                .ie8 #heartland-frame-cardExpiration,
-                .ie8 #heartland-frame-cardCvv,
-                .ie8 #heartland-frame-cardNumber  {
-                    width:100%;
-                }
-                iframe {
-                  margin:0;
-                  padding:0;
-                  border:none;
-                  width:value;
-                  height:value;
-                }
-                #ss-banner {
-                    background:transparent url(assets/images/ss-shield@2x.png) no-repeat left center;
-                    height:40px;
-                    background-size:280px 34px;
-                    margin-bottom:7px;
-                }
-                .ie8 #ss-banner {
-                    background:transparent url(assets/images/ss-shield-ie.png) no-repeat left center;
-                }
-                .btn-primary{
-                    display:block;
-                    border-radius:0px;
-                    font-size:18px;
-                    float:right;
-                    background-color:#36b46e;
-                    border:1px solid #2a8d56;
-                    margin-bottom:10px;
-                    height:50px;
-                    color:#ffffff;
-                    width:100%;
-                }
-                .btn-primary:hover,
-                .btn-primary:focus{
-                    color: #fff;
-                    background-color: #2a8d56;
-                }
-                .ie8 .btn-primary {
-                    width:15%;
-                }
-                .red {
-                    color:#ce2027;
-                    margin-left:2px;
-                    font-size:17px;
-                }
-                .container {
-                  margin:5px;
-                }
-                #ss-date.form-group,
-                #ss-cvv.form-group{ 
-                    width:100%;
-                  }
-                
-                
-                @media screen and (min-width:767px) {
-                  
-                    #heartland-frame-cardNumber {
-                        width : 100%;
-                    }
-                }
-                @media screen and (min-width:696px) {
-                  #ss-date.form-group,
-                  #ss-cvv.form-group{ 
-                      width:48%;
-                    }
-                }
-                @media screen and (min-width:636px) {
-                    #ss-card {
-                      margin-bottom:40px;
-                    }
-                }
-                @media screen and (min-width:450px) {
-                    .btn-primary,
-                    .ie8 .btn-primary {
-                        width:10em;
-                    }
-                    .container {
-                      margin:20px;
-                    }
-                }
+              
 
             </style>
 
@@ -297,7 +156,7 @@
                         <div class="iframeholder" id="iframesCardCvv" style="height:50px; width:100%;" /></div>
                       </div>
                       <div style="clear:both"></div>
-                    <input id="iframesSubmit" type="submit" class="btn btn-lg btn-primary" value="Submit" />
+                      <div id="iframesSubmit"></div>
             </form>
 
             <!-- The SecureSubmit Javascript Library -->
@@ -329,6 +188,9 @@
                 cardCvv: {
                     target:      'iframesCardCvv',
                     placeholder: 'CVV'
+                },
+                submit: {
+                    target:       'iframesSubmit'
                 }
               },
             // Collection of CSS to inject into the iframes.
