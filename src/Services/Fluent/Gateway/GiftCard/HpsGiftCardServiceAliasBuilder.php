@@ -5,6 +5,7 @@
  * transaction through the HpsGiftCardService.
  *
  * @method HpsGiftCardServiceAliasBuilder withCard(HpsGiftCard $card)
+ * @method HpsGiftCardServiceAliasBuilder withToken(HpsTokenData $token)
  * @method HpsGiftCardServiceAliasBuilder withAlias(string $alias)
  * @method HpsGiftCardServiceAliasBuilder withAction(string $action)
  */
@@ -12,6 +13,9 @@ class HpsGiftCardServiceAliasBuilder extends HpsBuilderAbstract
 {
     /** @var HpsGiftCard|null */
     protected $card   = null;
+
+    /** @var HpsTokenData|null */
+    protected $token    = null;
 
     /** @var string|null */
     protected $alias  = null;
@@ -45,9 +49,14 @@ class HpsGiftCardServiceAliasBuilder extends HpsBuilderAbstract
         $hpsBlock1->appendChild($xml->createElement('hps:Action', $this->action));
         $hpsBlock1->appendChild($xml->createElement('hps:Alias', $this->alias));
 
-        if ($this->card != null) {
-            $hpsBlock1->appendChild($this->service->_hydrateGiftCardData($this->card, $xml));
+        if ($this->token != null && ($this->token instanceof HpsTokenData)) {
+            if ($this->card == null) {
+                $this->card = new HpsGiftCard();
+            }
+            $this->card->tokenValue = $this->token->tokenValue;
         }
+        $cardData = $this->service->_hydrateGiftCardData($this->card, $xml);
+        $hpsBlock1->appendChild($cardData);
 
         $hpsGiftAlias->appendChild($hpsBlock1);
         $hpsTransaction->appendChild($hpsGiftAlias);
@@ -63,9 +72,30 @@ class HpsGiftCardServiceAliasBuilder extends HpsBuilderAbstract
     private function setUpValidations()
     {
         $this
-            ->addValidation(array($this, 'cardNotNull'), 'HpsArgumentException', 'Alias needs a card')
+            ->addValidation(array($this, 'onlyOnePaymentMethod'), 'HpsArgumentException', 'Alias can only use one payment method')
             ->addValidation(array($this, 'aliasNotNull'), 'HpsArgumentException', 'Alias needs an alias')
             ->addValidation(array($this, 'actionNotNull'), 'HpsArgumentException', 'Alias needs an action');
+    }
+
+    /**
+     * Ensures there is only one payment method, and checks that
+     * there is only one card or one token in use. Both cannot be
+     * used.
+     *
+     * @param array $actionCounts
+     *
+     * @return bool
+     */
+    public function onlyOnePaymentMethod($actionCounts)
+    {
+        $methods = 0;
+        if (isset($actionCounts['card']) && $actionCounts['card'] == 1) {
+            $methods++;
+        }
+        if (isset($actionCounts['token']) && $actionCounts['token'] == 1) {
+            $methods++;
+        }
+        return $methods == 1;
     }
 
     /**

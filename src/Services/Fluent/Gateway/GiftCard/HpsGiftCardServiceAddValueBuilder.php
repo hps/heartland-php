@@ -5,6 +5,7 @@
  * transaction through the HpsGiftCardService.
  *
  * @method HpsGiftCardServiceAddValueBuilder withCard(HpsGiftCard $card)
+ * @method HpsGiftCardServiceAddValueBuilder withToken(HpsTokenData $token)
  * @method HpsGiftCardServiceAddValueBuilder withAmount(double $amount)
  * @method HpsGiftCardServiceAddValueBuilder withCurrency(string $currency)
  */
@@ -12,6 +13,9 @@ class HpsGiftCardServiceAddValueBuilder extends HpsBuilderAbstract
 {
     /** @var HpsGiftCard|null */
     protected $card     = null;
+
+    /** @var HpsTokenData|null */
+    protected $token    = null;
 
     /** @var double|null */
     protected $amount   = null;
@@ -38,6 +42,12 @@ class HpsGiftCardServiceAddValueBuilder extends HpsBuilderAbstract
         parent::execute();
 
         $addValueSvc = new HpsGiftCardService($this->service->servicesConfig());
+        if ($this->token != null && ($this->token instanceof HpsTokenData)) {
+            if ($this->card == null) {
+                $this->card = new HpsGiftCard();
+            }
+            $this->card->tokenValue = $this->token->tokenValue;
+        }
         return $addValueSvc->addValue(
             $this->amount,
             $this->currency,
@@ -53,9 +63,30 @@ class HpsGiftCardServiceAddValueBuilder extends HpsBuilderAbstract
     private function setUpValidations()
     {
         $this
-            ->addValidation(array($this, 'cardNotNull'), 'HpsArgumentException', 'AddValue needs a card')
+            ->addValidation(array($this, 'onlyOnePaymentMethod'), 'HpsArgumentException', 'AddValue can only use one payment method')
             ->addValidation(array($this, 'amountNotNull'), 'HpsArgumentException', 'AddValue needs an amount')
             ->addValidation(array($this, 'currencyNotNull'), 'HpsArgumentException', 'AddValue needs a currency');
+    }
+
+    /**
+     * Ensures there is only one payment method, and checks that
+     * there is only one card or one token in use. Both cannot be
+     * used.
+     *
+     * @param array $actionCounts
+     *
+     * @return bool
+     */
+    public function onlyOnePaymentMethod($actionCounts)
+    {
+        $methods = 0;
+        if (isset($actionCounts['card']) && $actionCounts['card'] == 1) {
+            $methods++;
+        }
+        if (isset($actionCounts['token']) && $actionCounts['token'] == 1) {
+            $methods++;
+        }
+        return $methods == 1;
     }
 
     /**

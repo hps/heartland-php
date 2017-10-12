@@ -5,6 +5,7 @@
  * transaction through the HpsGiftCardService.
  *
  * @method HpsGiftCardServiceReverseBuilder withCard(HpsGiftCard $card)
+ * @method HpsGiftCardServiceReverseBuilder withToken(HpsTokenData $token)
  * @method HpsGiftCardServiceReverseBuilder withAmount(double $amount)
  * @method HpsGiftCardServiceReverseBuilder withCurrency(string $currency)
  * @method HpsGiftCardServiceReverseBuilder withTransactionId(string $transactionId)
@@ -13,6 +14,9 @@ class HpsGiftCardServiceReverseBuilder extends HpsBuilderAbstract
 {
     /** @var HpsGiftCard|null */
     protected $card          = null;
+    
+    /** @var HpsTokenData|null */
+    protected $token    = null;
 
     /** @var double|null */
     protected $amount        = null;
@@ -42,6 +46,12 @@ class HpsGiftCardServiceReverseBuilder extends HpsBuilderAbstract
         parent::execute();
 
         $reverseSvc = new HpsGiftCardService($this->service->servicesConfig());
+        if ($this->token != null && ($this->token instanceof HpsTokenData)) {
+            if ($this->card == null) {
+                $this->card = new HpsGiftCard();
+            }
+            $this->card->tokenValue = $this->token->tokenValue;
+        }
         return $reverseSvc->reverse(
             isset($this->card) ? $this->card : $this->transactionId,
             $this->amount,
@@ -57,7 +67,7 @@ class HpsGiftCardServiceReverseBuilder extends HpsBuilderAbstract
     private function setUpValidations()
     {
         $this
-            ->addValidation(array($this, 'cardOrTransactionId'), 'HpsArgumentException', 'Reverse needs a card')
+            ->addValidation(array($this, 'cardOrTransactionId'), 'HpsArgumentException', 'Reverse can only use one payment method or a transactionId')
             ->addValidation(array($this, 'amountNotNull'), 'HpsArgumentException', 'Reverse needs an amount');
     }
 

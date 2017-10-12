@@ -49,6 +49,27 @@ class HpsTokenService extends HpsRestGatewayService
         return $this->submitRequest($url, $header, null, 'GET', HpsServicesConfig::KEY_TYPE_PUBLIC);
     }
     /**
+     * @param \HpsGiftCard $cardData
+     *
+     * @return mixed
+     * @throws \HpsAuthenticationException
+     * @throws \HpsGatewayException
+     */
+    public function getGiftCardToken(HpsGiftCard $cardData)
+    {
+        $data = array();
+        $data['api_key'] = $this->_config->publicApiKey;
+        $data['object'] = 'token';
+        $data['token_type'] = 'supt';
+        $data['_method'] = 'post';
+        $data['card[number]'] = $cardData->number;
+
+        $url = $this->_url ."?". http_build_query($data);
+        $header = array('Content-type: application/json');
+
+        return $this->submitRequest($url, $header, null, 'GET', HpsServicesConfig::KEY_TYPE_PUBLIC);
+    }
+    /**
      * @param $curlResponse
      * @param $curlInfo
      * @param $curlError

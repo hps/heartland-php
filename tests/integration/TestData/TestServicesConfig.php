@@ -13,7 +13,7 @@ class TestServicesConfig
      */
     public static function validMultiUseConfig()
     {
-        $secretApiKey = "skapi_cert_MYl2AQAowiQAbLp5JesGKh7QFkcizOP2jcX9BrEMqQ";
+        $secretApiKey = "skapi_cert_MW7lAQBmFl8AkVAvcx9QUJtP5YKtmHrOZVGN20PYQw";
         $config = new HpsServicesConfig();
         $config->secretApiKey = $secretApiKey;
         $config->versionNumber = '1510';
@@ -25,7 +25,7 @@ class TestServicesConfig
      */
     public static function validMultiUsePublicKey()
     {
-        return "pkapi_cert_P6dRqs1LzfWJ6HgGVZ";
+        return "pkapi_cert_Z5GvNNWljnHNLiAFp0";
     }
     /**
      * @return \HpsServicesConfig

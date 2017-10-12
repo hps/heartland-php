@@ -12,7 +12,7 @@ class FluentGiftCardTest extends PHPUnit_Framework_TestCase
         $this->service = new HpsFluentGiftCardService(TestServicesConfig::validMultiUseConfig());
     }
 
-    public function testActivate()
+    public function testActivateWithCard()
     {
         $response = $this->service
             ->activate()
@@ -23,12 +23,24 @@ class FluentGiftCardTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('0', $response->responseCode);
     }
+    
+    public function testActivateWithToken()
+    {
+        $response = $this->service
+            ->activate()
+            ->withAmount(100.00)
+            ->withCurrency('usd')
+            ->withToken(TestGiftCard::validGiftCardToken())
+            ->execute();
+
+        $this->assertEquals('0', $response->responseCode);
+    }
 
     /**
      * @expectedException        HpsArgumentException
-     * @expectedExceptionMessage Activate needs a card
+     * @expectedExceptionMessage Activate can only use one payment method
      */
-    public function testActivateWithNoCard()
+    public function testActivateWithNoCardorToken()
     {
         $this->service
             ->activate()
@@ -50,7 +62,7 @@ class FluentGiftCardTest extends PHPUnit_Framework_TestCase
             ->execute();
     }
 
-    public function testAddValue()
+    public function testAddValueWithCard()
     {
         $response = $this->service
             ->addValue()
@@ -62,11 +74,23 @@ class FluentGiftCardTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('0', $response->responseCode);
     }
 
+    public function testAddValueWithToken()
+    {
+        $response = $this->service
+            ->addValue()
+            ->withAmount(10.00)
+            ->withCurrency('usd')
+            ->withToken(TestGiftCard::validGiftCardToken())
+            ->execute();
+
+        $this->assertEquals('0', $response->responseCode);
+    }
+
     /**
      * @expectedException        HpsArgumentException
-     * @expectedExceptionMessage AddValue needs a card
+     * @expectedExceptionMessage AddValue can only use one payment method
      */
-    public function testAddValueWithNoCard()
+    public function testAddValueWithNoCardorToken()
     {
         $this->service
             ->addValue()
@@ -88,7 +112,7 @@ class FluentGiftCardTest extends PHPUnit_Framework_TestCase
             ->execute();
     }
 
-    public function testBalance()
+    public function testBalanceWithCard()
     {
         $response = $this->service
             ->balance()
@@ -98,11 +122,21 @@ class FluentGiftCardTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('0', $response->responseCode);
     }
 
+    public function testBalanceWithToken()
+    {
+        $response = $this->service
+            ->balance()
+            ->withToken(TestGiftCard::validGiftCardToken())
+            ->execute();
+
+        $this->assertEquals('0', $response->responseCode);
+    }
+
     /**
      * @expectedException        HpsArgumentException
-     * @expectedExceptionMessage Balance needs a card
+     * @expectedExceptionMessage Balance can only use one payment method
      */
-    public function testBalanceWithNoCard()
+    public function testBalanceWithNoCardorToken()
     {
         $this->service
             ->balance()
@@ -121,9 +155,9 @@ class FluentGiftCardTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException        HpsArgumentException
-     * @expectedExceptionMessage Deactivate needs a card
+     * @expectedExceptionMessage Deactivate can only use one payment method
      */
-    public function testDeactivateWithNoCard()
+    public function testDeactivateWithNoCardorToken()
     {
         $this->service
             ->deactivate()
@@ -186,9 +220,9 @@ class FluentGiftCardTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException        HpsArgumentException
-     * @expectedExceptionMessage Reverse needs a card
+     * @expectedExceptionMessage Reverse can only use one payment method
      */
-    public function testReverseWithNoCard()
+    public function testReverseWithNoCardorToken()
     {
         $this->service
             ->reverse()
@@ -219,11 +253,22 @@ class FluentGiftCardTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('0', $response->responseCode);
     }
 
+    public function testRewardWithToken()
+    {
+        $response = $this->service
+            ->reward()
+            ->withToken(TestGiftCard::validGiftCardToken())
+            ->withAmount(10.00)
+            ->execute();
+
+        $this->assertEquals('0', $response->responseCode);
+    }
+
     /**
      * @expectedException        HpsArgumentException
-     * @expectedExceptionMessage Reward needs a card
+     * @expectedExceptionMessage Reward can only use one payment method
      */
-    public function testRewardWithNoCard()
+    public function testRewardWithNoCardorToken()
     {
         $this->service
             ->reward()
@@ -243,7 +288,7 @@ class FluentGiftCardTest extends PHPUnit_Framework_TestCase
             ->execute();
     }
 
-    public function testSale()
+    public function testSaleWithCard()
     {
         $response = $this->service
             ->sale()
@@ -253,12 +298,23 @@ class FluentGiftCardTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('0', $response->responseCode);
     }
+    
+    public function testSaleWithToken()
+    {
+        $response = $this->service
+            ->sale()
+            ->withToken(TestGiftCard::validGiftCardToken())
+            ->withAmount(10.00)
+            ->execute();
+
+        $this->assertEquals('0', $response->responseCode);
+    }
 
     /**
      * @expectedException        HpsArgumentException
-     * @expectedExceptionMessage Sale needs a card
+     * @expectedExceptionMessage Sale can only use one payment method
      */
-    public function testSaleWithNoCard()
+    public function testSaleWithNoCardorToken()
     {
         $this->service
             ->sale()
