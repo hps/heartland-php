@@ -3,7 +3,7 @@
 </a>
 
 # Heartland PHP SDK
-This SDK makes it easy to integrate your PHP application with Heartland’s [**Portico Gateway API**](http://developer.heartlandpaymentsystems.com/Portico), as well as other APIs such as MasterPass and PayPal Express Checkout. Additionally, this SDK also facilitates integration with Heartland Secure: Out-of-Scope devices, providing for simple semi-
+This SDK makes it easy to integrate your PHP application with Heartland’s [**Portico Gateway API**](http://developer.heartlandpaymentsystems.com/Portico), as well as other APIs such as MasterPass. Additionally, this SDK also facilitates integration with Heartland Secure: Out-of-Scope devices, providing for simple semi-
 integrated EMV acceptance, enabling a true single point of integration for omni-channel developers.
 
 Supported features include:
@@ -112,7 +112,6 @@ To summarize, when you create a `paymentMethod` using this SDK you have the foll
   * [Manual Tokenization](https://github.com/hps/heartland-php/tree/master/examples/manual-tokenize)
   * [MasterPass](https://github.com/hps/heartland-php/tree/master/examples/masterpass)
   * [Pay Invoice](https://github.com/hps/heartland-php/tree/master/examples/masterpass)
-  * [PayPal](https://github.com/hps/heartland-php/tree/master/examples/paypal)
   * [Point of Sale/E3 Swipe](https://github.com/hps/heartland-php/tree/master/examples/point-of-sale/e3-swipe) (mag stripe data only)
   * [Recurring Signup](https://github.com/hps/heartland-php/tree/master/examples/recurring-signup-ach)   
 
