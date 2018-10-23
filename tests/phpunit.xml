@@ -17,8 +17,6 @@
         <testsuite name="fluent">
             <directory>./integration/Fluent/</directory>
         </testsuite>
-        <testsuite name="gateway-alt-paypal">
-        </testsuite>
         <testsuite name="gateway-check">
             <directory>./integration/Gateway/Check/</directory>
         </testsuite>
