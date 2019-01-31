@@ -371,16 +371,16 @@ class HpsCreditService extends HpsSoapGatewayService
     }
     /**
      * @param      $startDate
-     * @param      $endDate
-     * @param null $deviceID
+     * @param      $endDate     
      * @param null $filterBy
+     * @param null $deviceID
      *
      * @return array|null
      * @throws \HpsException
      * @throws \HpsGatewayException
      * @throws \HpsInvalidRequestException
      */
-    public function listTransactions($startDate, $endDate, $deviceId = null, $filterBy = null)
+    public function listTransactions($startDate, $endDate, $filterBy = null, $deviceId = null)
     {
         $this->_filterBy = $filterBy;
         date_default_timezone_set("UTC");
@@ -396,9 +396,9 @@ class HpsCreditService extends HpsSoapGatewayService
         $hpsReportActivity = $xml->createElement('hps:ReportActivity');
         $hpsReportActivity->appendChild($xml->createElement('hps:RptStartUtcDT', $startDate));
         $hpsReportActivity->appendChild($xml->createElement('hps:RptEndUtcDT', $endDate));
-        if ($deviceId != null) {
+        if ($deviceId !== null) {
             $hpsReportActivity->appendChild($xml->createElement('hps:DeviceId', $deviceId));
-        };
+        }
         $hpsTransaction->appendChild($hpsReportActivity);
 
         return $this->_submitTransaction($hpsTransaction, 'ReportActivity');
