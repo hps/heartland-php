@@ -48,15 +48,18 @@ class HpsGiftCardServiceAliasBuilder extends HpsBuilderAbstract
 
         $hpsBlock1->appendChild($xml->createElement('hps:Action', $this->action));
         $hpsBlock1->appendChild($xml->createElement('hps:Alias', $this->alias));
-
-        if ($this->token != null && ($this->token instanceof HpsTokenData)) {
-            if ($this->card == null) {
-                $this->card = new HpsGiftCard();
+        
+        //Skip card dependent methods when creation of alias  
+        if ($this->action != 'CREATE') {
+            if ($this->token != null && ($this->token instanceof HpsTokenData)) {
+                if ($this->card == null) {
+                    $this->card = new HpsGiftCard();
+                }
+                $this->card->tokenValue = $this->token->tokenValue;
             }
-            $this->card->tokenValue = $this->token->tokenValue;
+            $cardData = $this->service->_hydrateGiftCardData($this->card, $xml);
+            $hpsBlock1->appendChild($cardData);
         }
-        $cardData = $this->service->_hydrateGiftCardData($this->card, $xml);
-        $hpsBlock1->appendChild($cardData);
 
         $hpsGiftAlias->appendChild($hpsBlock1);
         $hpsTransaction->appendChild($hpsGiftAlias);
@@ -88,6 +91,11 @@ class HpsGiftCardServiceAliasBuilder extends HpsBuilderAbstract
      */
     public function onlyOnePaymentMethod($actionCounts)
     {
+        //when creating an alias neither card/token are passed. Bypassing the method check.
+        if ($this->action == 'CREATE') {
+            return true;
+        }
+
         $methods = 0;
         if (isset($actionCounts['card']) && $actionCounts['card'] == 1) {
             $methods++;
@@ -95,6 +103,7 @@ class HpsGiftCardServiceAliasBuilder extends HpsBuilderAbstract
         if (isset($actionCounts['token']) && $actionCounts['token'] == 1) {
             $methods++;
         }
+
         return $methods == 1;
     }
 

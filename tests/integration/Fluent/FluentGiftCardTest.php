@@ -362,4 +362,43 @@ class FluentGiftCardTest extends PHPUnit_Framework_TestCase
             ->void()
             ->execute();
     }
+
+    public function testAliasWithCreateAction()
+    {
+        $response = $this->service
+            ->alias()
+            ->withAlias('9725550100')
+            ->withAction('CREATE')
+            ->execute();
+            
+        $this->assertEquals('0', $response->responseCode);
+        $this->assertNotNull($response->giftCard->number->PIN);
+    }
+
+    public function testAliasWithAddAction()
+    {
+        $response = $this->service
+            ->alias()
+            ->withAlias('9725550100')
+            ->withCard(TestGiftCard::validGiftCardNotEncrypted())
+            ->withAction('ADD')
+            ->execute();
+            
+        $this->assertEquals('0', $response->responseCode);
+        $this->assertNotNull($response->giftCard->number->CardNbr);
+    }
+
+    public function testAliasWithDeleteAction()
+    {
+        $response = $this->service
+            ->alias()
+            ->withAlias('9725550100')
+            ->withCard(TestGiftCard::validGiftCardNotEncrypted())
+            ->withAction('DELETE')
+            ->execute();
+        
+        $this->assertEquals('0', $response->responseCode);
+        $this->assertNotNull($response->giftCard->number->CardNbr);
+        $this->assertNotNull($response->giftCard->number->Alias);
+    }
 }
