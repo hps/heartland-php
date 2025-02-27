@@ -1,3 +1,9 @@
+# ** This repository is no longer maintained! ** 
+Our current PHP SDK can be found <a href="https://github.com/globalpayments/php-sdk" target="_blank">here</a>
+
+<a href="http://developer.heartlandpaymentsystems.com/SecureSubmit" target="_blank">
+	<img src="http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-heartland-logo" alt="Heartland logo" title="Heartland" align="right" />
+</a>
 <a href="http://developer.heartlandpaymentsystems.com" target="_blank">
 	<img src="http://developer.heartlandpaymentsystems.com/Resource/Download/sdk-readme-heartland-logo" alt="Heartland logo" title="Heartland" align="right" />
 </a>
